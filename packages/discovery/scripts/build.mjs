@@ -27,7 +27,11 @@ if (await readFile(new URL("src/benchmark-results.ts", pkg), "utf8") !== results
   throw new Error("retained_benchmark_results_drift");
 }
 const evidencePackage = JSON.parse(await readFile(new URL("packages/evidence/package.json", root), "utf8"));
-if (evidencePackage.version !== "0.1.0-draft.1") throw new Error("review_evidence_version_before_build");
+if (evidencePackage.version !== "0.1.0-draft.2") throw new Error("review_evidence_version_before_build");
+const evidenceTypes = await readFile(new URL("packages/evidence/dist/index.d.ts", root), "utf8");
+if (!evidenceTypes.includes('export declare const EVIDENCE_VERSION: "0.1.0-draft.2";')) {
+  throw new Error("build_pinned_evidence_package_first");
+}
 await mkdir(new URL("dist/vendor/", pkg), { recursive: true });
 execFileSync(process.execPath, [
   fileURLToPath(new URL("node_modules/typescript/bin/tsc", root)), "-p", fileURLToPath(new URL("tsconfig.json", pkg)),
@@ -43,7 +47,6 @@ await Promise.all([
 ]);
 // Preserve source imports from the owning package. Package self-contained declarations from its
 // emitted top-level declarations, never a separately maintained alternative capability schema.
-const evidenceTypes = await readFile(new URL("packages/evidence/dist/index.d.ts", root), "utf8");
 const required = new Set(["CAPABILITY_SCHEMA_VERSION", "WORK_EVIDENCE_RUBRIC", "CONTRIBUTION_POLICY_VERSION",
   "HUMAN_ACTIONS", "QUALITY_DIMENSIONS", "HumanAction", "QualityDimension", "CheckResult", "CapabilityEvidence", "ContributionConsent"]);
 const selected = evidenceTypes.split(/(?=^export )/m).filter(declaration => {
@@ -54,7 +57,7 @@ const selected = evidenceTypes.split(/(?=^export )/m).filter(declaration => {
 });
 if (required.size) throw new Error("review_changed_evidence_declarations");
 await writeFile(new URL("dist/vendor/evidence.d.ts", pkg),
-  "// Extracted from @better-loop/evidence 0.1.0-draft.1 emitted declarations.\n" +
+  "// Extracted from @better-loop/evidence 0.1.0-draft.2 emitted declarations.\n" +
   selected.join("\n") + "\n");
 await copyFile(new URL("packages/contracts/dist/generated/share-candidate.d.ts", root), new URL("dist/vendor/share-candidate.d.ts", pkg));
 for (const file of await readdir(new URL("dist/", pkg))) {

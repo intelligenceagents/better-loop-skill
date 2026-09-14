@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { matchRoleEvidence } from "../dist/index.js";
-import { criteria, current, row } from "./fixtures.js";
+import { attestedRow, criteria, current, row } from "./fixtures.js";
 
 test("separate task/skills, relevant quality, human attribution and gaps; no score or tier promotion", () => {
   const result = matchRoleEvidence(criteria(), [row()], current);
@@ -57,13 +57,37 @@ test("autonomous agent checks are retained as quality, never inferred human acti
   assert.ok(match.gaps.some(gap => gap.area === "human_action" && gap.reason === "missing_evidence"));
 });
 test("attestations and known failed checks stay distinct from missing data", () => {
-  const record = row();
-  record.capability_evidence!.human_actions[0]!.evidence = "user_attestation";
+  const record = attestedRow();
   record.capability_evidence!.human_actions[0]!.outcome_check = "not_met";
   record.capability_evidence!.quality_checks[0]!.result = "not_met";
   const match = matchRoleEvidence(criteria(), [record], current).matches[0]!;
   assert.ok(match.gaps.some(gap => gap.reason === "attestation_only"));
   assert.ok(match.gaps.some(gap => gap.area === "quality" && gap.reason === "check_not_met"));
+});
+for (const state of ["insufficient_evidence", "not_observed"] as const) {
+  test(`legitimate self-attestation with ${state} is discoverable without manufacturing observed human evidence`, () => {
+    const record = attestedRow(1, state);
+    const result = matchRoleEvidence(criteria(), [record], current);
+    assert.equal(result.state, "available");
+    const match = result.matches[0]!;
+    assert.equal(match.human_attribution.assessment_basis, "user_attestation");
+    assert.equal(match.human_attribution.actions[0]!.evidence!.evidence, "user_attestation");
+    assert.equal(match.human_attribution.actions[0]!.evidence!.outcome_check, "met");
+    assert.ok(match.gaps.some(gap => gap.area === "human_action" && gap.reason === "attestation_only"));
+    assert.equal(match.trust.tier, "self_reported");
+    assert.equal(record.candidate.human_behaviors[0]!.state, state);
+    assert.equal(record.candidate.human_behaviors[0]!.rating, null);
+  });
+}
+test("bundled validator requires selected-human-message support for every observed base indicator", () => {
+  const missing = row(); missing.capability_evidence!.human_actions = [];
+  const attestedObserved = row(); attestedObserved.capability_evidence!.human_actions[0]!.evidence = "user_attestation";
+  const wrongIndicator = row(); wrongIndicator.capability_evidence!.human_actions[0]!.action = "goal_definition";
+  for (const record of [missing, attestedObserved, wrongIndicator]) {
+    assert.equal(matchRoleEvidence(criteria(), [record], current).state, "invalid_input");
+  }
+  // Positive control: observed candidate behavior has its matching selected human message.
+  assert.equal(matchRoleEvidence(criteria(), [row()], current).state, "available");
 });
 test("client capsule contradictions and unsupported role fields are rejected without echoing input", () => {
   const record = row(); record.capability_evidence!.assessment_basis = "artifacts_only";

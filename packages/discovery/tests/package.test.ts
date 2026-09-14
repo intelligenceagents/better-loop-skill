@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
+import { attestedRow, criteria, current, row } from "./fixtures.js";
 
 test("offline packed package has bundled runtime/types, ESM/CJS consumers, MIT/notices and no fixture artifacts", () => {
   const pkg = fileURLToPath(new URL("../", import.meta.url));
@@ -19,15 +20,22 @@ test("offline packed package has bundled runtime/types, ESM/CJS consumers, MIT/n
   assert.ok(packed.files.every(file => /^(dist\/.*|package\.json|README\.md|API\.md|LICENSE|THIRD_PARTY_NOTICES\.md)$/.test(file.path)));
   writeFileSync(join(destination, "package.json"), '{"name":"test-only-discovery-consumer","private":true,"type":"module"}\n');
   execFileSync("npm", ["install", "--offline", "--ignore-scripts", "--no-audit", "--no-fund", join(destination, packed.filename)], { cwd: destination, stdio: "pipe" });
-  const installed = JSON.parse(readFileSync(join(destination, "node_modules/@better-loop/discovery/package.json"), "utf8")) as { dependencies?: unknown };
+  const installed = JSON.parse(readFileSync(join(destination, "node_modules/@better-loop/discovery/package.json"), "utf8")) as { dependencies?: unknown; version: string };
   assert.equal(installed.dependencies, undefined);
+  assert.equal(installed.version, "0.1.0-draft.2");
+  const unsupported = row(); unsupported.capability_evidence!.human_actions = [];
+  const input = JSON.stringify({ criteria: criteria(), current, attested: attestedRow(), unsupported });
   for (const [mode, statement] of [
-    ["module", 'import { judgeApprovalBindingOutput, MINIMUM_COHORT_OWNERS } from "@better-loop/discovery";'],
-    ["commonjs", 'const { judgeApprovalBindingOutput, MINIMUM_COHORT_OWNERS } = require("@better-loop/discovery");'],
+    ["module", 'import { DISCOVERY_VERSION, judgeApprovalBindingOutput, matchRoleEvidence, MINIMUM_COHORT_OWNERS } from "@better-loop/discovery";'],
+    ["commonjs", 'const { DISCOVERY_VERSION, judgeApprovalBindingOutput, matchRoleEvidence, MINIMUM_COHORT_OWNERS } = require("@better-loop/discovery");'],
   ]) {
     const output = execFileSync(process.execPath, [`--input-type=${mode}`, "-e",
-      `${statement} console.log(MINIMUM_COHORT_OWNERS, judgeApprovalBindingOutput(null).result);`], { cwd: destination, encoding: "utf8" });
-    assert.equal(output.trim(), "20 incomplete");
+      `${statement}
+const input = ${input};
+console.log(DISCOVERY_VERSION, MINIMUM_COHORT_OWNERS, judgeApprovalBindingOutput(null).result,
+  matchRoleEvidence(input.criteria, [input.attested], input.current).state,
+  matchRoleEvidence(input.criteria, [input.unsupported], input.current).state);`], { cwd: destination, encoding: "utf8" });
+    assert.equal(output.trim(), "0.1.0-draft.2 20 incomplete available invalid_input");
   }
   const types = `
 import {

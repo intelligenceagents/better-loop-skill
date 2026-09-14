@@ -7,4 +7,4 @@ export {
   APPROVAL_BINDING_LIMITS, judgeApprovalBindingOutput,
 } from "./benchmark.js";
 export type { ApprovalBindingAnswer, ApprovalBindingJudgment } from "./benchmark.js";
-export const DISCOVERY_VERSION = "0.1.0-draft.1" as const;
+export const DISCOVERY_VERSION = "0.1.0-draft.2" as const;

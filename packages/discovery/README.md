@@ -1,8 +1,8 @@
 # @better-loop/discovery
 
-Version `0.1.0-draft.1`. Bounded pure helpers for role-relevant public evidence, descriptive benchmark cohorts and learning milestones, plus one frozen actual-public-work benchmark judge. No universal person score, automatic hiring decision, ability badge or population percentile.
+Version `0.1.0-draft.2`. Bounded pure helpers for role-relevant public evidence, descriptive benchmark cohorts and learning milestones, plus one frozen actual-public-work benchmark judge. No universal person score, automatic hiring decision, ability badge or population percentile.
 
-See [API.md](API.md) for integration shapes. ESM, CommonJS and declarations are packaged with bundled runtime dependencies and extracted shared type declarations. Source imports the approved `@better-loop/evidence@0.1.0-draft.1` types and validators; the package has no install-time runtime dependency downloads.
+See [API.md](API.md) for integration shapes. ESM, CommonJS and declarations are packaged with bundled runtime dependencies and extracted shared type declarations. Source imports the approved `@better-loop/evidence@0.1.0-draft.2` types and validators; the package has no install-time runtime dependency downloads.
 
 ```ts
 import { matchRoleEvidence } from "@better-loop/discovery";
@@ -16,6 +16,8 @@ const result = matchRoleEvidence(criteria, currentServerRows, {
 The caller must authenticate and derive current publication, revision, ownership, consent and trust state. This helper is not admission, authentication or independent verification. It performs no semantic reviews, model calls, uploads, persistence or side effects.
 
 Discovery requires explicit `candidate_discovery` consent on current published work-derived evidence. It lists stories in public-ID order, with separate task/skills, relevant quality checks, reported human actions, missing evidence and server trust reasons. Cross-family matches show their different context. A local claim cannot increase the server trust tier; email verification and agent work are not human judgment.
+
+The draft.2 validator requires matching selected-human-message evidence for every observed candidate indicator. A legitimate user attestation can accompany base `insufficient_evidence` or `not_observed` with a null rating. Discovery retains its attestation-only gap and self-reported trust; it does not manufacture an observed conversation to accept the claim. API/schema/policy shapes, the frozen benchmark, its judge and retained execution results are unchanged.
 
 `aggregateBenchmarkCohort` requires explicit benchmark consent, a known registered benchmark, exact benchmark/framework/rubric/task/difficulty/conditions/metric versions and matching trust/provenance strata, comparable measurements, known quality and no critical regression. It accepts only normalized candidate indices, with baseline 100. Suppressed cohorts return no exact count or statistic. The fixed minimum is **20 distinct eligible server owners**; the caller cannot lower it. Owner IDs appear only in operational input and never in any output.
 

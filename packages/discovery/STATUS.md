@@ -1,6 +1,8 @@
 # Discovery package verification
 
-Updated 2026-09-14. Package `@better-loop/discovery@0.1.0-draft.1` is implemented and tested locally on the existing `codex/m2-m6-skill` branch. This scoped report leaves central coordination and root integration to their owners.
+Updated 2026-09-14. Package `@better-loop/discovery@0.1.0-draft.2` is implemented and tested locally on the existing `codex/m2-m6-skill` branch. This scoped report leaves central coordination and root integration to their owners.
+
+Draft.2 rebundles the corrected `@better-loop/evidence@0.1.0-draft.2` validator from parent commit `01091e5c26378576b3b42d6a7f9735821d9ae2e4`. Observed candidate human indicators require matching selected-human-message support. Legitimate attestations with base `insufficient_evidence` or `not_observed` and null rating remain valid and explicitly attestation-only. API/schema/policy shapes and all frozen benchmark/judge/results bytes are unchanged.
 
 Implemented:
 
@@ -17,8 +19,9 @@ Verification actually run:
 |---|---|
 | Package build, source/registration/results drift checks | Passed |
 | Strict TypeScript source/test check | Passed |
-| Behavior and package checks | 74 passed, 0 failed |
+| Behavior and package checks | 77 passed, 0 failed |
 | Offline packed consumer | ESM, CommonJS and both declaration modes passed without contracts/evidence installed |
+| Draft.2 bundled attribution validation | Both packed runtime modes accept legitimate unobserved attestations and reject unsupported observed indicators |
 | Current consent, withdrawal, deletion, legacy/synthetic exclusion | Passed |
 | Fixed 19/20-owner boundary, deduplication, rounded arithmetic, negative/neutral retention | Passed |
 | Missing/agent-only attribution, unknown/relevant quality, milestone non-inflation | Passed |
@@ -26,6 +29,8 @@ Verification actually run:
 | Scoped whitespace check | Passed |
 
 Checks used Node `22.10.0` and the repository's installed locked tooling. The input fixture tests are explicitly fictional and excluded from the package artifact; they are not execution results.
+
+Packed draft.2 artifact: `artifacts/better-loop-discovery-0.1.0-draft.2.tgz`, 112,320 bytes, 19 allowlisted files. SHA-256: `4c42d94f15cbee29cf398d82449b002a6aa844b1cdc12c3e8030dac8b55894d1`. The archive is a local ignored release artifact, not a package-registry publication. Root npm installation remains Carson's responsibility.
 
 The coordinator's two actual native Claude Code benchmark invocations used host version `2.1.270` for one baseline-then-guided pair. Both outputs met all twelve case checks and three scope limits. All model-usage entries total 34,617 baseline tokens and 34,981 guided tokens (+364, about +1.05%). Host-reported list-cost estimates were USD0.223280 and USD0.223716, not cash billing. There was no measured quality gain and no established savings or causal speed improvement. The discovery worker made zero model calls.
 

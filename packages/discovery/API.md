@@ -1,4 +1,4 @@
-# Integration API 0.1.0-draft.1
+# Integration API 0.1.0-draft.2
 
 The authoritative types are [src/types.ts](src/types.ts). Import all public types and functions from `@better-loop/discovery`.
 
@@ -11,6 +11,8 @@ judgeApprovalBindingOutput(output: unknown): ApprovalBindingJudgment;
 ```
 
 Shared `CapabilityEvidence` and `ContributionConsent` are imported from `@better-loop/evidence` and `ShareCandidate` from `@better-loop/contracts`. The current API is pure and does not fetch, persist, authenticate, review, upload or execute a task.
+
+This release bundles evidence `0.1.0-draft.2`. API/schema/policy shapes are unchanged. Every observed candidate human indicator needs a matching `selected_human_message` action. Legitimate `user_attestation` remains distinguishable and accepts base `insufficient_evidence` or `not_observed` with a null rating; it is never upgraded to observed conversation evidence.
 
 For server integrations, supply `context: { source: "current_server_snapshot", complete: true }` only after an authoritative current read. Rows contain `public_id`, `current`, `status`, `candidate`, `capability_evidence`, `consent` and `server_trust_tier`. Use `null` capsule/consent for legacy records. Discovery requires explicit candidate-discovery consent. Public summaries require current public-story consent; they summarize evidence without counts or ability badges.
 

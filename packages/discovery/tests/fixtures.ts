@@ -50,6 +50,19 @@ export function row(index = 1, candidateIndex = 100): PublicEvidenceRecord {
     },
   };
 }
+/** Legitimate self-attestation fixture: no observed conversation or ordinal human rating is invented. */
+export function attestedRow(index = 1, state: "insufficient_evidence" | "not_observed" = "insufficient_evidence"): PublicEvidenceRecord {
+  const record = row(index);
+  record.candidate.human_behaviors[0]!.state = state;
+  record.candidate.human_behaviors[0]!.rating = null;
+  record.candidate.human_behaviors[0]!.evidence_summary = "Invented attestation only; no selected human message was observed.";
+  record.capability_evidence!.assessment_basis = "user_attestation";
+  record.capability_evidence!.human_involvement = "human_directed";
+  record.capability_evidence!.human_actions[0]!.evidence = "user_attestation";
+  record.capability_evidence!.quality_checks[0]!.basis = "self_reported";
+  record.capability_evidence!.quality_checks[0]!.evaluator = "human";
+  return record;
+}
 export const cohortRow = (index = 1, candidateIndex = 100): BenchmarkCohortRecord => ({
   ...row(index, candidateIndex), server_owner_id: `TEST_ONLY_OWNER_${index}`, benchmark_conditions_version: "bl-approval-binding-readonly-0.1",
 });
