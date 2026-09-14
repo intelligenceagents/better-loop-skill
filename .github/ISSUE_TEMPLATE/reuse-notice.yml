@@ -1,0 +1,36 @@
+name: Voluntary integration or reuse notice
+description: Optionally tell us about non-confidential reuse. MIT does not require a notice.
+title: "Voluntary reuse notice: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for sharing an optional notice. This is a public issue.
+        Do not include assessment results, employee information, private work,
+        internal addresses, secrets or confidential business details.
+        You may omit your company name or skip the notice entirely.
+        No notification, permission or maintainer reply is required by MIT.
+  - type: input
+    id: version
+    attributes:
+      label: Better Loop version or commit
+      description: Optional; helps us understand which version is used.
+  - type: dropdown
+    id: reuse
+    attributes:
+      label: Type of reuse
+      options:
+        - Internal integration
+        - Modified distribution or fork
+        - Personal or research use
+        - Another project
+  - type: textarea
+    id: description
+    attributes:
+      label: Broad description or feedback
+      description: Optional and non-confidential. Do not attach work or assessment results.
+  - type: input
+    id: project
+    attributes:
+      label: Public project link
+      description: Optional. Do not include an internal or private URL.

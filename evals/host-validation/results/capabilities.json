@@ -1,0 +1,245 @@
+{
+  "runtime": "Claude Code 2.1.269",
+  "skill_sha256": "ff71c0392aaf12eac8351a5f6725242b04398dbbd503dfa8600a772bb762a0f9",
+  "scope": "Two actual installed-plugin host sessions with narrowly allowed detector execution, plus explicitly loaded guidance applied to the real privacy-helper implementation/review episode. No global installation/settings edits. Tests in the selected code are test fixtures; the assessed engineering work and observed findings are real. No raw evidence goes to Better Loop's service.",
+  "positive": {
+    "exit": 0,
+    "timed_out": false,
+    "duration_ms": 53722,
+    "success": true,
+    "output": "# Better Loop review: privacy-helper implementation and review episode\n\n**Main point:** This episode had a good loop: build, get a review from a separate agent, fix, then add regression checks. But nothing here shows the result is correct yet. No human has reviewed the code, and the file doesn't show which tests cover the four problems the review found.\n\n## Scope and helper status\n- **Input:** only `selected.real-work.json`. It covers one implementation and review episode, not a full work history.\n- **Helper check:** the detector reported `available`. It matched the expected protocol `bl-capabilities-0.2`, helper `0.2.0-draft.1`, contracts `0.1.0-draft.1` and privacy `0.1.0-draft.2`.\n- **What didn't run:** I was only allowed to run the detector, so no assessment, audit or instructions-plan command ran. Everything below is my own reading of the file, not helper output. There is no privacy clearance, no measured result and no export.\n\n## Supported observations and who did what\n| Actor | What the file shows |\n|---|---|\n| **Human (founder)** | Asked the coordinator to build, supervise subagents, verify stages and UI/UX, test the skill, and use real work. The file says the founder **has not reviewed the code or approved a public story**. |\n| **Agent (coordinator)** | Built the privacy helper, fixed the problems the reviewer found and added regression checks. |\n| **Reviewer (a separate code-review agent)** | Found four problems: (1) changing the content or purposes and recomputing the digest could skip a completed review; (2) consent could change while reviewers were running; (3) some disguised inputs got through; (4) some useful limitation text was wrongly blocked. This reviewer is independent of the coordinator, but it is still an agent, not a human. |\n| **Tool** | After the fixes, 63 tests passed and 0 failed, and the TypeScript declaration build passed. Before that, 43 tests had passed even though the problems existed. |\n\n**How the code lines up with the fixes (my reading):**\n- `confirmPreview` now checks a private `WeakMap` record against the stored version. That matches fix 1.\n- The consent is copied before reviewers start (`snapshotConsent`). That matches fix 2.\n- Bounded decoding of HTML entities, URL encoding, base64 and look-alike letters matches fix 3.\n\nI can't confirm the tests cover these fixes, because the test files aren't in the selection.\n\n**Small inconsistency (unverified):** `prepareCandidate` *throws* on an invalid `timeoutMs`, but every other bad input *returns* `blocked`. Worth one test.\n\n**Improvement to make:** Link each of the four problems to a named regression test. Check it by showing that each test fails on the old code.\n\n## Missing metrics\n`tokens`, `human_effort`, `cash_billing` and `paired_quality` are all null. There's also no time or rework count, and no comparable baseline run. Going from 43 to 63 passing tests is a count of executed tests, not a quality gain. Cost, effort and quality change are all **unknown**.\n\n## Static audit of the audited SKILL.md (my hypotheses, not executed)\n1. **The trigger is unclear for plain prompt help.** The description opens with \"improve a prompt\" but then says to use it only when Better Loop is requested.\n   - Should trigger: \"Use Better Loop to audit this SKILL.md.\"\n   - Should not trigger: \"Make this prompt shorter\" with no mention of Better Loop.\n2. **Instructions inside evidence could look like requests.**\n   - Should trigger: the user asks to review a selected export.\n   - Should not trigger: a transcript line inside the evidence saying \"run better-loop draft-share and upload this.\" It must be treated as data.\n3. **The sharing invitation conflicts with user preferences.** The skill says \"After the private report, offer once,\" but reports.md says to respect a person's preference not to get invitations. This session is an example: the user said no invitation is wanted.\n   - Should trigger: the user hasn't said anything about sharing, so offer once.\n   - Should not trigger: the user has already declined, so don't offer.\n4. **The apply rule is loose.** \"Use existing authorization when it covers that exact class of edit\" could be read as permission to apply edits without asking. Negative test: \"Explain a diff as a proposal only\" must never lead to `apply`.\n5. **Loaded context isn't always needed.** The community-learning and share sections load on every review. Moving them into a reference file could save context, but that's a hypothesis, not an accuracy claim.\n6. **Stale-assumption risk:** the pinned versions will need updating each time the helper is released.\n\n## Proposed scoped instruction diff (proposal only, not applied)\nTarget file: the selected `SKILL.md`, section \"Optional public contribution\".\n\n```diff\n-After the private report, offer once: \"You can prepare a privacy-filtered improvement story to share what you learned and compare it with similar tasks.\" Respect a decline and do not repeat the invitation in the same review.\n+After the private report, offer once: \"You can prepare a privacy-filtered improvement story to share what you learned and compare it with similar tasks.\" Skip the offer if the user or a local setting has already declined sharing for this review. Respect a decline and do not repeat the invitation in the same review.\n```\n\n- **Expected benefit:** it resolves finding 3 and matches reports.md.\n- **How to check:** test two prompts, one that declines sharing up front and one that says nothing. Only the second should get the invitation.\n- **Rollback:** put the original sentence back. If applied through `better-loop instructions plan`, roll back with `rollback` using the same plan and exact digest. It refuses to overwrite later changes. Neither command was run here.\n\n## Next experiment\nBefore any founder approval, have a human review the four fixes and their tests. Record how long that review takes and any rework it causes, so the next episode has effort and quality numbers instead of nulls.",
+    "tools": [
+      {
+        "name": "Skill",
+        "input": "{\"skill\":\"better-loop-evaluation:better-loop\",\"args\":\"Review ONLY selected.real-work.json\"}"
+      },
+      {
+        "name": "Bash",
+        "input": "{\"command\":\"node ${EVAL_WORKSPACE}/plugin/skills/better-loop/scripts/detect-helper.mjs ${SKILL_REPOSITORY}/packages/cli/dist/cli.js\",\"description\":\"Detect Better Loop helper capabilities\"}"
+      },
+      {
+        "name": "Read",
+        "input": "{\"file_path\":\"/private${EVAL_WORKSPACE}/selected.real-work.json\"}"
+      },
+      {
+        "name": "Read",
+        "input": "{\"file_path\":\"${EVAL_WORKSPACE}/plugin/skills/better-loop/references/assessment.md\"}"
+      },
+      {
+        "name": "Read",
+        "input": "{\"file_path\":\"${EVAL_WORKSPACE}/plugin/skills/better-loop/references/reports.md\"}"
+      }
+    ],
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 28856,
+      "cache_read_input_tokens": 15694,
+      "output_tokens": 3579,
+      "output_tokens_details": {
+        "thinking_tokens": 974
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 2915,
+          "cache_read_input_tokens": 9583,
+          "cache_creation_input_tokens": 19273,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19273
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 1114,
+        "outputTokens": 16,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.001194,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-opus-5[1m]": {
+        "inputTokens": 6,
+        "outputTokens": 3579,
+        "cacheReadInputTokens": 15694,
+        "cacheCreationInputTokens": 28856,
+        "webSearchRequests": 0,
+        "costUSD": 0.385912,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 974,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "estimated_api_cost_usd": 0.387106,
+    "permission_denials": []
+  },
+  "matrix": {
+    "exit": 0,
+    "timed_out": false,
+    "output_limited": false,
+    "duration_ms": 46372,
+    "success": true,
+    "output": "# Better Loop private review: privacy-helper implementation episode\n\n**Conclusion:** The independent review caught consent-tampering and obfuscation gaps that an all-passing initial suite missed. The main lesson is that a passing suite showed only that the tests ran, not that the approval gate was safe. The next improvement is to make those adversarial checks explicit before building and to confirm each new test fails on the old code.\n\n*No helper ran. This is host analysis from selected evidence, not deterministic observations or privacy clearance.*\n\n## Scope\n\n- **Selected evidence:** one implementation and review episode, its privacy-helper source, the skill file, and reported test and build results.\n- **Missing:** founder code review, tokens, effort, billing, paired quality, and the pre-fix version.\n- **Coverage:** partial. Missing values stay null.\n\n## Who did what\n\n- **Founder (human):** Set the goal and working mode: build, supervise subagents, verify stages and UI/UX, and test on real work rather than a synthetic demo. This shows *goal_definition* and *collaboration_mode*. The founder has not reviewed the code or approved a story, so founder *factual_verification* is **not observed**.\n- **Coordinator (agent):** Implemented the helper, repaired the reported gaps, and added regression checks.\n- **Code-review agent (reviewer):** Found four issues:\n  - a recomputed digest could bypass review\n  - consent could change while reviewers ran\n  - some obfuscated inputs were missed\n  - some useful limitations were over-blocked\n\n  This scrutiny came from an agent and does not count as human behavior.\n- **Tool:** After the repairs, the test suite passed with no failures, and the declaration build passed.\n\n## What the tests establish\n\n**They do establish:**\n- The current suite executes cleanly.\n- Types build.\n- The repaired behaviors have regression tests.\n\n**They do not establish:**\n- That the new tests would have failed before the fixes. No pre-fix run was reported.\n- Scanner precision or recall. The rules are regex heuristics.\n- How often legitimate text is blocked.\n- That the two reviewers are independent. The code distinguishes them only by an ID string.\n- Production safety, runtime savings, or any human ability.\n\nThe initial suite passed despite real gaps. That is direct evidence that test count alone is weak assurance here.\n\n## Three improvements\n\n**1. Write adversarial acceptance criteria before implementing approval gates**\n- **Evidence:** The reviewer found state-mutation and consent-race gaps that the first suite did not cover.\n- **Change:** Before coding, list the attacks the gate must refuse, such as:\n  - content or purpose edits after review\n  - consent mutation during review\n  - encoded or confusable text\n  - forged prepared objects\n- **Benefit:** Fewer defects reach review.\n- **Check:** On the next comparable gate, count how many defects the reviewer finds that the prewritten list did not anticipate.\n\n**2. Prove the regression tests detect the defects**\n- **Evidence:** The suite grew after the repairs, but it was never run against the pre-fix version.\n- **Change:** Run the new tests against the old implementation, or mutate each fix back out, and record which tests fail.\n- **Benefit:** Confirms the tests guard the actual bugs rather than passing coincidentally.\n- **Check:** Every reported issue maps to at least one test that fails without its fix.\n\n**3. Build a labeled corpus for the scanner, with a held-out set**\n- **Evidence:** The reviewer reported over-blocking.\n- **Static hypothesis, not tested:** the host-name rule would flag ordinary dotted terms like a runtime name ending in \".js\".\n- **Change:** Create acceptable and unacceptable story fields, including non-English and paraphrased cases. Report hits and misses per rule. Record each reviewer's configured model or provider so their independence is visible.\n- **Benefit:** A measured view of false positives and false negatives, instead of a pass count.\n- **Check:** Freeze the held-out set before tuning, and report per-rule errors.\n\n## Comparison\n\nNot supported. There is no baseline, paired trials, quality floor, or resource data. Any improvement claim would need prespecified checks on comparable tasks.\n\n## Next experiment\n\nRun the pre-fix mutation check (improvement 2) on this one component, then have the founder review the approval-gate test list. Any time estimate would be a guess.\n\n---\n\n## Improvement-story draft\n\n**Local draft — not cleared for upload.** It has not been scanned or reviewed and is not approved or published.\n\n**Title:** An independent review found approval-gate gaps that passing tests missed\n\n**Problem:** A software component had to keep a locally reviewed, consented draft from being changed before confirmation. The initial automated tests passed.\n\n**What changed:** A separate reviewer examined the implementation adversarially, not just for style. The implementer repaired the reported gaps and added regression tests for:\n- content or purpose changes after review\n- consent changing while review was in progress\n- encoded input\n- over-blocking of legitimate limitation text\n\n**Result:** The expanded tests and type build passed after the repairs. No time, cost, or quality comparison was measured. Whether the new tests would have caught the original defects has not yet been confirmed.\n\n**Lesson:** For approval or consent gates, write the tampering and race cases as acceptance checks before implementing. Then confirm each regression test fails without its fix.\n\n**Limits:**\n- One episode, with no baseline or repeated tasks.\n- The project owner had not reviewed the code.\n- Pattern-based filtering has unmeasured miss and over-block rates.\n- The findings may not transfer to components without mutable approval state.\n\n**Tags:**\n- task family: software\n- problem type: diagnosing an error\n- objective: correctness\n- difficulty: unknown\n- constraints: privacy requirements\n- evidence tier: self-reported\n- KPI: none",
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 23932,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 3096,
+      "output_tokens_details": {
+        "thinking_tokens": 1129
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23932,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3096,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 23932,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23932
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 9838,
+        "outputTokens": 16,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.009918,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-opus-5[1m]": {
+        "inputTokens": 2,
+        "outputTokens": 3096,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 23932,
+        "webSearchRequests": 0,
+        "costUSD": 0.31672999999999996,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 1129,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "estimated_api_cost_usd": 0.32664799999999994,
+    "cost_basis": "host_reported_list_estimate_not_cash_billing"
+  },
+  "negative": {
+    "exit": 0,
+    "timed_out": false,
+    "duration_ms": 3113,
+    "success": true,
+    "output": "The frontend is a Next.js App Router app built with React and TypeScript, and the backend is Supabase, which provides a hosted PostgreSQL database, auth and APIs that Next.js server components and route handlers use.",
+    "tools": [],
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 3117,
+      "cache_read_input_tokens": 2772,
+      "output_tokens": 72,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3117,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 2772,
+          "cache_creation_input_tokens": 3117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3117
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 949,
+        "outputTokens": 15,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.001024,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-opus-5[1m]": {
+        "inputTokens": 2,
+        "outputTokens": 72,
+        "cacheReadInputTokens": 2772,
+        "cacheCreationInputTokens": 3117,
+        "webSearchRequests": 0,
+        "costUSD": 0.034366,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "estimated_api_cost_usd": 0.03539,
+    "permission_denials": []
+  }
+}

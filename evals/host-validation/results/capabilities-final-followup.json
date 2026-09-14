@@ -1,0 +1,95 @@
+{
+  "runtime": "Claude Code 2.1.269",
+  "skill_sha256": "0d58a7c69ec7deee9e34e3f7a8d5df2c925f81a58635cde0200601edbb567728",
+  "scope": "Final bounded real prompt-improvement follow-up after whole-response budgeting correction. Same prompt and checks; prior failures retained.",
+  "result": {
+    "exit": 0,
+    "timed_out": false,
+    "duration_ms": 29238,
+    "success": true,
+    "output": "**Rewritten prompt**\n\n> Finish two pieces of work on the current work branch: the provider-outage correction and the real-data UI. Then run the project's checks and push the branch.\n>\n> **Done when:**\n> 1. **Outage correction:** The outage behavior matches [describe the intended correct behavior]. A test or recorded check shows the fix, and one that failed before now passes.\n> 2. **Real-data UI:** The UI shows data from [name the real data source], not placeholders or mocks. Loading, empty and error states each show something sensible.\n> 3. **Checks:** Run the repository's standard checks ([list the commands, e.g. lint, typecheck, tests, build]). Report each command and whether it passed, and quote the output of any failure. Don't say a check passed unless you actually ran it.\n> 4. **Push:** Push the work branch only, not the default branch. Report the branch name and the commit hash you pushed.\n> 5. **Summary:** List the changed files, anything you couldn't finish, and any checks that are still failing.\n\n**Notes**\n- **What was run:** Only the detector, which confirmed the local Better Loop helper is available. I didn't run its rewrite command, so this rewrite is my own analysis, not the helper's output.\n- **Your details needed:** Fill in the bracketed parts with your own details. I didn't want to guess what \"correct\" outage behavior, the data source or the check commands are.\n- **Unchanged scope:** I didn't add any approval steps or rules to stop on failure. The prompt still asks for the same work as your original.",
+    "tools": [
+      {
+        "name": "Skill",
+        "input": "{\"skill\":\"better-loop-evaluation:better-loop\",\"args\":\"Improve this prompt without executing it: \\\"Finish the provider-outage correction and the real-data UI, run the checks, and push the work branch.\\\" Preserve intent, concrete acceptance criteria, max 250 words. No sharing invitation. Only authorized command: node ${EVAL_WORKSPACE}/plugin/skills/better-loop/scripts/detect-helper.mjs ${SKILL_REPOSITORY}/packages/cli/dist/cli.js. No edits, tests, push, publish.\"}"
+      },
+      {
+        "name": "Bash",
+        "input": "{\"command\":\"node ${EVAL_WORKSPACE}/plugin/skills/better-loop/scripts/detect-helper.mjs ${SKILL_REPOSITORY}/packages/cli/dist/cli.js\",\"description\":\"Check local helper compatibility\"}"
+      }
+    ],
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 11401,
+      "cache_read_input_tokens": 16595,
+      "output_tokens": 1038,
+      "output_tokens_details": {
+        "thinking_tokens": 36
+      },
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11401,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "not_available",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 550,
+          "cache_read_input_tokens": 10457,
+          "cache_creation_input_tokens": 944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "model_usage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 1106,
+        "outputTokens": 18,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.001196,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000,
+        "thinkingTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      },
+      "claude-opus-5[1m]": {
+        "inputTokens": 6,
+        "outputTokens": 1038,
+        "cacheReadInputTokens": 16595,
+        "cacheCreationInputTokens": 11401,
+        "webSearchRequests": 0,
+        "costUSD": 0.14828750000000002,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000,
+        "thinkingTokens": 36,
+        "canonicalModel": "claude-opus-5",
+        "provider": "firstParty",
+        "costBasis": "list"
+      }
+    },
+    "estimated_api_cost_usd": 0.14948350000000002,
+    "permission_denials": []
+  },
+  "words": 258,
+  "checks": {
+    "completed": true,
+    "installed_skill_used": true,
+    "under_250_words": false,
+    "no_unapproved_command": true,
+    "no_write_tool": true
+  }
+}

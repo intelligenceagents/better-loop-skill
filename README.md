@@ -37,3 +37,5 @@ Explicit public-learning retrieval and private measurement milestones are descri
 The unpublished draft package is `@better-loop/contracts@0.1.0-draft.1`, implementing the unchanged wire schema `0.1.0`. Its [API and CLI](packages/contracts/README.md) validate both contracts, canonicalize JSON, and calculate exact-preview digests locally. Build a reviewable archive with `npm run pack:contracts`; do not assume it is available on the npm registry.
 
 All [examples](examples/README.md) are fictional and excluded from efficacy claims. See [status](STATUS.md), [contributing](CONTRIBUTING.md), [security](SECURITY.md), and [MIT license](LICENSE).
+
+Corporate and other reuse is welcome. [Corporate integration and reuse](docs/corporate-integration-and-reuse.md) describes the optional, non-confidential notification process. MIT is unchanged; notification and registration are voluntary, and no results are collected automatically.
