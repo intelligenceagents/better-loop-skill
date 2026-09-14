@@ -2,7 +2,7 @@
 
 Updated: 2026-09-14.
 
-## M1 public foundation
+## M1 public foundation — complete locally
 
 Implemented and locally tested:
 
@@ -18,14 +18,17 @@ Verification:
 |---|---|
 | Build and strict TypeScript check | PASS |
 | TypeScript tests | 145 passed, 0 failed |
-| Python seed check | PASS: 2 schemas, 4 synthetic fixtures, 15 rejection cases, 1 missing-evidence case, 16 scenario definitions, 40 local links |
+| Python seed check | PASS: 2 schemas, 4 synthetic fixtures, 15 rejection cases, 1 missing-evidence case, 16 scenario definitions, 42 local links |
+| Authored-document coverage regression | PASS: nested checkout still validates authored links and rejects broken links while ignoring dependency docs |
 | Python/TypeScript parity | PASS: 79 public synthetic cases |
 | Chromium 153.0.8010.36 | PASS: 79 cases, Node/WebCrypto SHA-256 parity, restrictive CSP without unsafe-eval |
 | Package inspection | PASS: 18 allowlisted files, schemas byte-identical to source, bundled runtime |
 | Offline packed consumer | PASS: archive install/npm ci, ESM/CJS, schema import, CLI, both TypeScript declaration entry modes |
+| Required story title declarations | PASS: string access, required field, and wrong-type compile regressions; installed ESM/CJS types preserve the title |
+| Clean source install | PASS: selected Node 22.23.2/npm 10.9.0/Python 3.11.6, fresh dependencies, full checks |
 | Whitespace checks | PASS |
 
-Local checks above ran on Node 22.10.0/npm 10.9.0 and Python 3.11.6. The selected Node 22.23.2 binary is available; clean-checkout checks on that patch are the remaining verification step. Remote CI has not run because no code has been pushed.
+Checks ran on Node 22.10.0 and the selected Node 22.23.2, npm 10.9.0, and Python 3.11.6. The corrected package also passed browser and consumer checks from a clean source archive. Package files match across the two Node builds; compressed npm archive bytes can differ, so consumers must pin the exact reviewed archive integrity. Remote CI has not run because no code has been pushed.
 
 The initial seed was committed after its passing seed validation. Repository-local instruction scope and rollback are recorded in [instruction changes](docs/instruction-changes.md).
 
