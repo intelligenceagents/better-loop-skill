@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.1.0",
+  "framework_version": "better-loop-fluency-0.1",
+  "content_origin": "synthetic",
+  "task": {
+    "task_family": "software",
+    "problem_type": "diagnosing_error",
+    "objective": "lower_resource_use",
+    "difficulty": "moderate",
+    "difficulty_basis": "self_estimated",
+    "constraints": [
+      "fixed_inputs",
+      "quality_threshold"
+    ],
+    "demonstrated_skills": [
+      "goal_definition",
+      "factual_verification"
+    ],
+    "task_contract_version": "bl-task-0.1",
+    "benchmark_contract": "unregistered"
+  },
+  "conditions": {
+    "baseline": {
+      "platform": "claude_code",
+      "model_tier": "standard"
+    },
+    "candidate": {
+      "platform": "claude_code",
+      "model_tier": "standard"
+    }
+  },
+  "interventions": [
+    "acceptance_checks"
+  ],
+  "human_behaviors": [
+    {
+      "indicator": "goal_definition",
+      "state": "observed",
+      "rating": "effective",
+      "evidence_summary": "The fictional contributor defined the acceptance conditions before the revised attempt."
+    },
+    {
+      "indicator": "factual_verification",
+      "state": "observed",
+      "rating": "effective",
+      "evidence_summary": "The fictional contributor compared consequential output claims against an independent check."
+    }
+  ],
+  "story": {
+    "title": "A precise failure case reduced unnecessary exploration",
+    "problem": "Synthetic example. A bounded knowledge-work task produced a plausible first answer, but the result needed repeated corrections. The objective was to improve the usable outcome without hiding errors or relying on a more impressive-looking response. Inputs and acceptance criteria were fixed for this invented comparison.",
+    "change": "The fictional contributor replaced a broad debugging request with a reproducible failure and explicit acceptance checks. The agent still had room to investigate, but each proposed fix had to explain and resolve the same failure.",
+    "result": "In this invented comparison, the token index moved from 100 to 75 while the same quality checks passed. The rounded index illustrates a possible result format; it does not establish real savings or subscription cost reduction.",
+    "lesson": "Before asking for a broad investigation, identify one observable failure and how success will be checked. Test whether this focuses exploration without concealing a wider defect.",
+    "limits": "All events and numbers are fictional demonstrations of the reporting format. They are not customer evidence or a completed benchmark. A future real comparison must retain every trial, record model and evaluator conditions, and examine unseen tasks. This story is excluded from rankings, progress awards, and candidate discovery."
+  },
+  "outcome": "improved",
+  "evidence": {
+    "comparison": "controlled_paired",
+    "compatibility": "comparable",
+    "quality_floor": "met",
+    "critical_regression": "none_observed",
+    "trial_count_band": "five_to_nine",
+    "coverage": "limited"
+  },
+  "kpis": [
+    {
+      "metric": "model_tokens",
+      "direction": "lower_is_better",
+      "baseline_index": 100,
+      "candidate_index": 75,
+      "precision": "rounded_to_5_index_points",
+      "provenance": "self_reported",
+      "metric_definition_version": "bl-metrics-0.1"
+    }
+  ]
+}

@@ -1,0 +1,842 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "framework_version": {
+      "const": "better-loop-fluency-0.1"
+    },
+    "content_origin": {
+      "enum": [
+        "synthetic",
+        "public_benchmark",
+        "private_work"
+      ]
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "task_instance_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "task": {
+      "type": "object",
+      "properties": {
+        "task_family": {
+          "enum": [
+            "software",
+            "analysis_finance",
+            "research_strategy",
+            "mathematics_science",
+            "writing_design",
+            "operations_education",
+            "general"
+          ]
+        },
+        "problem_type": {
+          "enum": [
+            "diagnosing_error",
+            "reconciling_data",
+            "synthesizing_evidence",
+            "quantitative_reasoning",
+            "creating_content",
+            "coordinating_plan",
+            "extracting_information",
+            "improving_process"
+          ]
+        },
+        "objective": {
+          "enum": [
+            "correctness",
+            "less_rework",
+            "lower_resource_use",
+            "clearer_communication",
+            "useful_alternatives",
+            "reproducibility"
+          ]
+        },
+        "difficulty": {
+          "enum": [
+            "routine",
+            "moderate",
+            "complex",
+            "unknown"
+          ]
+        },
+        "difficulty_basis": {
+          "enum": [
+            "self_estimated",
+            "rubric_estimated",
+            "unknown"
+          ]
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "source_required",
+              "time_bounded",
+              "tool_limited",
+              "format_required",
+              "quality_threshold",
+              "fixed_inputs"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 6,
+          "uniqueItems": true
+        },
+        "demonstrated_skills": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "goal_definition",
+              "approach_consultation",
+              "iterative_refinement",
+              "quality_examples",
+              "output_structure",
+              "collaboration_mode",
+              "tone_preferences",
+              "audience_definition",
+              "context_gap_detection",
+              "reasoning_scrutiny",
+              "factual_verification",
+              "task_decomposition",
+              "tool_selection",
+              "domain_validation",
+              "useful_alternatives",
+              "learning_transfer"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "task_contract_version": {
+          "const": "bl-task-0.1"
+        },
+        "benchmark_contract": {
+          "enum": [
+            "unregistered",
+            "synthetic-code-checks-0.1",
+            "synthetic-evidence-checks-0.1",
+            "synthetic-reconciliation-0.1"
+          ]
+        }
+      },
+      "required": [
+        "task_family",
+        "problem_type",
+        "objective",
+        "difficulty",
+        "difficulty_basis",
+        "constraints",
+        "demonstrated_skills",
+        "task_contract_version",
+        "benchmark_contract"
+      ],
+      "additionalProperties": false
+    },
+    "protocol": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "controlled_paired",
+            "observational_followup"
+          ]
+        },
+        "primary_metric": {
+          "enum": [
+            "model_tokens",
+            "model_duration",
+            "human_effort",
+            "estimated_api_cost",
+            "rework_cycles",
+            "quality_rubric"
+          ]
+        },
+        "direction": {
+          "enum": [
+            "lower_is_better",
+            "higher_is_better"
+          ]
+        },
+        "quality_floor_definition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "evaluator_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "metric_definition_version": {
+          "const": "bl-metrics-0.1"
+        },
+        "frozen_before_execution": {
+          "type": "boolean"
+        },
+        "planned_pair_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "minItems": 1,
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "intervention": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "compatibility": {
+          "enum": [
+            "comparable",
+            "not_comparable",
+            "unknown"
+          ]
+        },
+        "resource_budget": {
+          "type": "object",
+          "properties": {
+            "max_total_tokens": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "max_duration_seconds": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "max_total_tokens",
+            "max_duration_seconds"
+          ],
+          "additionalProperties": false
+        },
+        "overhead_accounting": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600
+        }
+      },
+      "required": [
+        "kind",
+        "primary_metric",
+        "direction",
+        "quality_floor_definition",
+        "evaluator_version",
+        "metric_definition_version",
+        "frozen_before_execution",
+        "planned_pair_ids",
+        "intervention",
+        "compatibility",
+        "resource_budget",
+        "overhead_accounting"
+      ],
+      "additionalProperties": false
+    },
+    "conditions": {
+      "type": "object",
+      "properties": {
+        "baseline": {
+          "type": "object",
+          "properties": {
+            "platform": {
+              "enum": [
+                "claude_code",
+                "codex",
+                "other"
+              ]
+            },
+            "model_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "effort": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "skill_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "tool_access": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "minItems": 0,
+              "maxItems": 30,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "platform",
+            "model_version",
+            "effort",
+            "skill_version",
+            "tool_access"
+          ],
+          "additionalProperties": false
+        },
+        "candidate": {
+          "type": "object",
+          "properties": {
+            "platform": {
+              "enum": [
+                "claude_code",
+                "codex",
+                "other"
+              ]
+            },
+            "model_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "effort": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "skill_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "tool_access": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "minItems": 0,
+              "maxItems": 30,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "platform",
+            "model_version",
+            "effort",
+            "skill_version",
+            "tool_access"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "baseline",
+        "candidate"
+      ],
+      "additionalProperties": false
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "indicator": {
+            "enum": [
+              "goal_definition",
+              "approach_consultation",
+              "iterative_refinement",
+              "quality_examples",
+              "output_structure",
+              "collaboration_mode",
+              "tone_preferences",
+              "audience_definition",
+              "context_gap_detection",
+              "reasoning_scrutiny",
+              "factual_verification"
+            ]
+          },
+          "actor": {
+            "enum": [
+              "human",
+              "agent",
+              "tool",
+              "reviewer",
+              "unknown"
+            ]
+          },
+          "channel": {
+            "enum": [
+              "conversation",
+              "external_check",
+              "self_report"
+            ]
+          },
+          "state": {
+            "enum": [
+              "observed",
+              "not_observed",
+              "not_applicable",
+              "insufficient_evidence"
+            ]
+          },
+          "rating": {
+            "enum": [
+              "partial",
+              "effective",
+              "adaptive",
+              null
+            ]
+          },
+          "evidence_reference": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "limitation": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "indicator",
+          "actor",
+          "channel",
+          "state",
+          "rating",
+          "evidence_reference",
+          "limitation"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "state": {
+                  "not": {
+                    "const": "observed"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "rating": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "state": {
+                  "const": "observed"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "evidence_reference": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                }
+              }
+            }
+          }
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 1000
+    },
+    "trials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pair_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "order": {
+            "enum": [
+              "baseline_first",
+              "candidate_first"
+            ]
+          },
+          "seed": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "baseline": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "enum": [
+                  "completed",
+                  "failed",
+                  "timed_out",
+                  "not_run"
+                ]
+              },
+              "metrics": {
+                "type": "object",
+                "properties": {
+                  "model_tokens": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "model_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "human_effort": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "estimated_api_cost": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "rework_cycles": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "quality_rubric": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "model_tokens",
+                  "model_duration",
+                  "human_effort",
+                  "estimated_api_cost",
+                  "rework_cycles",
+                  "quality_rubric"
+                ],
+                "additionalProperties": false
+              },
+              "quality_floor_passed": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "critical_regression": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "started_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "finished_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "failure_or_omission_reason": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "status",
+              "metrics",
+              "quality_floor_passed",
+              "critical_regression",
+              "started_at",
+              "finished_at",
+              "failure_or_omission_reason"
+            ],
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "status": {
+                      "not": {
+                        "const": "completed"
+                      }
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "failure_or_omission_reason": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 500
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "candidate": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "enum": [
+                  "completed",
+                  "failed",
+                  "timed_out",
+                  "not_run"
+                ]
+              },
+              "metrics": {
+                "type": "object",
+                "properties": {
+                  "model_tokens": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "model_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "human_effort": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "estimated_api_cost": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "rework_cycles": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  },
+                  "quality_rubric": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "model_tokens",
+                  "model_duration",
+                  "human_effort",
+                  "estimated_api_cost",
+                  "rework_cycles",
+                  "quality_rubric"
+                ],
+                "additionalProperties": false
+              },
+              "quality_floor_passed": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "critical_regression": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "started_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "finished_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "failure_or_omission_reason": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "status",
+              "metrics",
+              "quality_floor_passed",
+              "critical_regression",
+              "started_at",
+              "finished_at",
+              "failure_or_omission_reason"
+            ],
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "status": {
+                      "not": {
+                        "const": "completed"
+                      }
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "failure_or_omission_reason": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 500
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "pair_id",
+          "order",
+          "seed",
+          "baseline",
+          "candidate"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 1000
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "outcome": {
+          "enum": [
+            "improved",
+            "no_change",
+            "regressed",
+            "mixed",
+            "insufficient_evidence"
+          ]
+        },
+        "paired_relative_changes_percent": {
+          "type": "array",
+          "items": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 1000
+        },
+        "uncertainty": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "minItems": 0,
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "outcome",
+        "paired_relative_changes_percent",
+        "uncertainty",
+        "limitations"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "framework_version",
+    "content_origin",
+    "run_id",
+    "task_instance_id",
+    "task",
+    "protocol",
+    "conditions",
+    "observations",
+    "trials",
+    "summary"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Better Loop local evaluation record v0.1",
+  "description": "Private local record. Never submit this to the public service. Synthetic examples are not evidence of efficacy."
+}

@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+dist/
+coverage/
+__pycache__/
+.venv/
+.DS_Store
+.better-loop/
+private-evidence/
+local-reports/
+supabase/.temp/
+*.log

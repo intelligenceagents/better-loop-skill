@@ -1,0 +1,280 @@
+{
+  "schema_version": "0.1.0",
+  "framework_version": "better-loop-fluency-0.1",
+  "content_origin": "synthetic",
+  "run_id": "synthetic-run-001",
+  "task_instance_id": "synthetic-code-task-001",
+  "task": {
+    "task_family": "software",
+    "problem_type": "diagnosing_error",
+    "objective": "lower_resource_use",
+    "difficulty": "moderate",
+    "difficulty_basis": "self_estimated",
+    "constraints": [
+      "fixed_inputs",
+      "quality_threshold"
+    ],
+    "demonstrated_skills": [
+      "goal_definition",
+      "factual_verification"
+    ],
+    "task_contract_version": "bl-task-0.1",
+    "benchmark_contract": "synthetic-code-checks-0.1"
+  },
+  "protocol": {
+    "kind": "controlled_paired",
+    "primary_metric": "model_tokens",
+    "direction": "lower_is_better",
+    "quality_floor_definition": "All five fixed behavior checks pass; checks are not weakened between variants.",
+    "evaluator_version": "synthetic-code-checks-0.1",
+    "metric_definition_version": "bl-metrics-0.1",
+    "frozen_before_execution": true,
+    "planned_pair_ids": [
+      "pair-1",
+      "pair-2",
+      "pair-3",
+      "pair-4",
+      "pair-5"
+    ],
+    "intervention": "Provide the same task with a clearer success condition. Fictional demonstration only.",
+    "compatibility": "comparable",
+    "resource_budget": {
+      "max_total_tokens": 20000,
+      "max_duration_seconds": 600
+    },
+    "overhead_accounting": "Fictional token totals include all model work; other metrics are unavailable and remain null."
+  },
+  "conditions": {
+    "baseline": {
+      "platform": "claude_code",
+      "model_version": "synthetic-model-a",
+      "effort": "standard",
+      "skill_version": "none",
+      "tool_access": [
+        "synthetic-checker"
+      ]
+    },
+    "candidate": {
+      "platform": "claude_code",
+      "model_version": "synthetic-model-a",
+      "effort": "standard",
+      "skill_version": "better-loop-example-0.1",
+      "tool_access": [
+        "synthetic-checker"
+      ]
+    }
+  },
+  "observations": [
+    {
+      "indicator": "goal_definition",
+      "actor": "human",
+      "channel": "conversation",
+      "state": "observed",
+      "rating": "effective",
+      "evidence_reference": "synthetic-selected-excerpt:turn-1",
+      "limitation": "Invented evidence for schema demonstration only."
+    }
+  ],
+  "trials": [
+    {
+      "pair_id": "pair-1",
+      "order": "baseline_first",
+      "seed": 1,
+      "baseline": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 1000,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      },
+      "candidate": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 700,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      }
+    },
+    {
+      "pair_id": "pair-2",
+      "order": "candidate_first",
+      "seed": 2,
+      "baseline": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 1000,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      },
+      "candidate": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 800,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      }
+    },
+    {
+      "pair_id": "pair-3",
+      "order": "baseline_first",
+      "seed": 3,
+      "baseline": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 1000,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      },
+      "candidate": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 750,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      }
+    },
+    {
+      "pair_id": "pair-4",
+      "order": "candidate_first",
+      "seed": 4,
+      "baseline": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 1000,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      },
+      "candidate": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 750,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      }
+    },
+    {
+      "pair_id": "pair-5",
+      "order": "baseline_first",
+      "seed": 5,
+      "baseline": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 1000,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      },
+      "candidate": {
+        "status": "completed",
+        "metrics": {
+          "model_tokens": 750,
+          "model_duration": null,
+          "human_effort": null,
+          "estimated_api_cost": null,
+          "rework_cycles": null,
+          "quality_rubric": 1
+        },
+        "quality_floor_passed": true,
+        "critical_regression": false,
+        "started_at": null,
+        "finished_at": null,
+        "failure_or_omission_reason": null
+      }
+    }
+  ],
+  "summary": {
+    "outcome": "improved",
+    "paired_relative_changes_percent": [
+      30,
+      20,
+      25,
+      25,
+      25
+    ],
+    "uncertainty": "Not estimated: invented data illustrates record structure only. No confidence claim.",
+    "limitations": [
+      "Synthetic numbers are not evidence of product performance.",
+      "One task instance cannot demonstrate repeated improvement across tasks."
+    ]
+  }
+}

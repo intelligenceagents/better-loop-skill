@@ -1,0 +1,78 @@
+{
+  "schema_version": "0.1.0",
+  "framework_version": "better-loop-fluency-0.1",
+  "content_origin": "synthetic",
+  "task": {
+    "task_family": "analysis_finance",
+    "problem_type": "reconciling_data",
+    "objective": "correctness",
+    "difficulty": "moderate",
+    "difficulty_basis": "self_estimated",
+    "constraints": [
+      "fixed_inputs",
+      "quality_threshold"
+    ],
+    "demonstrated_skills": [
+      "goal_definition",
+      "factual_verification"
+    ],
+    "task_contract_version": "bl-task-0.1",
+    "benchmark_contract": "unregistered"
+  },
+  "conditions": {
+    "baseline": {
+      "platform": "claude_code",
+      "model_tier": "standard"
+    },
+    "candidate": {
+      "platform": "claude_code",
+      "model_tier": "standard"
+    }
+  },
+  "interventions": [
+    "context_selection",
+    "acceptance_checks"
+  ],
+  "human_behaviors": [
+    {
+      "indicator": "goal_definition",
+      "state": "observed",
+      "rating": "effective",
+      "evidence_summary": "The fictional contributor defined the acceptance conditions before the revised attempt."
+    },
+    {
+      "indicator": "factual_verification",
+      "state": "observed",
+      "rating": "effective",
+      "evidence_summary": "The fictional contributor compared consequential output claims against an independent check."
+    }
+  ],
+  "story": {
+    "title": "Checking assumptions exposed a faster but weaker answer",
+    "problem": "Synthetic example. A bounded knowledge-work task produced a plausible first answer, but the result needed repeated corrections. The objective was to improve the usable outcome without hiding errors or relying on a more impressive-looking response. Inputs and acceptance criteria were fixed for this invented comparison.",
+    "change": "The fictional contributor added an assumption check to a reconciliation task. They also shortened the source context. This bundled intervention reduced model work but removed information needed for an exception case.",
+    "result": "The invented token index improved to 80, but an exception check failed. The outcome is mixed, and the quality floor was not met. It cannot receive an improvement badge even though one efficiency measure looks favorable.",
+    "lesson": "Keep the evidence needed for exception handling when shortening context. Evaluate correctness and resource use together; a quicker answer can create more work for its reader.",
+    "limits": "All events and numbers are fictional demonstrations of the reporting format. They are not customer evidence or a completed benchmark. A future real comparison must retain every trial, record model and evaluator conditions, and examine unseen tasks. This story is excluded from rankings, progress awards, and candidate discovery."
+  },
+  "outcome": "mixed",
+  "evidence": {
+    "comparison": "controlled_paired",
+    "compatibility": "comparable",
+    "quality_floor": "not_met",
+    "critical_regression": "observed",
+    "trial_count_band": "five_to_nine",
+    "coverage": "limited"
+  },
+  "kpis": [
+    {
+      "metric": "model_tokens",
+      "direction": "lower_is_better",
+      "baseline_index": 100,
+      "candidate_index": 80,
+      "precision": "rounded_to_5_index_points",
+      "provenance": "self_reported",
+      "metric_definition_version": "bl-metrics-0.1"
+    }
+  ]
+}

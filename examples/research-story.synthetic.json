@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "framework_version": "better-loop-fluency-0.1",
+  "content_origin": "synthetic",
+  "task": {
+    "task_family": "research_strategy",
+    "problem_type": "synthesizing_evidence",
+    "objective": "correctness",
+    "difficulty": "moderate",
+    "difficulty_basis": "self_estimated",
+    "constraints": [
+      "fixed_inputs",
+      "quality_threshold"
+    ],
+    "demonstrated_skills": [
+      "goal_definition"
+    ],
+    "task_contract_version": "bl-task-0.1",
+    "benchmark_contract": "unregistered"
+  },
+  "conditions": {
+    "baseline": {
+      "platform": "codex",
+      "model_tier": "standard"
+    },
+    "candidate": {
+      "platform": "codex",
+      "model_tier": "standard"
+    }
+  },
+  "interventions": [
+    "source_verification"
+  ],
+  "human_behaviors": [
+    {
+      "indicator": "goal_definition",
+      "state": "observed",
+      "rating": "effective",
+      "evidence_summary": "The fictional contributor defined the acceptance conditions before the revised attempt."
+    },
+    {
+      "indicator": "factual_verification",
+      "state": "insufficient_evidence",
+      "rating": null,
+      "evidence_summary": "The fictional excerpt proposes a check but contains no completed verification."
+    }
+  ],
+  "story": {
+    "title": "Separate source claims from the conclusion before drafting",
+    "problem": "Synthetic example. A bounded knowledge-work task produced a plausible first answer, but the result needed repeated corrections. The objective was to improve the usable outcome without hiding errors or relying on a more impressive-looking response. Inputs and acceptance criteria were fixed for this invented comparison.",
+    "change": "The fictional contributor asked for a clear distinction between source claims, assumptions, and the final inference. The proposed next step is an independent source check on a new task using the same acceptance rubric.",
+    "result": "No timed or scored follow-up has happened in this fictional story. The revised approach is a hypothesis, with no measured improvement or comparison percentile. There is enough information to propose an experiment, but not to claim that it worked.",
+    "lesson": "When synthesizing conflicting evidence, keep the claims and your inference visibly distinct. Test whether a reviewer can trace important conclusions and identify unsupported assumptions before adopting the approach more widely.",
+    "limits": "All events and numbers are fictional demonstrations of the reporting format. They are not customer evidence or a completed benchmark. A future real comparison must retain every trial, record model and evaluator conditions, and examine unseen tasks. This story is excluded from rankings, progress awards, and candidate discovery."
+  },
+  "outcome": "not_measured",
+  "evidence": {
+    "comparison": "none",
+    "compatibility": "unknown",
+    "quality_floor": "unknown",
+    "critical_regression": "unknown",
+    "trial_count_band": "unknown",
+    "coverage": "limited"
+  },
+  "kpis": []
+}
