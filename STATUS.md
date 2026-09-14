@@ -28,7 +28,7 @@ Verification:
 | Clean source install | PASS: selected Node 22.23.2/npm 10.9.0/Python 3.11.6, fresh dependencies, full checks |
 | Whitespace checks | PASS |
 
-Checks ran on Node 22.10.0 and the selected Node 22.23.2, npm 10.9.0, and Python 3.11.6. The corrected package also passed browser and consumer checks from a clean source archive. Package files match across the two Node builds; compressed npm archive bytes can differ, so consumers must pin the exact reviewed archive integrity. Remote CI has not run because no code has been pushed.
+Checks ran on Node 22.10.0 and the selected Node 22.23.2, npm 10.9.0, and Python 3.11.6. The corrected package also passed browser and consumer checks from a clean source archive. Package files match across the two Node builds; compressed npm archive bytes can differ, so consumers must pin the exact reviewed archive integrity. Source is available on the repository's `main` and M1 work branch. Hosted CI is configured; the local results above do not assert a passing hosted run.
 
 The initial seed was committed after its passing seed validation. Repository-local instruction scope and rollback are recorded in [instruction changes](docs/instruction-changes.md).
 
