@@ -1,0 +1,27 @@
+{
+  "name": "@better-loop/cli",
+  "version": "0.2.0-draft.1",
+  "description": "Explicit local Better Loop assessment and reviewed candidate preparation. No uploader.",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+      "require": { "types": "./dist/index.d.cts", "default": "./dist/index.cjs" }
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": { "better-loop": "./dist/cli.js" },
+  "files": ["dist", "README.md", "LICENSE"],
+  "dependencies": {
+    "@better-loop/contracts": "0.1.0-draft.1",
+    "@better-loop/core": "0.2.0-draft.1",
+    "@better-loop/adapters": "0.2.0-draft.1",
+    "@better-loop/privacy": "0.1.0-draft.3",
+    "@better-loop/measurement": "0.1.0-draft.1"
+  },
+  "sideEffects": false
+}

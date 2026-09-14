@@ -37,7 +37,7 @@ Use synthetic/public benchmark tasks for public exact raw measurements. Ordinary
 9. Server admission repeats strict validation and content checks, derives identity/trust itself, and only then persists the permitted public projection. Request bodies, failed content, codes, tokens, and scans must not appear in telemetry/error logs. Transient validation buffers are discarded on rejection.
 10. Return the exact public preview/link only after successful publication. A timeout means “status unknown”; reconcile by idempotency key instead of blindly publishing again.
 
-No detector guarantees zero leakage. These layers reduce risk and provide a fail-closed boundary. A claim that this boundary works requires adversarial tests and production review; this seed does not implement or certify it.
+No detector guarantees zero leakage. These layers reduce risk and provide a fail-closed boundary. The local privacy helper implements scanning, two configured semantic reviews, exact preview and local confirmation; see its actual capability version and test evidence. Adversarial local tests and real review cases do not certify a production boundary or guarantee safety on every input. Server admission remains a separate check.
 
 ## Consent
 

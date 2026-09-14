@@ -8,16 +8,22 @@
   "packageManager": "npm@10.9.0",
   "scripts": {
     "generate": "node tools/generate.mjs",
-    "build": "npm run generate && tsc -p packages/contracts/tsconfig.json && node tools/build.mjs",
-    "typecheck": "tsc --noEmit",
+    "build:contracts": "npm run generate && tsc -p packages/contracts/tsconfig.json && node tools/build.mjs",
+    "build:local": "npm run build:contracts && npm run build --workspace @better-loop/privacy && npm run build --workspace @better-loop/measurement && node tools/build-local.mjs",
+    "build": "npm run build:local",
+    "typecheck": "tsc --noEmit && npm run typecheck --workspace @better-loop/measurement",
     "test": "node --import tsx --test tests/*.test.ts",
+    "test:local": "node --import tsx --test tests/m2-*.test.ts tests/m6-*.test.ts",
+    "test:privacy": "npm test --workspace @better-loop/privacy",
+    "test:measurement": "npm test --workspace @better-loop/measurement",
     "test:parity": "node --import tsx tools/check-parity.ts",
     "test:browser": "node --import tsx tools/check-browser.ts",
-    "test:consumer": "node tools/check-consumer.mjs",
+    "test:consumer": "node tools/check-consumer.mjs && node tools/check-local-consumer.mjs",
     "check:seed": "python3 tools/validate_context.py && python3 -m unittest discover -s tests -p '*_test.py'",
     "check:artifact": "node tools/check-artifact.mjs",
-    "check": "npm run build && npm run typecheck && npm test && npm run check:seed && npm run test:parity && npm run check:artifact",
-    "pack:contracts": "npm run build && npm pack --workspace @better-loop/contracts --pack-destination artifacts"
+    "check": "npm run build && npm run typecheck && npm test && npm run test:privacy && npm run test:measurement && npm run check:seed && npm run test:parity && npm run check:artifact",
+    "pack:contracts": "npm run build:contracts && npm pack --workspace @better-loop/contracts --pack-destination artifacts",
+    "pack:local": "npm run build && node tools/pack-local.mjs"
   },
   "devDependencies": {
     "@noble/hashes": "2.4.0",

@@ -15,5 +15,5 @@
     "resolveJsonModule": true,
     "types": ["node"]
   },
-  "include": ["packages/contracts/src/**/*.ts", "tests/**/*.ts", "tools/**/*.ts"]
+  "include": ["packages/contracts/src/**/*.ts", "packages/core/src/**/*.ts", "packages/adapters/src/**/*.ts", "packages/cli/src/**/*.ts", "packages/privacy/src/**/*.ts", "tests/**/*.ts", "tools/**/*.ts"]
 }

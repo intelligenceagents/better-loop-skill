@@ -1,0 +1,19 @@
+{
+  "schema_version": "bl-selected-0.2",
+  "task": {
+    "family": "analysis_finance",
+    "goal": "Reconcile a synthetic table using consistent units.",
+    "acceptance_criteria": ["The total reconciles.", "Units are consistent."],
+    "not_applicable": {
+      "tone_preferences": "The task returns only a numeric table; tone is not part of its acceptance criteria."
+    }
+  },
+  "coverage": "selected_complete",
+  "messages": [
+    { "actor": "human", "channel": "conversation", "text": "Goal: reconcile this synthetic table. Return a table with consistent units. Flag uncertainty if source units are missing." },
+    { "actor": "agent", "channel": "conversation", "text": "I will compare the approaches and check assumptions before using a total." },
+    { "actor": "tool", "channel": "tool_result", "text": "Synthetic check: the original total did not reconcile." },
+    { "actor": "human", "channel": "conversation", "text": "Revise the total after checking units. Verify the corrected arithmetic against the original source." },
+    { "actor": "reviewer", "channel": "review", "text": "The selected record does not establish outcome quality or time saved." }
+  ]
+}
