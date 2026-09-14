@@ -13,12 +13,14 @@ try {
   await mkdir(consumer);
   const dependencies = {};
   const artifacts = [];
-  for (const name of ["contracts", "core", "adapters", "privacy", "measurement", "cli"]) {
+  for (const name of ["contracts", "core", "adapters", "privacy", "measurement", "evidence", "discovery", "handoff", "journey", "cli"]) {
     const [packed] = JSON.parse(run("npm", ["pack", "--workspace", `@better-loop/${name}`, "--pack-destination", scratch, "--json"]));
     dependencies[packed.name] = `file:${join(scratch, packed.filename)}`;
     if (name !== "contracts") {
       for (const file of packed.files) {
-        assert.match(file.path, /^(?:package\.json|README\.md|LICENSE|THIRD_PARTY_NOTICES\.md|dist\/[a-zA-Z0-9_-]+\.(?:js|cjs|d\.ts|d\.cts))$/, `Unexpected local tooling artifact: ${file.path}`);
+        const declarationVendor = name === "discovery" && /^dist\/vendor\/(?:evidence|share-candidate)\.d\.ts$/.test(file.path);
+        assert.ok(declarationVendor || /^(?:package\.json|README\.md|API\.md|LICENSE|THIRD_PARTY_NOTICES\.md|dist\/sender\.inline\.js|dist\/[a-zA-Z0-9_-]+\.(?:js|cjs|d\.ts|d\.cts))$/.test(file.path),
+          `Unexpected local tooling artifact: ${file.path}`);
         const contents = await readFile(join(root, "packages", name, file.path), "utf8");
         assert.doesNotMatch(contents, /\/Users\/I\d+|sourceMappingURL|credential\.md|SYNTHETIC_PRIVATE_SENTINEL/);
       }
@@ -31,13 +33,20 @@ try {
   await writeFile(join(consumer, "selected.json"), await readFile(join(root, "evals/m2/selected-example.json")));
   const source = `
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, mkdirSync, realpathSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { join } from "node:path";
 import { createRequire } from "node:module";
 import { assess, rewritePrompt } from "@better-loop/core";
 import { normalizeSelectedExport } from "@better-loop/adapters";
 import { capabilities } from "@better-loop/cli";
 import { scanCandidate } from "@better-loop/privacy";
 import { measurePair } from "@better-loop/measurement";
+import { validateContribution } from "@better-loop/evidence";
+import { summarizeLocalMilestones } from "@better-loop/discovery";
+import { createScope, useJourney, JOURNEY_VERSION } from "@better-loop/journey";
+import { startHandoff, HANDOFF_PROTOCOL } from "@better-loop/handoff";
+import { receiveHandoff } from "@better-loop/handoff/browser";
 const input=readFileSync("selected.json","utf8");
 const normalized=normalizeSelectedExport(input,"codex");
 const report=assess(normalized);
@@ -47,11 +56,40 @@ assert.equal(rewritePrompt("Return JSON only.","general").status,"proposal_not_e
 assert.equal(capabilities().capabilities.upload,false);
 assert.equal(scanCandidate(report).valid,false);
 assert.equal(measurePair(200,150,"lower_is_better").relative_change_percent,25);
+assert.equal(validateContribution(report).valid,false);
+assert.equal(summarizeLocalMilestones([]).later_comparable_outcome,"not_established");
+assert.equal(JOURNEY_VERSION,"0.1.0-draft.1");
+assert.equal(typeof createScope,"function");
+assert.equal(typeof startHandoff,"function");
+assert.equal(typeof receiveHandoff,"function");
+assert.equal(HANDOFF_PROTOCOL,"bl-handoff-0.1");
+assert.ok(readFileSync(new URL("./node_modules/@better-loop/handoff/dist/sender.inline.js",import.meta.url),"utf8").length > 0);
 const require=createRequire(import.meta.url);
 assert.deepEqual(require("@better-loop/core").assess(normalized),report);
 assert.deepEqual(require("@better-loop/adapters").normalizeSelectedExport(input,"codex"),normalized);
 assert.deepEqual(require("@better-loop/cli").capabilities(),capabilities());
 assert.equal(require("@better-loop/measurement").measurePair(200,150,"lower_is_better").relative_change_percent,25);
+assert.deepEqual(require("@better-loop/evidence").validateContribution(report),validateContribution(report));
+assert.deepEqual(require("@better-loop/discovery").summarizeLocalMilestones([]),summarizeLocalMilestones([]));
+assert.equal(require("@better-loop/journey").JOURNEY_VERSION,JOURNEY_VERSION);
+assert.equal(typeof require("@better-loop/handoff").startHandoff,"function");
+assert.equal(typeof require("@better-loop/handoff/browser").receiveHandoff,"function");
+const selectedRoot=join(realpathSync("."),"selected-repository");
+mkdirSync(selectedRoot);
+const git=(args)=>execFileSync("git",["-c","core.hooksPath=/dev/null","-C",selectedRoot,...args],{
+  env:{PATH:process.env.PATH,GIT_CONFIG_NOSYSTEM:"1",GIT_CONFIG_GLOBAL:"/dev/null"},stdio:"pipe"});
+git(["init","--quiet","--initial-branch=main","--template="]);
+writeFileSync(join(selectedRoot,"selected.ts"),"export const fixture = 1;");
+git(["add","--","selected.ts"]);
+const stateDirectory=join(realpathSync("."),"chosen-journey-state");
+await createScope({stateDirectory,roots:[selectedRoot],task:{family:"software",goal:"Package consumer fixture",acceptance_criteria:["Retain unknown outcomes."]}});
+const first=await useJourney({stateDirectory,host:"codex",excerptBytes:2000,excerptFiles:1});
+assert.equal(first.state,"baseline");
+assert.equal(first.changes[0].excerpt_format,"unified_hunks");
+const second=await require("@better-loop/journey").useJourney({stateDirectory,host:"claude_code"});
+assert.equal(second.state,"unchanged");
+assert.equal(second.checkpoint_id,first.checkpoint_id);
+assert.equal(second.assessment_created,false);
 `;
   await writeFile(join(consumer, "smoke.mjs"), source);
   run(process.execPath, ["smoke.mjs"], consumer);
@@ -63,11 +101,20 @@ assert.equal(require("@better-loop/measurement").measurePair(200,150,"lower_is_b
   const types = `import {assess, type PrivateReport, type TaskFamily} from "@better-loop/core";
 import {normalizeSelectedExport} from "@better-loop/adapters";
 import {capabilities} from "@better-loop/cli";
+import {type HostAssessmentInput, createScope} from "@better-loop/journey";
+import {type ContributionApproval, validateContribution} from "@better-loop/evidence";
+import {summarizeLocalMilestones} from "@better-loop/discovery";
+import {startHandoff} from "@better-loop/handoff";
+import {receiveHandoff} from "@better-loop/handoff/browser";
 const family:TaskFamily="analysis_finance";
 const report:PrivateReport=assess(normalizeSelectedExport("{}", "codex", {task:{family,goal:"synthetic",acceptance_criteria:[]}}));
 const unknown:number|null=report.metrics.quality;
 const rating:null=report.observations[0]!.rating;
 capabilities(); void unknown; void rating;
+const host:HostAssessmentInput={summary:"Fixture",diagnosis:"Fixture",next_action:"Fixture",acceptance_check:"Fixture",limitations:[]};
+const local:ReturnType<typeof createScope>|null=null; void local; void host;
+const approval:ContributionApproval|null=null; void approval;
+void startHandoff; void receiveHandoff; validateContribution({}); summarizeLocalMilestones([]);
 // @ts-expect-error no unsupported family
 const invalid:TaskFamily="employer"; void invalid;
 `;
@@ -78,7 +125,7 @@ const invalid:TaskFamily="employer"; void invalid;
     include: ["types.mts", "types.cts"],
   }));
   run(process.execPath, [join(root, "node_modules/typescript/bin/tsc"), "-p", "tsconfig.json"], consumer);
-  console.log(`PASS: six reviewed archives installed with offline npm ci; local ESM/CJS, declarations in both modes, CLI assessment, measurement and capabilities.`);
+  console.log(`PASS: ten reviewed archives installed with offline npm ci; ESM/CJS, both declaration modes, CLI assessment, measurement, journey, evidence, discovery and both handoff entrypoints/assets.`);
   console.log(JSON.stringify(artifacts));
 } finally {
   await rm(scratch, { recursive: true, force: true });

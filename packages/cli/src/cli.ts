@@ -7,10 +7,24 @@ import type { Host, TaskFamily } from "@better-loop/core";
 import { buildCandidate, confirmPreview, prepareCandidate } from "@better-loop/privacy";
 import { measureEvaluation, analyzeEvaluation, repeatedImprovement } from "@better-loop/measurement";
 import type { EvaluationInput, MeasurementOptions } from "@better-loop/measurement";
-import { capabilities, configuredReviewers, planInstructionChange, applyInstructionChange, readSelectedFile, writePrivateOutput, learnFromService } from "./index.js";
+import { capabilities, configuredReviewers, planInstructionChange, applyInstructionChange, readSelectedFile, writePrivateOutput, learnFromService, journeyCommand } from "./index.js";
+import { JourneyError } from "@better-loop/journey";
+import { confirmContribution, prepareContribution, validateContribution, CONTRIBUTION_SCHEMA_VERSION } from "@better-loop/evidence";
+import type { ContributionConsent } from "@better-loop/evidence";
+import { startHandoff } from "@better-loop/handoff";
+import { configuredContributionReviewers } from "./reviewers.js";
 
 const HELP = `Better Loop local helper
   better-loop capabilities --json
+  better-loop journey create --state selected-dedicated-directory --root exact-repository [--root another-repository] --task selected-task.json
+  better-loop journey use --state selected-directory --host codex|claude_code [--expected checkpoint-id] [--excerpt-bytes 8192] [--excerpt-files 8] [--excerpt-path relative-file]
+  better-loop journey record-assessment --state selected-directory --expected checkpoint-id --host codex|claude_code --input actual-host-report.json
+  better-loop journey outcome --state selected-directory --expected checkpoint-id --recommendation report-id --status not_tried|declined|helped|did_not_help|inconclusive [--note-file selected-note.txt] [--acknowledge --origin work_derived|synthetic] [--check selected-followup.json --check-evidence selected-actual-check.txt]
+  better-loop journey inspect|history|progress --state selected-directory [--format json]
+  better-loop journey update --state selected-directory --expected checkpoint-id --root exact-repository [--root another-repository] --task selected-task.json
+  better-loop journey reset --state selected-directory --scope-id exact-scope-id --expected checkpoint-id
+  better-loop journey forget --state selected-directory --scope-id exact-scope-id
+  better-loop journey recover-lock --state selected-directory --lock-token exact-stale-token
   better-loop capture --task selected-task-context.json [--artifact selected-diff-or-document.txt] [--checks selected-check-output.txt] --output new-selected-export.json
   better-loop assess --host claude_code|codex --input selected.json [--task task.json] [--format markdown|json] [--output new-file]
   better-loop rewrite --input prompt.txt --family software|analysis_finance|research_strategy|mathematics_science|writing_design|operations_education|general [--output new-file]
@@ -21,8 +35,9 @@ const HELP = `Better Loop local helper
   better-loop instructions plan --root selected-project --path AGENTS.md --after proposed.txt --output new-plan.json
   better-loop instructions apply|rollback --root selected-project --plan plan.json --approve exact-approval-digest
   better-loop draft-share --input minimized-candidate.json --consent purposes.json --output new-draft.json [--reviewers selected-commands.json] [--timeout-ms 30000] [--confirm --digest exact-preview-digest]
+  better-loop draft-share --input minimized-candidate.json --capability selected-capability.json --consent contribution-purposes.json --output new-draft.json [--reviewers selected-commands.json] [--confirm --digest exact-preview-digest] [--handoff --target-origin explicitly-chosen-origin --ttl-ms 120000]
 Outputs may contain private selected evidence. Output files are exclusive and mode 0600.
-Default commands have no network/model calls. draft-share reviewer commands are explicit opt-in and receive only a minimized candidate.
+Default commands have no network/model calls. draft-share reviewer commands are explicit opt-in and receive only a minimized candidate or whole minimized contribution.
 learn --service makes an explicit public GET with controlled taxonomy only; offline exports produce no automated recommendations.
 No upload transport. Static cue detection is not a validated assessment or a measured improvement.`;
 
@@ -58,6 +73,10 @@ async function main() {
   if (command === "--version") { process.stdout.write(`${capabilities().helper_version}\n`); return; }
   if (command === "capabilities") {
     options(args, ["json"], ["json"]); await emit(capabilities()); return;
+  }
+  if (command === "journey") {
+    const result = await journeyCommand(args);
+    await emit(result.value, result.output, result.markdown); return;
   }
   if (command === "capture") {
     const opts = options(args, ["task", "artifact", "checks", "output"]);
@@ -147,7 +166,7 @@ async function main() {
     throw new Error("unknown_instruction_action");
   }
   if (command === "draft-share") {
-    const opts = options(args, ["input", "consent", "output", "reviewers", "timeout-ms", "confirm", "digest"], ["confirm"]);
+    const opts = options(args, ["input", "consent", "output", "reviewers", "timeout-ms", "confirm", "digest", "capability", "handoff", "target-origin", "ttl-ms"], ["confirm", "handoff"]);
     const output = required(opts, "output");
     const input: unknown = parseJson(await readSelectedFile(required(opts, "input"), 16384));
     const validation = validateShareCandidate(input);
@@ -155,10 +174,49 @@ async function main() {
       await emit({ state: "blocked", local_draft: "original_selected_file_retained", findings: validation.errors }, output);
       process.exitCode = 1; return;
     }
-    const consent = parseJson(await readSelectedFile(required(opts, "consent"), 4096)) as unknown as PreviewConsent;
+    const selectedConsent = parseJson(await readSelectedFile(required(opts, "consent"), 4096));
+    const consent = selectedConsent as unknown as PreviewConsent;
     const timeout = opts["timeout-ms"] === undefined ? 30000 : Number(opts["timeout-ms"]);
     if (!Number.isInteger(timeout) || timeout < 1 || timeout > 120000) throw new Error("invalid_review_timeout");
     if ((opts.confirm === true) !== (typeof opts.digest === "string")) throw new Error("confirmation_requires_flag_and_exact_digest");
+    if (opts.handoff === true && (typeof opts.capability !== "string" || opts.confirm !== true ||
+        !["https://better-loop.com", "http://127.0.0.1:3100"].includes(required(opts, "target-origin")))) throw new Error("handoff_requires_exact_extended_confirmation_and_target");
+    if (opts.handoff !== true && (opts["target-origin"] !== undefined || opts["ttl-ms"] !== undefined)) throw new Error("explicit_handoff_required");
+    const ttlMs = opts["ttl-ms"] === undefined ? 120000 : Number(opts["ttl-ms"]);
+    if (!Number.isInteger(ttlMs) || ttlMs < 1000 || ttlMs > 300000) throw new Error("invalid_handoff_ttl");
+    if (typeof opts.capability === "string") {
+      const capsule: unknown = parseJson(await readSelectedFile(opts.capability, 4096));
+      const contribution = validateContribution({
+        schema_version: CONTRIBUTION_SCHEMA_VERSION, candidate: validation.data, capability_evidence: capsule,
+      });
+      if (!contribution.valid) {
+        await emit({ state: "blocked", local_draft: "original_selected_files_retained", findings: contribution.errors }, output);
+        process.exitCode = 1; return;
+      }
+      const reviewers = typeof opts.reviewers === "string"
+        ? configuredContributionReviewers(parseJson(await readSelectedFile(opts.reviewers, 32768)), timeout) : [];
+      const prepared = await prepareContribution(contribution.data, selectedConsent as unknown as ContributionConsent, reviewers, { timeoutMs: timeout });
+      if (opts.confirm === true && prepared.state === "ready_for_confirmation") {
+        const approval = confirmContribution(prepared, required(opts, "digest"), true);
+        await emit(approval, output);
+        if (opts.handoff === true) {
+          const handoff = await startHandoff(approval, { targetOrigin: required(opts, "target-origin"), ttlMs });
+          const close = () => { void handoff.close(); };
+          process.once("SIGINT", close); process.once("SIGTERM", close);
+          await emit({
+            state: "local_handoff_ready", url: handoff.url, origin: handoff.origin, expires_after_ms: ttlMs,
+            message: "Open the local preview yourself. The website receives only this exact approval after your button click, then requires review, sign-in and explicit publication. No browser was opened or contribution published by the CLI.",
+          });
+        }
+        return;
+      }
+      await emit({
+        state: "local_unapproved_contribution", contribution: contribution.data, consent: selectedConsent, preparation: prepared,
+        message: "No upload occurred. Changed contribution fields or purposes require fresh whole-contribution review and exact confirmation. Journey source/state is never a capability capsule.",
+      }, output);
+      if (prepared.state === "blocked") process.exitCode = 1;
+      return;
+    }
     const reviewers = typeof opts.reviewers === "string" ? configuredReviewers(parseJson(await readSelectedFile(opts.reviewers, 32768)), timeout) : [];
     // The shared helper is the sole privacy scanner. It is never replaced by a CLI heuristic.
     let candidate = validation.data;
@@ -178,7 +236,11 @@ async function main() {
   }
   throw new Error("unknown_command");
 }
-main().catch(() => {
+main().catch((error: unknown) => {
+  if (error instanceof JourneyError) {
+    process.stderr.write(`Better Loop journey could not complete: ${error.code}. Selected state was not assessed as an improvement. Inspect the chosen scope/state; no upload occurred.\n`);
+    process.exitCode = 1; return;
+  }
   // Never echo an untrusted path, input excerpt, reviewer stderr, or provider error.
   process.stderr.write("Better Loop could not complete the selected local operation. Check the command, input format, scope, byte preconditions, and configured helper availability. No upload was attempted by this CLI.\n");
   process.exitCode = 1;

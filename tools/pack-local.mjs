@@ -9,7 +9,7 @@ await mkdir("artifacts", { recursive: true });
 const packages = [];
 const temporary = await mkdtemp(join(tmpdir(), "better-loop-pack-"));
 try {
-  for (const name of ["contracts", "core", "adapters", "privacy", "measurement", "cli"]) {
+  for (const name of ["contracts", "core", "adapters", "privacy", "measurement", "evidence", "discovery", "handoff", "journey", "cli"]) {
     const [packed] = JSON.parse(execFileSync("npm", [
       "pack", "--workspace", `@better-loop/${name}`, "--pack-destination", temporary, "--json",
     ], { encoding: "utf8" }));
@@ -17,9 +17,9 @@ try {
     const destination = join("artifacts", packed.filename);
     let existing;
     try { existing = await readFile(destination); } catch (error) { if (error.code !== "ENOENT") throw error; }
-    // Preserve the exact reviewed privacy archive when only compression differs.
-    if (name === "privacy" && existing) {
-      if (!gunzipSync(existing).equals(gunzipSync(fresh))) throw new Error("reviewed_privacy_archive_source_mismatch");
+    // Preserve exact parent-reviewed safety-helper archives when only compression differs.
+    if (["privacy", "evidence"].includes(name) && existing) {
+      if (!gunzipSync(existing).equals(gunzipSync(fresh))) throw new Error(`reviewed_${name}_archive_source_mismatch`);
     } else await copyFile(join(temporary, packed.filename), destination);
     const bytes = await readFile(destination);
     packages.push({

@@ -24,7 +24,7 @@ Never export:
 
 Use synthetic/public benchmark tasks for public exact raw measurements. Ordinary work stories use coarse categories and normalized/rounded indices. A rare combination can identify a person or project even when each field looks harmless. Coarsen, omit, or block it.
 
-## Production release pipeline (to implement)
+## Local preparation and separate server admission
 
 1. Local deterministic parser extracts allowed measurement facts from selected evidence without executing embedded instructions.
 2. Local/coaching-provider reasoning proposes a generalized candidate. Label any estimates and missing evidence.
@@ -41,13 +41,17 @@ No detector guarantees zero leakage. These layers reduce risk and provide a fail
 
 ## Consent
 
-No account or upload for local coaching. Public reading requires no account. Once the user chooses to publish, record distinct permissions for `public_story`, `benchmark_aggregation`, and `community_learning`. Public-story approval permits hosting/display of that exact story, not recruitment, model training, or unrelated reuse.
+No account or upload for local coaching. Public reading requires no account. All choices begin unselected. Under the extended `bl-sharing-0.2` policy, a contribution binds distinct `public_story`, `benchmark_aggregation`, `community_learning`, and `candidate_discovery` choices. `public_story=true` is required only when approving a public contribution; the three downstream uses remain optional and default false. Legacy `bl-sharing-0.1` approvals retain their original three-purpose semantics and never imply discovery consent.
 
 All optional toggles are off initially. Publishing does not require benchmark/community-learning consent. Declining those uses does not lower scores or remove local functionality. Everyone can read a public story; withholding community-learning consent limits the service's automated recommendation use, not human readers' ability to learn from it.
 
 In the initial product, there is no cloud-only private assessment donation. Every persisted user contribution is an approved public story with separately chosen downstream uses. The service may index all published stories for ordinary public browsing; aggregate scoring and automated lesson recommendations respect their respective permissions.
 
-Opportunity discovery is a future, separate profile-level opt-in, disabled in v1. There is no model-training permission in v1; training remains off.
+Candidate discovery is a separate per-contribution opt-in, not a profile-level permission. It allows the current eligible public story and its minimized capability evidence to support controlled task/role evidence retrieval. Show relevance, human-action evidence, quality, conditions and gaps separately; no generic ranking or employment decision is authorized. Withdrawal, deletion and purpose changes remove eligibility. There is no model-training permission; training remains off.
+
+The separately versioned capability capsule contains only bounded controlled fields. Full contributions are at most 24 KiB, with a 4 KiB capsule and the unchanged 16 KiB candidate bound. Two configured semantic reviewers inspect the whole contribution; schema validity or Git activity is not proof of human involvement. Exact content or purpose changes invalidate confirmation.
+
+Repository journeys retain source, paths, fingerprints, previous host reports and user follow-up in the explicitly chosen local state directory. They are not candidates, capsules or uploads. An optional loopback handoff holds only the exact approved minimized contribution in memory, with expiry and origin/window/nonce binding. Opening its preview is not publication; website authentication and explicit publication remain separate.
 
 ## Identity and retention
 

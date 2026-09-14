@@ -2,9 +2,10 @@ import { execFile } from "node:child_process";
 import { isAbsolute } from "node:path";
 import { parseJson } from "@better-loop/contracts";
 import type { SemanticReviewer } from "@better-loop/privacy";
+import type { ContributionReviewer } from "@better-loop/evidence";
 
 /** Configuration is selected separately by the operator; it never comes from candidate strings. */
-export function configuredReviewers(input: unknown, timeoutMs: number): SemanticReviewer[] {
+function commands(input: unknown) {
   if (!Array.isArray(input) || input.length !== 2) throw new Error("two_explicit_reviewer_commands_required");
   const ids = new Set<string>();
   return input.map(entry => {
@@ -17,11 +18,15 @@ export function configuredReviewers(input: unknown, timeoutMs: number): Semantic
       throw new Error("invalid_reviewer_configuration");
     }
     ids.add(id);
-    return {
-      id,
-      review(request) {
+    return { id, command, args: args as string[] };
+  });
+}
+function reviewCommand(
+  command: string, args: string[], timeoutMs: number, request: { signal: AbortSignal; policy_version: string; instructions: string },
+  selection: object,
+) {
         return new Promise((resolve, reject) => {
-          const child = execFile(command, args as string[], {
+          const child = execFile(command, args, {
             shell: false, encoding: "utf8", maxBuffer: 65536, timeout: timeoutMs,
             signal: request.signal, windowsHide: true,
           }, (error, stdout) => {
@@ -30,10 +35,17 @@ export function configuredReviewers(input: unknown, timeoutMs: number): Semantic
           });
           child.stdin?.on("error", () => reject(new Error("configured_reviewer_unavailable")));
           child.stdin?.end(JSON.stringify({
-            policy_version: request.policy_version, instructions: request.instructions, candidate: request.candidate,
+            policy_version: request.policy_version, instructions: request.instructions, ...selection,
           }));
         });
-      },
-    };
-  });
+}
+export function configuredReviewers(input: unknown, timeoutMs: number): SemanticReviewer[] {
+  return commands(input).map(({ id, command, args }) => ({
+    id, review: request => reviewCommand(command, args, timeoutMs, request, { candidate: request.candidate }),
+  }));
+}
+export function configuredContributionReviewers(input: unknown, timeoutMs: number): ContributionReviewer[] {
+  return commands(input).map(({ id, command, args }) => ({
+    id, review: request => reviewCommand(command, args, timeoutMs, request, { contribution: request.contribution }),
+  }));
 }

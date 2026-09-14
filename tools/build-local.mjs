@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { copyFile, mkdir } from "node:fs/promises";
 import { build } from "esbuild";
 
-for (const name of ["core", "adapters", "cli"]) {
+for (const name of ["core", "adapters", "journey", "cli"]) {
   const pkg = `packages/${name}`;
   await mkdir(`${pkg}/dist`, { recursive: true });
   execFileSync(process.execPath, ["node_modules/typescript/bin/tsc", "-p", `${pkg}/tsconfig.json`], { stdio: "inherit" });

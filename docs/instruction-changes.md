@@ -1,5 +1,19 @@
 # Repository instruction change record
 
+## Selected-repository journeys and extended contributions
+
+Authorized scope: add local durable current/multiple-repository assessment, actual host-report recall, delta-only coaching, explicit recommendation follow-up, and root CLI integration of separately owned evidence/discovery/handoff packages. This changes only `skills/better-loop/` guidance, its host metadata/detector, and repository-local documentation. Source-root AGENTS/CLAUDE and global host configuration remain unchanged. The source diff is the complete reviewable instruction change.
+
+The skill distinguishes baseline/unchanged/changed/invalidated evidence, limits host excerpts separately from local collection, requires explicit approved scope/state choices, and persists actual host reasoning. User outcomes stay explicit and local; writes, report revisions, copied checks and edited advice do not earn improvement/ability credit. Sharing describes separately selected minimized capsules, all four exact purpose choices, two whole-contribution reviews, same-process confirmation and optional explicit browser handoff.
+
+Parent-operated real repository calls exposed useful failures: a static SKILL trigger rule was incorrectly applied to AGENTS/CLAUDE; an omitted supporting source could not be resolved; a host inferred missing consent validation without viewing its callee; and “everything stayed local” overstated the boundary when the configured provider processed excerpts. A returning unchanged host response recalled the right report but was unnecessarily long. The implemented wording now requires 3–5 sentences by default for unchanged results, preserves tighter user output contracts, treats unseen callees/tests as unverified rather than absent, and distinguishes no Better Loop upload from provider processing. These are corrections, not claims that the earlier outputs passed.
+
+The independent functional review also found stale active host advice, duplicate outcome progress and progress inherited by changed advice. The helper now binds current host preference to the actual assessment, associates outcomes with material action/acceptance context, and uses first-observed distinct evidence chronology. Historic feedback is retained as historic; it cannot complete new advice. Automated regressions and separately recorded native runs are different evidence.
+
+A subsequent actual delta call exposed a single large replacement excerpt that labeled unchanged middle instructions as removed and clipped additions. The collector now renders bounded separate line-diff hunks, shares budget across old/new sides, and labels its complexity fallback as samples. Guidance forbids treating clipped/omitted content as proof of removal. The detector also now requires evidence/discovery/handoff draft.2 after the separately reviewed attribution correction; existing schemas/purpose policies remain unchanged. These fixes do not replace the failed native output or imply a benchmark gain.
+
+Rollback: restore only `skills/better-loop/SKILL.md`, `agents/openai.yaml`, `scripts/detect-helper.mjs`, and the affected reference paragraphs from the prior reviewed commit (`b361535`) or revert their scoped diff in a follow-up commit. Keep actual evaluation failures/results intact. For installed copies, restore only the retained previous Better Loop skill directory. Local journey deletion/reset is a separate explicit user action and is never part of an instruction rollback.
+
 ## Initial scoped instructions
 
 Authorized scope: initialize this repository with public-specific development instructions and the portable Better Loop instruction skill.

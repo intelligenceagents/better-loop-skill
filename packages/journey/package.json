@@ -1,0 +1,20 @@
+{
+  "name": "@better-loop/journey",
+  "version": "0.1.0-draft.1",
+  "description": "Explicit local repository scopes, bounded tracked deltas and durable private coaching checkpoints.",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+      "require": { "types": "./dist/index.d.cts", "default": "./dist/index.cjs" }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "dependencies": { "@better-loop/core": "0.2.0-draft.1", "@better-loop/contracts": "0.1.0-draft.1" },
+  "sideEffects": false
+}
