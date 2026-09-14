@@ -13,3 +13,8 @@ private-evidence/
 local-reports/
 supabase/.temp/
 *.log
+artifacts/
+packages/contracts/src/generated/
+packages/contracts/schemas/
+packages/contracts/LICENSE
+packages/contracts/THIRD_PARTY_NOTICES.md

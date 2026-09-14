@@ -1,0 +1,33 @@
+{
+  "name": "better-loop-workspace",
+  "version": "0.1.0-draft.1",
+  "private": true,
+  "type": "module",
+  "workspaces": ["packages/*"],
+  "engines": { "node": ">=22" },
+  "packageManager": "npm@10.9.0",
+  "scripts": {
+    "generate": "node tools/generate.mjs",
+    "build": "npm run generate && tsc -p packages/contracts/tsconfig.json && node tools/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:parity": "node --import tsx tools/check-parity.ts",
+    "test:browser": "node --import tsx tools/check-browser.ts",
+    "test:consumer": "node tools/check-consumer.mjs",
+    "check:seed": "python3 tools/validate_context.py",
+    "check:artifact": "node tools/check-artifact.mjs",
+    "check": "npm run build && npm run typecheck && npm test && npm run check:seed && npm run test:parity && npm run check:artifact",
+    "pack:contracts": "npm run build && npm pack --workspace @better-loop/contracts --pack-destination artifacts"
+  },
+  "devDependencies": {
+    "@noble/hashes": "2.4.0",
+    "@types/node": "22.20.2",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "esbuild": "0.28.2",
+    "json-schema-to-typescript": "16.0.0",
+    "playwright": "1.63.0",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2"
+  }
+}

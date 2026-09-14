@@ -121,7 +121,7 @@ def check_negative_cases(share, local, sv, ev):
 def check_links():
     count = 0
     for path in ROOT.rglob('*.md'):
-        if '.git' in path.parts:
+        if {'.git', 'node_modules', '.venv', 'dist', 'artifacts'} & set(path.parts):
             continue
         content = re.sub(r'```.*?```', '', path.read_text(), flags=re.S)
         for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)', content):
@@ -134,6 +134,8 @@ def check_links():
 
 
 def main():
+    require('date-time' in FormatChecker().checkers,
+            'Missing date-time checker; install requirements-dev.txt')
     validators = {}
     for name in ('share-candidate', 'evaluation-run'):
         schema = load(ROOT / f'schemas/{name}.schema.json')
