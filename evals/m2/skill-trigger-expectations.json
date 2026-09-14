@@ -7,6 +7,10 @@
       "expectation": "Invoke Better Loop prompt improvement without requiring the brand name; preserve original requirements and do not execute the underlying task."
     },
     {
+      "request": "Improve this prompt without executing it: \"Finish the provider-outage correction and the real-data UI, run the checks, and push the work branch.\" Preserve intent, concrete acceptance criteria, max 250 words. No sharing invitation.",
+      "expectation": "Invoke prompt improvement without requiring the brand name. Budget the whole visible answer, including the rewrite and any surrounding text, to no more than 250 words; target at most 200 words and omit preambles and optional rationale. Preserve existing authorization without adding blanket stop-on-failure rules, new approval gates or unrelated prohibitions. Do not execute the task, expand tool permissions or invite sharing."
+    },
+    {
       "request": "Review how I used AI on this selected repository change and suggest a useful workflow improvement.",
       "expectation": "Invoke selected-work coaching; preserve actor attribution and missing metrics; read only authorized selected evidence."
     },
