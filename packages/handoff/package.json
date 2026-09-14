@@ -1,6 +1,6 @@
 {
   "name": "@better-loop/handoff",
-  "version": "0.1.0-draft.1",
+  "version": "0.1.0-draft.2",
   "description": "Explicit loopback-to-browser handoff of an exact minimized Better Loop approval.",
   "license": "MIT",
   "type": "module",
@@ -22,7 +22,7 @@
   "sideEffects": false,
   "dependencies": {
     "@better-loop/contracts": "0.1.0-draft.1",
-    "@better-loop/evidence": "0.1.0-draft.1"
+    "@better-loop/evidence": "0.1.0-draft.2"
   },
   "scripts": {
     "build": "node build.mjs",

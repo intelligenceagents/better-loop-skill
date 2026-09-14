@@ -1,6 +1,6 @@
 # Better Loop browser handoff
 
-`@better-loop/handoff@0.1.0-draft.1` transfers an exact, already reviewed `ContributionApproval` from `@better-loop/evidence@0.1.0-draft.1` into a website browser window. It opens no browser automatically, makes no production request itself, and does not authenticate or publish.
+`@better-loop/handoff@0.1.0-draft.2` transfers an exact, already reviewed `ContributionApproval` from `@better-loop/evidence@0.1.0-draft.2` into a website browser window. It opens no browser automatically, makes no production request itself, and does not authenticate or publish.
 
 The person opens an ephemeral local preview, sees the full contribution, capability capsule and consent, and clicks **Open website to review sharing**. Only after the captured website window signals readiness does the local window send the approval through `postMessage`. The website validates it, acknowledges local import and presents its own memory-only preview. Sign-in and explicit publication are separate website actions.
 
@@ -105,6 +105,11 @@ npm run test:consumer --workspace @better-loop/handoff
 
 The build produces ESM/CommonJS and declarations for both exports, plus the inline sender asset. Browser tests use installed Chrome or an already installed Playwright browser. They intercept website origins with synthetic local test pages and never contact the running app, production, email or a model. They cover a real button gesture, exact transfer, CSP, immediate fragment cleanup, wrong origin/source/nonce, malformed envelopes, no transfer before ready, close/expiry, changed payload and no resend after acknowledgement.
 
-The offline consumer check packs this package and installs it with the already packed contracts, privacy draft.3 and evidence draft.1 archives in a package-local ignored directory. It checks both module/type export modes and shipped assets without a registry request.
+The offline consumer check packs this package and installs it with the already packed contracts, privacy draft.3 and evidence draft.2 archives in a package-local ignored directory. It checks both module/type export modes and shipped assets without a registry request.
 
 This package does not edit the host CLI or website. Integrators own their UI lifecycle, memory-only import, local/production deployment settings, user consent and publication controls. Roll back by removing the handoff integration and returning to manual approved JSON import.
+
+## Version history
+
+- `0.1.0-draft.1`: initial loopback sender and browser receiver, pinned to evidence draft.1.
+- `0.1.0-draft.2`: pins evidence draft.2's corrected human-attribution rules. Synthetic fixtures supply matching selected-message evidence for each observed behavior. Superseded draft.1 evidence receipts are rejected by version; create a fresh reviewed approval with the current helper. The handoff protocol, contribution schema, policy and canonical digest algorithm are unchanged. The prior commit/archive remain historical artifacts.

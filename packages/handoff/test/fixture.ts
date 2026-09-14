@@ -12,7 +12,10 @@ export async function fixture(): Promise<ContributionApproval> {
     capability_evidence: {
       schema_version: "bl-capability-evidence-0.1", rubric_id: "bl-work-evidence-0.1",
       assessment_basis: "conversation_and_artifacts", human_involvement: "human_directed",
-      human_actions: [{ action: "goal_definition", evidence: "selected_human_message", outcome_check: "unknown" }],
+      human_actions: [
+        { action: "goal_definition", evidence: "selected_human_message", outcome_check: "unknown" },
+        { action: "factual_verification", evidence: "selected_human_message", outcome_check: "unknown" },
+      ],
       quality_checks: [], change: "initial", distinct_task_band: "one", benchmark: null,
     },
   };

@@ -16,7 +16,7 @@ assert.ok(packed.files.some((file: { path: string }) => file.path === "dist/send
 const dependencies = [
   "better-loop-contracts-0.1.0-draft.1.tgz",
   "better-loop-privacy-0.1.0-draft.3.tgz",
-  "better-loop-evidence-0.1.0-draft.1.tgz",
+  "better-loop-evidence-0.1.0-draft.2.tgz",
 ].map(name => resolve(workspaceRoot, "artifacts", name));
 for (const archive of dependencies) assert.ok(existsSync(archive), "Build/pack the pinned dependency archives first.");
 const consumer = mkdtempSync(resolve(output, "consumer-"));
@@ -26,7 +26,10 @@ execFileSync("npm", ["install", "--offline", "--ignore-scripts", "--no-audit", "
 writeFileSync(resolve(consumer, "fixture.json"), JSON.stringify(await fixture()));
 const runtime = `
 const approval=JSON.parse(fs.readFileSync(new URL("./fixture.json",moduleURL),"utf8"));
+assert.equal(approval.helper_version,"0.1.0-draft.2");
 assert.equal(typeof receiver.receiveHandoff,"function");
+await assert.rejects(sender.startHandoff({...approval,helper_version:"0.1.0-draft.1"},
+ {targetOrigin:"http://127.0.0.1:3100"}),/invalid_handoff_approval/);
 const server=await sender.startHandoff(approval,{targetOrigin:"http://127.0.0.1:3100"});
 try {
  const response=await fetch(server.url);
