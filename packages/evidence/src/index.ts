@@ -6,7 +6,7 @@ import {
   type Finding, type SemanticVerdict,
 } from "@better-loop/privacy";
 
-export const EVIDENCE_VERSION = "0.1.0-draft.1" as const;
+export const EVIDENCE_VERSION = "0.1.0-draft.2" as const;
 export const CAPABILITY_SCHEMA_VERSION = "bl-capability-evidence-0.1" as const;
 export const CONTRIBUTION_SCHEMA_VERSION = "bl-contribution-0.2" as const;
 export const CONTRIBUTION_POLICY_VERSION = "bl-sharing-0.2" as const;
@@ -217,9 +217,17 @@ export function validateContribution(input: unknown): EvidenceValidation<Contrib
     seenIndicators.add(item.indicator);
   }
   for (const action of capsule.data.human_actions) {
-    if (action.evidence !== "unknown" &&
+    if (action.evidence === "selected_human_message" &&
         !candidate.data.human_behaviors.some(item => item.indicator === action.action && item.state === "observed"))
       return bad("/capability_evidence/human_actions", "observed_behavior_required");
+  }
+  // The two representations cannot contradict each other. Attestation stays a reported claim;
+  // it does not manufacture an observed conversation in the candidate's behavioral assessment.
+  for (const behavior of candidate.data.human_behaviors) {
+    if (behavior.state === "observed" &&
+        !capsule.data.human_actions.some(action =>
+          action.action === behavior.indicator && action.evidence === "selected_human_message"))
+      return bad("/candidate/human_behaviors", "observed_human_attribution_required");
   }
   if (capsule.data.human_involvement === "agent_autonomous" &&
       candidate.data.human_behaviors.some(item => item.state === "observed"))

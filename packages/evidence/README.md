@@ -4,6 +4,8 @@ Versioned, minimized evidence for useful learning and role-relevant public disco
 
 `Contribution` wraps the unchanged candidate schema with `CapabilityEvidence`: controlled human-attribution, quality-check, follow-up and public-benchmark fields. No raw evidence, paths, local hashes, names, employers, dates or source URLs are permitted in the capsule. The rubric is descriptive and uncalibrated. `locally_recorded` remains a client claim, not independent verification.
 
+Draft2 supersedes draft1's attribution validator. Every observed candidate human behavior must have a corresponding selected-human-message action under a conversation basis. User attestations remain explicitly labeled claims; they can coexist with missing/unobserved candidate evidence and null ratings, without being promoted to observed behavior. Unknown action evidence cannot support an observed claim. The contribution schema and canonical digest are unchanged; current approvals name helper `0.1.0-draft.2`. Old draft1 receipts require fresh current preparation, not relabeling.
+
 `validateContribution` and `validateContributionApproval` check strict structure, bounds and cross-field consistency. They do not establish privacy, work authenticity or user approval.
 
 `prepareContribution(contribution, consent, [reviewerA, reviewerB])` applies the existing privacy scanner and two distinct configured semantic passes over the complete minimized contribution. Providers are supplied by the caller and disclosed to the user. Invalid, missing, disagreeing, uncertain or timed-out review blocks preparation.

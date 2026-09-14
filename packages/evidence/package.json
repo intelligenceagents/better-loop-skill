@@ -1,6 +1,6 @@
 {
   "name": "@better-loop/evidence",
-  "version": "0.1.0-draft.1",
+  "version": "0.1.0-draft.2",
   "description": "Minimized capability evidence, exact purpose binding and fail-closed contribution preparation.",
   "license": "MIT",
   "type": "module",

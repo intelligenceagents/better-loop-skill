@@ -101,13 +101,60 @@ test("autonomous agent work never establishes observed human actions", () => {
   record.candidate.human_behaviors[0]!.state = "insufficient_evidence";
   assert.equal(validateContribution(record).valid, true);
 });
-test("non-unknown human evidence requires the corresponding observed indicator", () => {
+test("selected-human-message evidence requires the corresponding observed indicator", () => {
   for (const state of ["not_observed", "not_applicable", "insufficient_evidence"] as const) {
     const record = contribution(); record.candidate.human_behaviors[0]!.state = state;
     assert.equal(validateContribution(record).valid, false);
   }
   const empty = contribution(); empty.candidate.human_behaviors = [];
   assert.equal(validateContribution(empty).valid, false);
+});
+test("observed candidate behavior cannot be supported by unknown, absent or artifact-only attribution", async () => {
+  const unknownAction = contribution(); unknownAction.capability_evidence.human_actions[0]!.evidence = "unknown";
+  const missingAction = contribution(); missingAction.capability_evidence.human_actions = [];
+  const artifactsOnly = contribution(); artifactsOnly.capability_evidence.assessment_basis = "artifacts_only"; artifactsOnly.capability_evidence.human_actions = [];
+  const unknownBasis = contribution(); unknownBasis.capability_evidence.assessment_basis = "unknown";
+  unknownBasis.capability_evidence.human_actions = []; unknownBasis.capability_evidence.quality_checks = [];
+  for (const record of [unknownAction, missingAction, artifactsOnly, unknownBasis]) {
+    assert.equal(validateCapabilityEvidence(record.capability_evidence).valid, true);
+    const result = validateContribution(record);
+    assert.equal(result.valid, false);
+    if (result.valid) assert.fail();
+    assert.equal(result.errors[0]!.code, "observed_human_attribution_required");
+    let calls = 0;
+    const preparation = await prepareContribution(record, consent(), [
+      { id: "one", review: async () => { calls++; return allow; } }, pass("two"),
+    ]);
+    assert.equal(preparation.state, "blocked"); assert.equal(calls, 0);
+    record.candidate.human_behaviors[0]!.state = "insufficient_evidence";
+    assert.equal(validateContribution(record).valid, true);
+  }
+});
+test("user attestation preserves missing observation and null rating without an observed-state upgrade", async () => {
+  for (const state of ["insufficient_evidence", "not_observed"] as const) {
+    const record = contribution();
+    record.capability_evidence.assessment_basis = "user_attestation";
+    record.capability_evidence.human_actions[0]!.evidence = "user_attestation";
+    record.capability_evidence.quality_checks = [];
+    record.candidate.human_behaviors[0]!.state = state;
+    record.candidate.human_behaviors[0]!.rating = null;
+    record.candidate.human_behaviors[0]!.evidence_summary = "The contributor reports setting an acceptance check; no selected conversation was available.";
+    assert.equal(validateContribution(record).valid, true);
+    const prepared = await prepareContribution(record, consent(), pair());
+    if (prepared.state !== "ready_for_confirmation") assert.fail();
+    const approval = confirmContribution(prepared, prepared.preview_digest, true);
+    assert.equal(approval.contribution.candidate.human_behaviors[0]!.state, state);
+    assert.equal(approval.contribution.candidate.human_behaviors[0]!.rating, null);
+    assert.equal(approval.contribution.capability_evidence.human_actions[0]!.evidence, "user_attestation");
+    record.candidate.human_behaviors[0]!.state = "observed";
+    assert.equal(validateContribution(record).valid, false);
+  }
+  const capsuleOnlyClaim = contribution();
+  capsuleOnlyClaim.capability_evidence.assessment_basis = "user_attestation";
+  capsuleOnlyClaim.capability_evidence.human_actions[0]!.evidence = "user_attestation";
+  capsuleOnlyClaim.capability_evidence.quality_checks = [];
+  capsuleOnlyClaim.candidate.human_behaviors = [];
+  assert.equal(validateContribution(capsuleOnlyClaim).valid, true);
 });
 test("missing evidence cannot become an outcome check or recorded quality", () => {
   const human = capsule(); human.human_actions[0]!.evidence = "unknown"; human.human_actions[0]!.outcome_check = "met";
@@ -291,7 +338,8 @@ test("approval transport validation rejects changed digest/content/purposes and 
   for (const altered of [
     { ...approval, consent: { ...approval.consent, candidate_discovery: true } },
     { ...approval, contribution: { ...approval.contribution, capability_evidence: { ...capsule(), change: "followup" } } },
-    { ...approval, helper_version: "future" }, { ...approval, version: "bl-local-approval-0.1" },
+    { ...approval, helper_version: "future" }, { ...approval, helper_version: "0.1.0-draft.1" },
+    { ...approval, version: "bl-local-approval-0.1" },
     { ...approval, review_policy_version: "bl-review-0.1" }, { ...approval, preview_digest: "0".repeat(64) },
     { ...approval, verified: true }, { ...approval, raw_work: "private" },
   ]) assert.equal(validateContributionApproval(altered).valid, false);
