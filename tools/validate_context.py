@@ -121,7 +121,7 @@ def check_negative_cases(share, local, sv, ev):
 def check_links():
     count = 0
     for path in ROOT.rglob('*.md'):
-        if {'.git', 'node_modules', '.venv', 'dist', 'artifacts'} & set(path.parts):
+        if {'.git', 'node_modules', '.venv', 'dist', 'artifacts'} & set(path.relative_to(ROOT).parts):
             continue
         content = re.sub(r'```.*?```', '', path.read_text(), flags=re.S)
         for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)', content):
