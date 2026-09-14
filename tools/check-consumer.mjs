@@ -35,14 +35,18 @@ assert.equal(api.CONTRACT_PACKAGE_VERSION, "0.1.0-draft.1");
 `);
 for (const file of ["check.mjs", "check.cjs"]) execFileSync(process.execPath, [file], { cwd: directory, stdio: "pipe" });
 const typeSource = `
-import { validateShareCandidate, computePreviewDigest, type PreviewConsent } from "@better-loop/contracts";
+import { validateShareCandidate, computePreviewDigest, type PreviewConsent, type ShareCandidate } from "@better-loop/contracts";
 const checked = validateShareCandidate({});
 const consent: PreviewConsent = {public_story:true,benchmark_aggregation:false,community_learning:false,policy_version:"bl-sharing-0.1"};
 if (checked.valid) {
   const version: "0.1.0" = checked.data.schema_version;
+  const title: string = checked.data.story.title;
   const digest: string = computePreviewDigest(checked.data, consent);
-  void version; void digest;
+  void version; void title; void digest;
 }
+// @ts-expect-error Story.title is required in the distributed declaration.
+const missingTitle: ShareCandidate["story"] = {problem:"Synthetic",change:"Synthetic",result:"Synthetic",lesson:"Synthetic",limits:"Synthetic"};
+void missingTitle;
 // @ts-expect-error Unrecognized policy cannot inhabit PreviewConsent.
 const invalid: PreviewConsent = {...consent, policy_version:"unknown"};
 void invalid;

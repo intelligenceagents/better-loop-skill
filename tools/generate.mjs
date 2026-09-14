@@ -32,11 +32,13 @@ for (const [name, type] of [
   // from the exact properties; never present TS assignability as validation.
   const shape = structuredClone(schema);
   function structural(node) {
-    if (node && typeof node === "object") {
-      delete node.allOf;
-      delete node.title;
-      for (const value of Object.values(node)) structural(value);
-    }
+    if (!node || typeof node !== "object") return;
+    delete node.allOf;
+    delete node.title;
+    // `properties` is a name map, not a schema node. A property named "title"
+    // is contract data and must survive metadata stripping.
+    for (const child of Object.values(node.properties ?? {})) structural(child);
+    if (node.items) structural(node.items);
   }
   structural(shape);
   await writeFile(new URL(`${name}.ts`, output), await compile(shape, type, {
