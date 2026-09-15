@@ -1,0 +1,891 @@
+{
+  "schema_version": "bl-public-repair-result-0.1",
+  "evaluator_version": "bl-evidence-attribution-repair-0.2",
+  "demonstration_kind": "known_case_matched_software_regression",
+  "execution_order": [
+    "before",
+    "after"
+  ],
+  "input_origin": "authored_synthetic_validation_probes_against_actual_public_software",
+  "freeze_commit": "e63931af0e49562b60e3f5d023b4384333452773",
+  "freeze_sha256": "38527cf9c1854fdc2842f66e67c384f4ce7d5d3ed7f9e82e660b287f6d457ad5",
+  "executed_at_utc": "2026-09-15T17:21:54.450Z",
+  "runtime": {
+    "node": "v22.10.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "compiler": {
+    "name": "esbuild",
+    "version": "0.28.2"
+  },
+  "elapsed_wall_ms": 1277,
+  "wall_duration_use": "execution_bound_only_not_an_efficiency_measure",
+  "model_calls": 0,
+  "approvals_created": 0,
+  "contributions_submitted": 0,
+  "measured_model_tokens": null,
+  "measured_cash_cost": null,
+  "measured_human_effort": null,
+  "infrastructure_failures": [],
+  "arms": [
+    {
+      "arm": "before",
+      "source_commit": "d1fce5188002dada01634cd1c328ff903ed0f6b4",
+      "source_sha256": "fbd2ade72b464511ddfba4d3a26a36abbca418ea24da7255d46381d5ce2a8f7c",
+      "package_version": "0.1.0-draft.1",
+      "compiled_bundle_sha256": "f9c823a43f29e038c62da6f173316169d97de6ffefe28c2cc419195bb1251ba2",
+      "compiler_inputs_verified": true,
+      "results": [
+        {
+          "id": "F1-unknown-attribution",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": false
+        },
+        {
+          "id": "F1-absent-attribution",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": false
+        },
+        {
+          "id": "F1-artifacts-only",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": false
+        },
+        {
+          "id": "F1-unknown-basis",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": false
+        },
+        {
+          "id": "F1-attestation-not-observation",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": false
+        },
+        {
+          "id": "F2-attestation-insufficient",
+          "group": "repair_F2",
+          "expected_valid": true,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": false
+        },
+        {
+          "id": "F2-attestation-not-observed",
+          "group": "repair_F2",
+          "expected_valid": true,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": false
+        },
+        {
+          "id": "F2-attestation-no-base-behavior",
+          "group": "repair_F2",
+          "expected_valid": true,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": false
+        },
+        {
+          "id": "P1-selected-message",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P2-conversation-basis",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P3-artifacts-unobserved",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P4-unknown-unobserved",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P5-autonomous-unobserved",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P6-two-matched-indicators",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "N1-selected-not_observed",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N2-selected-insufficient_evidence",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N3-selected-not_applicable",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N4-selected-no-behavior",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N5-selected-wrong-indicator",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N6-selected-artifacts-basis",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions/0",
+              "code": "conversation_evidence_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N7-selected-attestation-basis",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions/0",
+              "code": "conversation_evidence_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N8-selected-autonomous",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions/0",
+              "code": "autonomous_work_not_human_action"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N9-duplicate-base-indicator",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/candidate/human_behaviors",
+              "code": "duplicate_indicator"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N10-duplicate-capsule-action",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions/1",
+              "code": "duplicate_action"
+            }
+          ],
+          "pass": true
+        }
+      ],
+      "counts": {
+        "passed": 16,
+        "total": 24,
+        "expected_acceptance": {
+          "passed": 6,
+          "total": 9
+        },
+        "expected_rejection": {
+          "passed": 10,
+          "total": 15
+        }
+      },
+      "groups": {
+        "repair_F1": {
+          "passed": 0,
+          "total": 5,
+          "expected_acceptance": {
+            "passed": 0,
+            "total": 0
+          },
+          "expected_rejection": {
+            "passed": 0,
+            "total": 5
+          }
+        },
+        "repair_F2": {
+          "passed": 0,
+          "total": 3,
+          "expected_acceptance": {
+            "passed": 0,
+            "total": 3
+          },
+          "expected_rejection": {
+            "passed": 0,
+            "total": 0
+          }
+        },
+        "positive_control": {
+          "passed": 6,
+          "total": 6,
+          "expected_acceptance": {
+            "passed": 6,
+            "total": 6
+          },
+          "expected_rejection": {
+            "passed": 0,
+            "total": 0
+          }
+        },
+        "negative_control": {
+          "passed": 10,
+          "total": 10,
+          "expected_acceptance": {
+            "passed": 0,
+            "total": 0
+          },
+          "expected_rejection": {
+            "passed": 10,
+            "total": 10
+          }
+        }
+      }
+    },
+    {
+      "arm": "after",
+      "source_commit": "01091e5c26378576b3b42d6a7f9735821d9ae2e4",
+      "source_sha256": "21e98732d26de3047bc8570625a21a884eb1e93908e57bcef289767e891d199f",
+      "package_version": "0.1.0-draft.2",
+      "compiled_bundle_sha256": "fa03f1e3e90e1702d13f2d44d814c1c0b4f6e3223aaabb7e26f47b530d798973",
+      "compiler_inputs_verified": true,
+      "results": [
+        {
+          "id": "F1-unknown-attribution",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/candidate/human_behaviors",
+              "code": "observed_human_attribution_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "F1-absent-attribution",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/candidate/human_behaviors",
+              "code": "observed_human_attribution_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "F1-artifacts-only",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/candidate/human_behaviors",
+              "code": "observed_human_attribution_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "F1-unknown-basis",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/candidate/human_behaviors",
+              "code": "observed_human_attribution_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "F1-attestation-not-observation",
+          "group": "repair_F1",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/candidate/human_behaviors",
+              "code": "observed_human_attribution_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "F2-attestation-insufficient",
+          "group": "repair_F2",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "F2-attestation-not-observed",
+          "group": "repair_F2",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "F2-attestation-no-base-behavior",
+          "group": "repair_F2",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P1-selected-message",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P2-conversation-basis",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P3-artifacts-unobserved",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P4-unknown-unobserved",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P5-autonomous-unobserved",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "P6-two-matched-indicators",
+          "group": "positive_control",
+          "expected_valid": true,
+          "observed_valid": true,
+          "input_unchanged": true,
+          "accepted_data_preserved": true,
+          "exception": null,
+          "findings": [],
+          "pass": true
+        },
+        {
+          "id": "N1-selected-not_observed",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N2-selected-insufficient_evidence",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N3-selected-not_applicable",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N4-selected-no-behavior",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N5-selected-wrong-indicator",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions",
+              "code": "observed_behavior_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N6-selected-artifacts-basis",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions/0",
+              "code": "conversation_evidence_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N7-selected-attestation-basis",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions/0",
+              "code": "conversation_evidence_required"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N8-selected-autonomous",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions/0",
+              "code": "autonomous_work_not_human_action"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N9-duplicate-base-indicator",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/candidate/human_behaviors",
+              "code": "duplicate_indicator"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "id": "N10-duplicate-capsule-action",
+          "group": "negative_control",
+          "expected_valid": false,
+          "observed_valid": false,
+          "input_unchanged": true,
+          "accepted_data_preserved": null,
+          "exception": null,
+          "findings": [
+            {
+              "path": "/capability_evidence/human_actions/1",
+              "code": "duplicate_action"
+            }
+          ],
+          "pass": true
+        }
+      ],
+      "counts": {
+        "passed": 24,
+        "total": 24,
+        "expected_acceptance": {
+          "passed": 9,
+          "total": 9
+        },
+        "expected_rejection": {
+          "passed": 15,
+          "total": 15
+        }
+      },
+      "groups": {
+        "repair_F1": {
+          "passed": 5,
+          "total": 5,
+          "expected_acceptance": {
+            "passed": 0,
+            "total": 0
+          },
+          "expected_rejection": {
+            "passed": 5,
+            "total": 5
+          }
+        },
+        "repair_F2": {
+          "passed": 3,
+          "total": 3,
+          "expected_acceptance": {
+            "passed": 3,
+            "total": 3
+          },
+          "expected_rejection": {
+            "passed": 0,
+            "total": 0
+          }
+        },
+        "positive_control": {
+          "passed": 6,
+          "total": 6,
+          "expected_acceptance": {
+            "passed": 6,
+            "total": 6
+          },
+          "expected_rejection": {
+            "passed": 0,
+            "total": 0
+          }
+        },
+        "negative_control": {
+          "passed": 10,
+          "total": 10,
+          "expected_acceptance": {
+            "passed": 0,
+            "total": 0
+          },
+          "expected_rejection": {
+            "passed": 10,
+            "total": 10
+          }
+        }
+      }
+    }
+  ],
+  "changes": {
+    "repaired": [
+      "F1-unknown-attribution",
+      "F1-absent-attribution",
+      "F1-artifacts-only",
+      "F1-unknown-basis",
+      "F1-attestation-not-observation",
+      "F2-attestation-insufficient",
+      "F2-attestation-not-observed",
+      "F2-attestation-no-base-behavior"
+    ],
+    "regressed": [],
+    "unchanged_pass": [
+      "P1-selected-message",
+      "P2-conversation-basis",
+      "P3-artifacts-unobserved",
+      "P4-unknown-unobserved",
+      "P5-autonomous-unobserved",
+      "P6-two-matched-indicators",
+      "N1-selected-not_observed",
+      "N2-selected-insufficient_evidence",
+      "N3-selected-not_applicable",
+      "N4-selected-no-behavior",
+      "N5-selected-wrong-indicator",
+      "N6-selected-artifacts-basis",
+      "N7-selected-attestation-basis",
+      "N8-selected-autonomous",
+      "N9-duplicate-base-indicator",
+      "N10-duplicate-capsule-action"
+    ],
+    "unchanged_fail": [],
+    "pass_count_delta": 8,
+    "pass_fraction_percentage_point_delta": 33.33
+  },
+  "quality_floor_met": true,
+  "limitations": [
+    "Known repair cases authored after inspecting both source versions and existing tests; not held-out, blinded or independent validation.",
+    "Authored synthetic inputs probe actual public software; they are not customer work, real human observations or publishable achievements.",
+    "One deterministic execution per case per source; shared-template probes are not independent task samples.",
+    "This separate attribution repair cannot be substituted for the existing privacy exact-binding story.",
+    "Zero before passes in any group makes relative percent improvement undefined; report counts and percentage points.",
+    "No model efficacy, human ability, hiring validity, privacy clearance, savings or unseen-defect-absence claim.",
+    "Model resources, cash costs, orchestration and human effort are unmeasured; wall duration checks only the execution bound.",
+    "Both arms share exact cached dependency builds and compiler; this is not a full historical environment reconstruction.",
+    "Existing public model benchmark and its equal-quality, higher-token result remain unchanged."
+  ]
+}
