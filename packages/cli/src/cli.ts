@@ -15,9 +15,11 @@ import { startHandoff } from "@better-loop/handoff";
 import { configuredContributionReviewers } from "./reviewers.js";
 import { LocalOutputError, reservePrivateOutput } from "./local-files.js";
 import type { PrivateOutputReservation } from "./local-files.js";
+import { checkRelease } from "./release-check.js";
 
 const HELP = `Better Loop local helper
   better-loop capabilities --json
+  better-loop release-check [--cache-dir selected-absolute-skill-cache-directory] [--offline|--disabled] [--json]
   better-loop journey create --state selected-dedicated-directory --root exact-repository [--root another-repository] --task selected-task.json
   better-loop journey use --state selected-directory --host codex|claude_code [--expected checkpoint-id] [--excerpt-bytes 8192] [--excerpt-files 8] [--excerpt-path relative-file]
   better-loop journey record-assessment --state selected-directory --expected checkpoint-id --host codex|claude_code --input actual-host-report.json
@@ -43,9 +45,17 @@ Outputs may contain private selected evidence. Output files are exclusive and mo
 draft-share reserves its new output before starting reviewers; choose an existing writable parent and an unused filename.
 Default commands have no network/model calls. draft-share reviewer commands are explicit opt-in and receive only a minimized candidate or whole minimized contribution.
 learn --service makes an explicit public GET with controlled taxonomy only; offline exports produce no automated recommendations.
+release-check reads only fixed public GitHub release metadata, with a two-second network deadline; no credentials, redirects, upload or update.
 No upload transport. Static cue detection is not a validated assessment or a measured improvement.`;
 
 function usage(command?: string, action?: string): string {
+  if (command === "release-check") return ["Better Loop release-check",
+    ...HELP.split("\n").filter(line => line.startsWith("  better-loop release-check ")),
+    "Checks fixed unauthenticated GitHub public release metadata; no selected work, paths or local version are sent.",
+    "Optional --cache-dir is explicitly selected for this skill installation: 24-hour observations, 5-minute failure backoff.",
+    "--offline or --disabled skips network and cache I/O. Omit --cache-dir for a manual uncached observation.",
+    "A source build is not a verified release. A 404 alone is unknown; an empty public list can confirm no published release.",
+    "No automatic pull, install, update or state migration. Help performs no network or cache I/O."].join("\n");
   if (command === "journey") {
     const lines = HELP.split("\n").filter(line => line.startsWith("  better-loop journey "));
     const selected = lines.filter(line => line.split(" ")[4]?.split("|").includes(action ?? ""));
@@ -98,12 +108,20 @@ async function emit(value: unknown, output?: string | true | PrivateOutputReserv
 async function main() {
   const [command, ...args] = process.argv.slice(2);
   if (!command || command === "--help" || command === "help") { process.stdout.write(`${HELP}\n`); return; }
-  if ((command === "journey" || command === "draft-share") && args.includes("--help")) {
+  if ((command === "journey" || command === "draft-share" || command === "release-check") && args.includes("--help")) {
     process.stdout.write(`${usage(command, args[0])}\n`); return;
   }
   if (command === "--version") { process.stdout.write(`${capabilities().helper_version}\n`); return; }
   if (command === "capabilities") {
     options(args, ["json"], ["json"]); await emit(capabilities()); return;
+  }
+  if (command === "release-check") {
+    const opts = options(args, ["cache-dir", "offline", "disabled", "json"], ["offline", "disabled", "json"]);
+    const result = await checkRelease(capabilities().helper_version, {
+      ...(typeof opts["cache-dir"] === "string" ? { cacheDirectory: opts["cache-dir"] } : {}),
+      disabled: opts.offline === true || opts.disabled === true,
+    });
+    await emit(result); return;
   }
   if (command === "journey") {
     const result = await journeyCommand(args);

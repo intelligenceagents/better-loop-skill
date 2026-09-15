@@ -1,5 +1,13 @@
 # Repository instruction change record
 
+## Bounded release awareness
+
+Authorized scope: CLI `0.4.0-draft.5`, a manual public metadata check, automatic skill-entry guidance after exact helper detection within session tool/network scope, and a dedicated explicitly selected installation cache. The detector now checks core/adapters/measurement as well as the previous package pins. The reviewable diff changes only this repository's skill/detector/release guide and host documentation. It does not modify installed copies or global host settings. No wire, consent policy or journey state format changes.
+
+Detection/help/capabilities remain network-free. Checks use fixed unauthenticated GitHub public metadata only, with a two-second deadline and bounded strict JSON/UTF-8; source builds and version comparisons do not verify installed bytes. The skill skips the check for user network/tool restrictions or disabled operation and continues coaching on failure; without a usable scoped cache selection it checks once uncached. Manual candidate packaging creates review artifacts and is separate from tag/release/npm publication.
+
+Rollback: restore only this scoped instruction/detector/reference diff and the matching helper package set from `988b3777cf6c697426e0b61b204c172eb95373b2`, or revert the notifier change. Preserve existing private journey state, retained earlier verification and unrelated files. Replace only an explicitly selected installed skill/helper pair after reviewing its diff; state deletion or migration is never part of this rollback.
+
 ## Everyday reviewer setup and safe CLI preparation
 
 The authorized daily-use follow-up adds the public `references/reviewers.md` guide, connects the static host share requests to missing reviewer setup, and clarifies helper paths, private-first use, provider processing and scoped upgrades. Reviewers receive content and review policy; selected consent choices are separately validated, previewed and digest-bound. Separate CLI preview/confirmation plus server admission uses six semantic calls; one native/API preparation retained through exact confirmation plus server admission uses four. No default reviewer or private application dependency is introduced.

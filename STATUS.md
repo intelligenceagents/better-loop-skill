@@ -2,7 +2,21 @@
 
 Updated: 2026-09-15. The current local product stage is ready for review. Packages remain reviewed local archives, with no registry release. Website publication has separate application authorization and release checks.
 
-## Current follow-up: everyday reviewer setup and safe preparation
+## Current follow-up: bounded release awareness — implemented and independently reviewed
+
+CLI `0.4.0-draft.5` adds the manual `release-check` command and automatic skill-entry guidance after exact compatible helper detection, within the user's network/tool scope. The caller explicitly selects an installation cache; observations last 24 hours and failure backoff five minutes. Missing cache scope uses one uncached entry check. Offline/disabled/help skip cache and network; detector and capabilities remain network-free. Coaching continues on failure.
+
+Transport accepts only fixed unauthenticated public GitHub release metadata: two-second aggregate deadline, 64 KiB streamed body limit, strict UTF-8/JSON, no redirects, credentials, local version, evidence or paths in requests. Only a successful empty public list establishes `no_published_release`; a bare 404 is unknown. Stable SemVer comparisons include local prerelease ordering. Notices never render remote release text, and matching versions or `target_commitish` do not establish installed source or currentness. Updates/rollback remain separate manual actions with no state migration.
+
+Exact detector pins now include core/adapters/measurement, and the CLI reads installed core/adapters/measurement/handoff manifests. The [manual candidate workflow](docs/release-candidate.md) prepares exact clean Git source/skill archives, actual source versions and all ten package hash receipts; it creates no tag, release, npm publication or deployment. MIT, every other package version, shared wire/policies and journey state are unchanged.
+
+Verification: full `npm run check` passes 610 TypeScript tests (root 331, privacy 67, measurement 99, evidence 24, discovery 77, handoff 12), 79 parity cases, schema/seed checks and 145 local links. All ten archives pass offline installation, ESM/CJS and both declaration modes, installed offline release/help calls and real installed-manifest mismatch rejection. The 22 new focused tests cover transport/privacy, timeout, cache, SemVer, complete detector behavior and candidate preparation. Development build and verification subagents contributed disjoint code/tests; the verifier found an ESM/CJS manifest-read packaging failure, corrected and retested. Checks used Node 22.10.0, npm 10.9.0 and Python 3.11.6 with the existing required Python dependencies.
+
+Independent bounded public source review found no open public findings; its 16 notifier/detector checks and six candidate controls passed, and all 24 reviewed source/distribution hashes matched. Isolated full validation and all ten exact recorded archive consumers passed from verified Git tree `49af21d9de73930fb2d14bc56aa8e1ec30b097c2`, with all 262 source files unchanged. This identifies the precommit source tree, not a commit or published release; the final commit adds only this status reconciliation, and committed candidate preparation records its own full source SHA and archive hashes.
+
+Limits: automatic skill-entry behavior is instruction guidance with deterministic helper coverage, not a new native host validation. Candidate preparation has six executed synthetic controls; no hosted workflow run is claimed. No actual GitHub release inventory refresh, native/semantic model benchmark call, normal skill/helper installation change or application access was performed in this implementation milestone. The prior 14+4 model ledgers remain closed and unchanged. Next: separately budgeted parent-owned actual host-entry/offline validation against the final reviewed commit before claiming that behavior has been exercised. Release publication remains a separate action.
+
+## Previous follow-up: everyday reviewer setup and safe preparation
 
 CLI `0.4.0-draft.4` adds exclusive output reservation before any configured sharing reviewer starts, plus scoped journey/view/sharing help before selected reads. Occupied, linked, missing-parent and invalid output destinations start zero reviewer processes. Completed blocked drafts, previews and approvals are retained; handled failures clean up abandoned unchanged reservations while preserving replacements. An abrupt termination may leave an empty reservation, so inspect output and reviewer allowance before retrying.
 

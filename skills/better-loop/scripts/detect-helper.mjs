@@ -12,12 +12,15 @@ try {
   const parsed = JSON.parse(execFileSync(process.execPath, [entrypoint, "capabilities", "--json"], {
     encoding: "utf8", timeout: 5000, maxBuffer: 16384, stdio: ["ignore", "pipe", "pipe"], shell: false,
   }));
-  if (parsed.protocol !== "bl-capabilities-0.2" || parsed.helper_version !== "0.4.0-draft.4" ||
+  if (parsed.protocol !== "bl-capabilities-0.2" || parsed.helper_version !== "0.4.0-draft.5" ||
+      parsed.packages?.core !== "0.2.0-draft.1" || parsed.packages?.adapters !== "0.2.0-draft.1" ||
+      parsed.packages?.measurement !== "0.1.0-draft.1" ||
       parsed.packages?.contracts !== "0.1.0-draft.1" || parsed.packages?.privacy !== "0.1.0-draft.3" ||
       parsed.packages?.journey !== "0.2.0-draft.3" || parsed.packages?.evidence !== "0.1.0-draft.2" ||
       parsed.packages?.discovery !== "0.1.0-draft.2" || parsed.packages?.handoff !== "0.1.0-draft.2" ||
       parsed.capabilities?.explicit_repository_journey !== true || parsed.capabilities?.persisted_host_assessment !== true ||
       parsed.capabilities?.selected_assessment !== true || parsed.capabilities?.descriptive_indicators !== 11 ||
+      parsed.capabilities?.release_check !== "fixed_public_github_metadata_only_no_update" ||
       parsed.capabilities?.upload !== false || parsed.capabilities?.calibrated_ranking !== false) {
     result.state = "incompatible";
   } else result = { state: "available", protocol: parsed.protocol, capabilities: parsed };

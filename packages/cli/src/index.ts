@@ -6,15 +6,24 @@ import { JOURNEY_VERSION } from "@better-loop/journey";
 import { EVIDENCE_VERSION, EVIDENCE_REVIEW_POLICY_VERSION } from "@better-loop/evidence";
 import { HANDOFF_PROTOCOL } from "@better-loop/handoff";
 import { DISCOVERY_VERSION } from "@better-loop/discovery";
+import { createRequire } from "node:module";
 
-export const CLI_VERSION = "0.4.0-draft.4" as const;
+// Resolve these four installed manifests beside this package in ESM and CJS.
+// The CJS build maps import.meta.url to its absolute __filename.
+const packageRequire = createRequire(import.meta.url);
+const corePackage = packageRequire("@better-loop/core/package.json") as { version: string };
+const adaptersPackage = packageRequire("@better-loop/adapters/package.json") as { version: string };
+const measurementPackage = packageRequire("@better-loop/measurement/package.json") as { version: string };
+const handoffPackage = packageRequire("@better-loop/handoff/package.json") as { version: string };
+
+export const CLI_VERSION = "0.4.0-draft.5" as const;
 export function capabilities() {
   return {
     protocol: "bl-capabilities-0.2", helper_version: CLI_VERSION,
     packages: {
-      contracts: CONTRACT_PACKAGE_VERSION, core: "0.2.0-draft.1", adapters: "0.2.0-draft.1",
-      privacy: PRIVACY_VERSION, measurement: "0.1.0-draft.1", journey: JOURNEY_VERSION,
-      evidence: EVIDENCE_VERSION, discovery: DISCOVERY_VERSION, handoff: "0.1.0-draft.2",
+      contracts: CONTRACT_PACKAGE_VERSION, core: corePackage.version, adapters: adaptersPackage.version,
+      privacy: PRIVACY_VERSION, measurement: measurementPackage.version, journey: JOURNEY_VERSION,
+      evidence: EVIDENCE_VERSION, discovery: DISCOVERY_VERSION, handoff: handoffPackage.version,
     },
     capabilities: {
       selected_assessment: true, explicit_artifact_capture: true, descriptive_indicators: 11, calibrated_ranking: false,
@@ -30,12 +39,14 @@ export function capabilities() {
       local_progress_viewer: "explicit_private_html_snapshot_no_scripts_or_network",
       capability_contribution: true, contribution_review_policy: EVIDENCE_REVIEW_POLICY_VERSION,
       browser_handoff: HANDOFF_PROTOCOL, browser_handoff_activation: "explicit_after_exact_contribution_confirmation",
+      release_check: "fixed_public_github_metadata_only_no_update",
     },
     adapters: adapterCapabilities(),
     boundaries: {
       default_network: false, raw_evidence_upload: false, history_scan: false,
       provider: "Deterministic collection/assessment makes no model request. A host reading selected local source or reports uses its configured model provider. Explicit semantic reviewer commands receive only the minimized candidate or whole minimized contribution, never raw journey state.",
       learning_service: "Only explicit service requests use GET with controlled taxonomy and no auth, cookies, private task text, or evidence.",
+      release_check: "Only the release-check command requests fixed public GitHub metadata. Skill entry may call it after exact helper detection, within user tool/network scope. No local version or private data is sent; observations do not verify installed source.",
     },
   };
 }
@@ -44,3 +55,5 @@ export { configuredReviewers } from "./reviewers.js";
 export { learnFromService } from "./learning-service.js";
 export { journeyCommand, journeyProgress, renderJourney } from "./journey-cli.js";
 export { renderJourneyView, writeJourneyView, practiceStates } from "./journey-view.js";
+export { checkRelease, compareReleaseVersions } from "./release-check.js";
+export type { ReleaseCheckOptions, ReleaseCheckResult } from "./release-check.js";

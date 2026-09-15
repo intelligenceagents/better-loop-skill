@@ -39,7 +39,7 @@ import { join } from "node:path";
 import { createRequire } from "node:module";
 import { assess, rewritePrompt } from "@better-loop/core";
 import { normalizeSelectedExport } from "@better-loop/adapters";
-import { capabilities, writeJourneyView } from "@better-loop/cli";
+import { capabilities, writeJourneyView, checkRelease, compareReleaseVersions } from "@better-loop/cli";
 import { scanCandidate } from "@better-loop/privacy";
 import { measurePair } from "@better-loop/measurement";
 import { validateContribution } from "@better-loop/evidence";
@@ -54,6 +54,8 @@ assert.equal(report.observations.length,11);
 assert.equal(report.metrics.quality,null);
 assert.equal(rewritePrompt("Return JSON only.","general").status,"proposal_not_executed");
 assert.equal(capabilities().capabilities.upload,false);
+assert.equal((await checkRelease(capabilities().helper_version,{disabled:true})).state,"disabled");
+assert.equal(compareReleaseVersions("0.4.0-draft.5","0.4.0"),-1);
 assert.equal(scanCandidate(report).valid,false);
 assert.equal(measurePair(200,150,"lower_is_better").relative_change_percent,25);
 assert.equal(validateContribution(report).valid,false);
@@ -68,6 +70,7 @@ const require=createRequire(import.meta.url);
 assert.deepEqual(require("@better-loop/core").assess(normalized),report);
 assert.deepEqual(require("@better-loop/adapters").normalizeSelectedExport(input,"codex"),normalized);
 assert.deepEqual(require("@better-loop/cli").capabilities(),capabilities());
+assert.equal((await require("@better-loop/cli").checkRelease(capabilities().helper_version,{disabled:true})).state,"disabled");
 assert.equal(require("@better-loop/measurement").measurePair(200,150,"lower_is_better").relative_change_percent,25);
 assert.deepEqual(require("@better-loop/evidence").validateContribution(report),validateContribution(report));
 assert.deepEqual(require("@better-loop/discovery").summarizeLocalMilestones([]),summarizeLocalMilestones([]));
@@ -103,15 +106,33 @@ assert.equal(typeof require("@better-loop/journey").reviewJourney,"function");
   const cli = join(consumer, "node_modules/@better-loop/cli/dist/cli.js");
   const capabilities = JSON.parse(run(process.execPath, [cli, "capabilities", "--json"], consumer));
   assert.equal(capabilities.protocol, "bl-capabilities-0.2");
-  assert.equal(capabilities.helper_version, "0.4.0-draft.4");
-  for (const args of [["journey", "--help"], ["journey", "view", "--help"], ["draft-share", "--help"]]) {
+  assert.equal(capabilities.helper_version, "0.4.0-draft.5");
+  for (const args of [["journey", "--help"], ["journey", "view", "--help"], ["draft-share", "--help"], ["release-check", "--help"]]) {
     assert.match(run(process.execPath, [cli, ...args], consumer), /Better Loop/);
+  }
+  for (const flag of ["--offline", "--disabled"]) {
+    const result = JSON.parse(run(process.execPath, [cli, "release-check", flag, "--cache-dir", join(consumer, "unused-cache"), "--json"], consumer));
+    assert.equal(result.state, "disabled");
+    assert.equal(result.observation_source, "none");
+  }
+  const detector = join(root, "skills/better-loop/scripts/detect-helper.mjs");
+  assert.equal(JSON.parse(run(process.execPath, [detector, cli], consumer)).state, "available");
+  for (const name of ["core", "adapters", "measurement", "handoff"]) {
+    const path = join(consumer, "node_modules/@better-loop", name, "package.json");
+    const original = await readFile(path, "utf8");
+    await writeFile(path, JSON.stringify({ ...JSON.parse(original), version: "99.0.0" }));
+    try {
+      assert.throws(() => run(process.execPath, [detector, cli], consumer), error => {
+        assert.equal(JSON.parse(error.stdout.toString()).state, "incompatible");
+        return true;
+      });
+    } finally { await writeFile(path, original); }
   }
   const report = JSON.parse(run(process.execPath, [cli, "assess", "--host", "claude_code", "--input", "selected.json", "--format", "json"], consumer));
   assert.equal(report.observations.length, 11);
   const types = `import {assess, type PrivateReport, type TaskFamily} from "@better-loop/core";
 import {normalizeSelectedExport} from "@better-loop/adapters";
-import {capabilities} from "@better-loop/cli";
+import {capabilities, checkRelease, compareReleaseVersions, type ReleaseCheckResult} from "@better-loop/cli";
 import {type HostAssessmentInput, createScope} from "@better-loop/journey";
 import {type ContributionApproval, validateContribution} from "@better-loop/evidence";
 import {summarizeLocalMilestones} from "@better-loop/discovery";
@@ -122,6 +143,8 @@ const report:PrivateReport=assess(normalizeSelectedExport("{}", "codex", {task:{
 const unknown:number|null=report.metrics.quality;
 const rating:null=report.observations[0]!.rating;
 capabilities(); void unknown; void rating;
+const release:Promise<ReleaseCheckResult>=checkRelease("0.4.0-draft.5",{disabled:true});
+void release; compareReleaseVersions("1.0.0-rc.2","1.0.0");
 const host:HostAssessmentInput={summary:"Fixture",diagnosis:"Fixture",next_action:"Fixture",acceptance_check:"Fixture",limitations:[]};
 const local:ReturnType<typeof createScope>|null=null; void local; void host;
 const approval:ContributionApproval|null=null; void approval;

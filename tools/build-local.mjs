@@ -12,7 +12,8 @@ for (const name of ["core", "adapters", "journey", "cli"]) {
   };
   await Promise.all([
     build({ ...common, entryPoints: [`${pkg}/src/index.ts`], outfile: `${pkg}/dist/index.js`, format: "esm" }),
-    build({ ...common, entryPoints: [`${pkg}/src/index.ts`], outfile: `${pkg}/dist/index.cjs`, format: "cjs" }),
+    build({ ...common, ...(name === "cli" ? { define: { "import.meta.url": "__filename" } } : {}),
+      entryPoints: [`${pkg}/src/index.ts`], outfile: `${pkg}/dist/index.cjs`, format: "cjs" }),
     copyFile("LICENSE", `${pkg}/LICENSE`),
   ]);
   await copyFile(`${pkg}/dist/index.d.ts`, `${pkg}/dist/index.d.cts`);
