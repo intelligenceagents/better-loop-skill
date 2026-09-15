@@ -1,0 +1,62 @@
+{
+  "schema_version": "bl-public-repair-result-0.1",
+  "evaluator_version": "bl-evidence-attribution-repair-0.1",
+  "demonstration_kind": "known_case_matched_software_regression",
+  "execution_order": [
+    "before",
+    "after"
+  ],
+  "input_origin": "authored_synthetic_validation_probes_against_actual_public_software",
+  "freeze_commit": "513a92c33f59326c31e96c1715fff37ad56854a6",
+  "freeze_sha256": "35dc54717f4f6da82b09fa0d1af68705a3f9a7ba697355c3e736705ab9c47758",
+  "executed_at_utc": "2026-09-15T17:19:03.606Z",
+  "runtime": {
+    "node": "v22.10.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "compiler": {
+    "name": "esbuild",
+    "version": "0.28.2"
+  },
+  "elapsed_wall_ms": 1150,
+  "wall_duration_use": "execution_bound_only_not_an_efficiency_measure",
+  "model_calls": 0,
+  "approvals_created": 0,
+  "contributions_submitted": 0,
+  "measured_model_tokens": null,
+  "measured_cash_cost": null,
+  "measured_human_effort": null,
+  "infrastructure_failures": [
+    {
+      "arm": "before",
+      "status": 1,
+      "signal": null,
+      "error": {
+        "code": "worker_failed"
+      }
+    },
+    {
+      "arm": "after",
+      "status": 1,
+      "signal": null,
+      "error": {
+        "code": "worker_failed"
+      }
+    }
+  ],
+  "arms": [],
+  "changes": null,
+  "quality_floor_met": false,
+  "limitations": [
+    "Known repair cases authored after inspecting both source versions and existing tests; not held-out, blinded or independent validation.",
+    "Authored synthetic inputs probe actual public software; they are not customer work, real human observations or publishable achievements.",
+    "One deterministic execution per case per source; shared-template probes are not independent task samples.",
+    "This separate attribution repair cannot be substituted for the existing privacy exact-binding story.",
+    "Zero before passes in any group makes relative percent improvement undefined; report counts and percentage points.",
+    "No model efficacy, human ability, hiring validity, privacy clearance, savings or unseen-defect-absence claim.",
+    "Model resources, cash costs, orchestration and human effort are unmeasured; wall duration checks only the execution bound.",
+    "Both arms share exact cached dependency builds and compiler; this is not a full historical environment reconstruction.",
+    "Existing public model benchmark and its equal-quality, higher-token result remain unchanged."
+  ]
+}
