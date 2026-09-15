@@ -1,6 +1,6 @@
 # Better Loop local CLI
 
-`@better-loop/cli@0.4.0-draft.2` provides durable selected-repository journeys, local assessment, prompt proposals, static skill audits, contained instruction edits, and candidate/contribution preparation through the shared helpers. Default commands need no account or network.
+`@better-loop/cli@0.4.0-draft.3` provides durable selected-repository journeys, local assessment, prompt proposals, static skill audits, contained instruction edits, and candidate/contribution preparation through the shared helpers. Default commands need no account or network.
 
 Build the reviewed source workspace, then use `node packages/cli/dist/cli.js` or the installed `better-loop` bin. These draft packages are distributed as reviewed local archives; do not assume a registry release.
 

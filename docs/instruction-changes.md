@@ -1,5 +1,11 @@
 # Repository instruction change record
 
+## Targeted EOF follow-up
+
+The independent review ofd266162 passed the complete-line repair but found one EOF/coordinate defect: terminal newline tokens became phantom source lines, empty files appeared to add a blank line, and removal of a terminal newline appeared to delete a blank line. The targeted correction separates source-line content from newline termination, preserves real blank lines, and attaches an explicit no-newline marker without counting it as a source line. Marker bytes stay inside excerpt limits. Focused EOF controls and the existing actual-source readability regression exercise this distinction.
+
+CLI0.4.0-draft.3/journey0.2.0-draft.3 are the approved package correction; skill guidance changes only the two version strings, with matching detector pins. Restore those version strings and compatible helper versions fromd266162 to roll back. Existing local state, all other package/schema versions, original failure receipts and the14-call native evidence remain unchanged. No new model/native calls are authorized or performed for this pure EOF patch.
+
 ## Bounded excerpt repair after actual product use
 
 The actual Codex product delta used the updated skill/viewer successfully but could not assess behavior because narrow per-line allocation clipped imports, calls and return fields. A deterministic replay on the frozen actual public SKILL/viewer source reproduced132clipped lines in4,000bytes/two paths. The parent retains that failed quality result. The actual Claude unchanged return retained its checkpoint and created only a viewer; the first `--format json` attempt was rejected, the answer exceeded its180-word test budget, and export-only “nothing given to a model” wording was ambiguous. These prior attempts remain evidence, not rewritten passes.

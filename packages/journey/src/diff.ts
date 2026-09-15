@@ -1,4 +1,13 @@
-type Line = { kind: " " | "-" | "+"; text: string; old: number; next: number };
+type SourceLine = { text: string; terminated: boolean };
+type Line = SourceLine & { kind: " " | "-" | "+"; old: number; next: number };
+function sourceLines(text: string | null): SourceLine[] {
+  if (text === null || text === "") return [];
+  const parts = text.split("\n"), terminal = parts.length - 1;
+  if (text.endsWith("\n")) parts.pop();
+  return parts.map((text, index) => ({ text, terminated: index < terminal }));
+}
+const sameLine = (a: SourceLine, b: SourceLine) => a.text === b.text && a.terminated === b.terminated;
+const lineText = (line: Line) => line.kind + line.text + "\n" + (line.terminated ? "" : "\\ No newline at end of file\n");
 export interface DeltaExcerpt {
   text: string; truncated: boolean; format: "unified_hunks" | "bounded_samples_not_diff"; omitted_hunks: number;
 }
@@ -23,17 +32,17 @@ function sample(before: string | null, after: string | null, budget: number): De
 /** Bounded exact line LCS; distant edits stay separate. No source-defined diff driver runs. */
 export function renderDeltaExcerpt(before: string | null, after: string | null, budget: number): DeltaExcerpt {
   if (!Number.isInteger(budget) || budget < 0 || budget > 131072) throw new Error("invalid_excerpt_budget");
-  const a = before === null ? [] : before.split("\n"), b = after === null ? [] : after.split("\n");
+  const a = sourceLines(before), b = sourceLines(after);
   let prefix = 0;
-  while (prefix < a.length && prefix < b.length && a[prefix] === b[prefix]) prefix++;
+  while (prefix < a.length && prefix < b.length && sameLine(a[prefix]!, b[prefix]!)) prefix++;
   let endA = a.length, endB = b.length;
-  while (endA > prefix && endB > prefix && a[endA - 1] === b[endB - 1]) { endA--; endB--; }
+  while (endA > prefix && endB > prefix && sameLine(a[endA - 1]!, b[endB - 1]!)) { endA--; endB--; }
   const n = endA - prefix, m = endB - prefix;
   if ((n + 1) * (m + 1) > CELLS && n !== 0 && m !== 0) return sample(before, after, budget);
   const lines: Line[] = [];
   let old = 1, next = 1;
-  const add = (kind: Line["kind"], text: string) => {
-    lines.push({ kind, text, old, next });
+  const add = (kind: Line["kind"], source: SourceLine) => {
+    lines.push({ kind, ...source, old, next });
     if (kind !== "+") old++;
     if (kind !== "-") next++;
   };
@@ -43,13 +52,13 @@ export function renderDeltaExcerpt(before: string | null, after: string | null, 
   else {
     const width = m + 1, table = new Uint32Array((n + 1) * width);
     for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) {
-      table[i * width + j] = a[prefix + i] === b[prefix + j]
+      table[i * width + j] = sameLine(a[prefix + i]!, b[prefix + j]!)
         ? table[(i + 1) * width + j + 1]! + 1
         : Math.max(table[(i + 1) * width + j]!, table[i * width + j + 1]!);
     }
     let i = 0, j = 0;
     while (i < n || j < m) {
-      if (i < n && j < m && a[prefix + i] === b[prefix + j]) { add(" ", a[prefix + i]!); i++; j++; }
+      if (i < n && j < m && sameLine(a[prefix + i]!, b[prefix + j]!)) { add(" ", a[prefix + i]!); i++; j++; }
       else if (i < n && (j === m || table[(i + 1) * width + j]! >= table[i * width + j + 1]!)) add("-", a[prefix + i++]!);
       else add("+", b[prefix + j++]!);
     }
@@ -71,7 +80,7 @@ export function renderDeltaExcerpt(before: string | null, after: string | null, 
   };
   const chunks = ranges.map(range => {
     const selected = lines.slice(range.start, range.end);
-    return { lines: selected, header: header(selected), full: header(selected) + selected.map(line => line.kind + line.text + "\n").join("") };
+    return { lines: selected, header: header(selected), full: header(selected) + selected.map(lineText).join("") };
   });
   const full = chunks.map(chunk => chunk.full).join("");
   if (Buffer.byteLength(full) <= budget) return { text: full, truncated: false, format: "unified_hunks", omitted_hunks: 0 };
@@ -126,7 +135,7 @@ function coherentSelection(lines: Line[], header: string, budget: number): strin
     }
     return ordered;
   };
-  const cost = (indices: number[]) => indices.reduce((bytes, i) => bytes + Buffer.byteLength(lines[i]!.kind + lines[i]!.text + "\n"), gapBytes);
+  const cost = (indices: number[]) => indices.reduce((bytes, i) => bytes + Buffer.byteLength(lineText(lines[i]!)), gapBytes);
   const choose = (indices: number[]) => { indices.forEach(i => keep.add(i)); available -= cost(indices); };
   for (const [side, kind] of kinds.entries()) {
     let sideBudget = Math.floor(available / (kinds.length - side));
@@ -142,7 +151,7 @@ function coherentSelection(lines: Line[], header: string, budget: number): strin
     for (const block of candidates) {
       let run: number[] = [], bytes = gapBytes;
       for (const i of [...block].reverse()) {
-        const size = Buffer.byteLength(lines[i]!.kind + lines[i]!.text + "\n");
+        const size = Buffer.byteLength(lineText(lines[i]!));
         if (bytes + size > sideBudget) {
           if (bytes > bestBytes && run.length) { best = run; bestBytes = bytes; }
           run = []; bytes = gapBytes;
@@ -161,7 +170,7 @@ function coherentSelection(lines: Line[], header: string, budget: number): strin
   let text = header + notice(keep), last = -1;
   for (const i of [...keep].sort((a, b) => a - b)) {
     if (i !== last + 1) text += gap(i - last - 1);
-    text += lines[i]!.kind + lines[i]!.text + "\n"; last = i;
+    text += lineText(lines[i]!); last = i;
   }
   if (last < lines.length - 1) text += gap(lines.length - last - 1);
   // Omission counts cover leading/trailing gaps too; no generated line is a claimed patch.

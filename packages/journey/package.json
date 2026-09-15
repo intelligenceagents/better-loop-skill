@@ -1,6 +1,6 @@
 {
   "name": "@better-loop/journey",
-  "version": "0.2.0-draft.2",
+  "version": "0.2.0-draft.3",
   "description": "Explicit local repository scopes, bounded tracked deltas and durable private coaching checkpoints.",
   "license": "MIT",
   "type": "module",

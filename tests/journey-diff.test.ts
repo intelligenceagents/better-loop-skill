@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { renderDeltaExcerpt } from "../packages/journey/src/diff.js";
 
+const actualLines = (text: string) => (text.match(/[^\n]*\n|[^\n]+$/g) ?? []).map(line => line.endsWith("\n") ? line.slice(0, -1) : line);
+
 test("distant one-line edits form separate hunks and never remove unchanged middle guidance", () => {
   const middle = Array.from({ length: 30 }, (_, index) => `UNCHANGED guidance ${index}: retain the selected scope.`);
   const before = ["intro", "OLD first rule", ...middle, "OLD final rule", "ending"].join("\n");
@@ -81,8 +83,8 @@ test("bounded actual public SKILL/viewer changes preserve coherent statements un
     assert.match(rendered.text, /hunk lines omitted by budget/);
     assert.match(rendered.text, /unassessed, not absent/);
     for (const line of rendered.text.split("\n")) {
-      if (line.startsWith("+")) assert.ok(file.after.split("\n").includes(line.slice(1)), "Every displayed added line must be exact and complete.");
-      if (line.startsWith("-")) assert.ok(file.before?.split("\n").includes(line.slice(1)), "Every displayed removed line must be exact and complete.");
+      if (line.startsWith("+")) assert.ok(actualLines(file.after).includes(line.slice(1)), "Every displayed added line must be exact and complete.");
+      if (line.startsWith("-")) assert.ok(file.before !== null && actualLines(file.before).includes(line.slice(1)), "Every displayed removed line must be exact and complete.");
     }
     return rendered;
   });
