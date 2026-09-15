@@ -28,6 +28,70 @@ export async function writePrivateOutput(path: string, text: string): Promise<vo
   try { await file.writeFile(text, "utf8"); await file.sync(); } finally { await file.close(); }
 }
 
+export class LocalOutputError extends Error {
+  constructor(readonly code: "output_unavailable" | "output_reservation_changed" | "output_write_failed" | "output_cleanup_failed") {
+    super(code);
+  }
+}
+export interface PrivateOutputReservation {
+  write(text: string): Promise<void>;
+  release(): Promise<void>;
+}
+
+/** Reserve the exact private destination before starting costly reviewer processes. */
+export async function reservePrivateOutput(path: string): Promise<PrivateOutputReservation> {
+  let file;
+  try {
+    file = await open(path, constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW, 0o600);
+  } catch { throw new LocalOutputError("output_unavailable"); }
+  const initial = await file.stat();
+  let completed = false, released = false, writing = false, changed = false;
+  const sameFile = (stat: typeof initial) => stat.isFile() && stat.nlink === 1 &&
+    stat.dev === initial.dev && stat.ino === initial.ino;
+  const untouched = (stat: typeof initial) => sameFile(stat) && stat.size === 0 &&
+    stat.mtimeMs === initial.mtimeMs && stat.ctimeMs === initial.ctimeMs;
+  return {
+    async write(text) {
+      if (released || completed || writing) throw new LocalOutputError("output_reservation_changed");
+      try {
+        if (!untouched(await lstat(path))) throw new Error("changed");
+      } catch {
+        changed = true;
+        throw new LocalOutputError("output_reservation_changed");
+      }
+      writing = true;
+      try {
+        await file.writeFile(text, "utf8");
+        await file.sync();
+        if (!sameFile(await lstat(path))) {
+          changed = true;
+          throw new LocalOutputError("output_reservation_changed");
+        }
+        completed = true;
+      } catch (error) {
+        if (error instanceof LocalOutputError) throw error;
+        throw new LocalOutputError("output_write_failed");
+      }
+    },
+    async release() {
+      if (released) return;
+      released = true;
+      try {
+        if (!completed && !changed) {
+          let current;
+          try { current = await lstat(path); }
+          catch (error) {
+            if (!(error && typeof error === "object" && "code" in error && error.code === "ENOENT")) throw error;
+          }
+          // Never remove a replacement or an externally edited unused reservation.
+          if (current && (writing ? sameFile(current) : untouched(current))) await unlink(path);
+        }
+      } catch { throw new LocalOutputError("output_cleanup_failed"); }
+      finally { await file.close(); }
+    },
+  };
+}
+
 function within(root: string, target: string) {
   const rel = relative(root, target);
   return rel === "" || (!rel.startsWith(`..${sep}`) && rel !== ".." && !isAbsolute(rel));

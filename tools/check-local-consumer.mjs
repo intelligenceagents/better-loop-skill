@@ -103,6 +103,10 @@ assert.equal(typeof require("@better-loop/journey").reviewJourney,"function");
   const cli = join(consumer, "node_modules/@better-loop/cli/dist/cli.js");
   const capabilities = JSON.parse(run(process.execPath, [cli, "capabilities", "--json"], consumer));
   assert.equal(capabilities.protocol, "bl-capabilities-0.2");
+  assert.equal(capabilities.helper_version, "0.4.0-draft.4");
+  for (const args of [["journey", "--help"], ["journey", "view", "--help"], ["draft-share", "--help"]]) {
+    assert.match(run(process.execPath, [cli, ...args], consumer), /Better Loop/);
+  }
   const report = JSON.parse(run(process.execPath, [cli, "assess", "--host", "claude_code", "--input", "selected.json", "--format", "json"], consumer));
   assert.equal(report.observations.length, 11);
   const types = `import {assess, type PrivateReport, type TaskFamily} from "@better-loop/core";

@@ -13,6 +13,8 @@ import { confirmContribution, prepareContribution, validateContribution, CONTRIB
 import type { ContributionConsent } from "@better-loop/evidence";
 import { startHandoff } from "@better-loop/handoff";
 import { configuredContributionReviewers } from "./reviewers.js";
+import { LocalOutputError, reservePrivateOutput } from "./local-files.js";
+import type { PrivateOutputReservation } from "./local-files.js";
 
 const HELP = `Better Loop local helper
   better-loop capabilities --json
@@ -38,9 +40,33 @@ const HELP = `Better Loop local helper
   better-loop draft-share --input minimized-candidate.json --consent purposes.json --output new-draft.json [--reviewers selected-commands.json] [--timeout-ms 30000] [--confirm --digest exact-preview-digest]
   better-loop draft-share --input minimized-candidate.json --capability selected-capability.json --consent contribution-purposes.json --output new-draft.json [--reviewers selected-commands.json] [--confirm --digest exact-preview-digest] [--handoff --target-origin explicitly-chosen-origin --ttl-ms 120000]
 Outputs may contain private selected evidence. Output files are exclusive and mode 0600.
+draft-share reserves its new output before starting reviewers; choose an existing writable parent and an unused filename.
 Default commands have no network/model calls. draft-share reviewer commands are explicit opt-in and receive only a minimized candidate or whole minimized contribution.
 learn --service makes an explicit public GET with controlled taxonomy only; offline exports produce no automated recommendations.
 No upload transport. Static cue detection is not a validated assessment or a measured improvement.`;
+
+function usage(command?: string, action?: string): string {
+  if (command === "journey") {
+    const lines = HELP.split("\n").filter(line => line.startsWith("  better-loop journey "));
+    const selected = lines.filter(line => line.split(" ")[4]?.split("|").includes(action ?? ""));
+    return ["Better Loop journey", ...(selected.length ? selected : lines),
+      "Choose the explicit state directory; view additionally requires a new private --output HTML file.",
+      "Help reads no state or input and starts no reviewer. Use better-loop journey --help for all journey commands."].join("\n");
+  }
+  if (command === "draft-share") return ["Better Loop draft-share",
+    ...HELP.split("\n").filter(line => line.startsWith("  better-loop draft-share ")),
+    "Requires --input, --consent and a new --output file with an existing writable parent.",
+    "Reviewers are separately selected absolute argv commands; no default reviewer. Help starts no review.",
+    "Output is reserved before review. Preview uses two passes; separate CLI confirmation reruns two. Website admission is separate.",
+    "See the installed skill reference references/reviewers.md for setup, protocols and failure recovery."].join("\n");
+  return HELP;
+}
+const argumentErrors = new Set([
+  "invalid_cli_options", "missing_cli_option_value", "missing_cli_option", "unknown_command",
+  "invalid_journey_options", "missing_journey_value", "missing_journey_option", "unknown_journey_action",
+  "confirmation_requires_flag_and_exact_digest", "invalid_review_timeout", "invalid_handoff_ttl",
+  "handoff_requires_exact_extended_confirmation_and_target", "explicit_handoff_required",
+]);
 
 function options(argv: string[], allowed: string[], flags: string[] = []) {
   const output: Record<string, string | true> = {};
@@ -61,16 +87,20 @@ function required(opts: Record<string, string | true>, key: string): string {
   if (typeof value !== "string" || !value) throw new Error("missing_cli_option");
   return value;
 }
-async function emit(value: unknown, output?: string | true, markdown = false) {
+async function emit(value: unknown, output?: string | true | PrivateOutputReservation, markdown = false) {
   const text = (markdown ? String(value) : JSON.stringify(value, null, 2).replace(
     /[\u202a-\u202e\u2066-\u2069]/gu, character => `\\u${character.charCodeAt(0).toString(16)}`,
   )) + "\n";
   if (typeof output === "string") { await writePrivateOutput(output, text); process.stdout.write('{"state":"written_local_file"}\n'); }
+  else if (typeof output === "object") { await output.write(text); process.stdout.write('{"state":"written_local_file"}\n'); }
   else process.stdout.write(text);
 }
 async function main() {
   const [command, ...args] = process.argv.slice(2);
   if (!command || command === "--help" || command === "help") { process.stdout.write(`${HELP}\n`); return; }
+  if ((command === "journey" || command === "draft-share") && args.includes("--help")) {
+    process.stdout.write(`${usage(command, args[0])}\n`); return;
+  }
   if (command === "--version") { process.stdout.write(`${capabilities().helper_version}\n`); return; }
   if (command === "capabilities") {
     options(args, ["json"], ["json"]); await emit(capabilities()); return;
@@ -168,81 +198,93 @@ async function main() {
   }
   if (command === "draft-share") {
     const opts = options(args, ["input", "consent", "output", "reviewers", "timeout-ms", "confirm", "digest", "capability", "handoff", "target-origin", "ttl-ms"], ["confirm", "handoff"]);
-    const output = required(opts, "output");
-    const input: unknown = parseJson(await readSelectedFile(required(opts, "input"), 16384));
-    const validation = validateShareCandidate(input);
-    if (!validation.valid) {
-      await emit({ state: "blocked", local_draft: "original_selected_file_retained", findings: validation.errors }, output);
-      process.exitCode = 1; return;
-    }
-    const selectedConsent = parseJson(await readSelectedFile(required(opts, "consent"), 4096));
-    const consent = selectedConsent as unknown as PreviewConsent;
-    const timeout = opts["timeout-ms"] === undefined ? 30000 : Number(opts["timeout-ms"]);
-    if (!Number.isInteger(timeout) || timeout < 1 || timeout > 120000) throw new Error("invalid_review_timeout");
-    if ((opts.confirm === true) !== (typeof opts.digest === "string")) throw new Error("confirmation_requires_flag_and_exact_digest");
-    if (opts.handoff === true && (typeof opts.capability !== "string" || opts.confirm !== true ||
-        !["https://better-loop.com", "http://127.0.0.1:3100"].includes(required(opts, "target-origin")))) throw new Error("handoff_requires_exact_extended_confirmation_and_target");
-    if (opts.handoff !== true && (opts["target-origin"] !== undefined || opts["ttl-ms"] !== undefined)) throw new Error("explicit_handoff_required");
-    const ttlMs = opts["ttl-ms"] === undefined ? 120000 : Number(opts["ttl-ms"]);
-    if (!Number.isInteger(ttlMs) || ttlMs < 1000 || ttlMs > 300000) throw new Error("invalid_handoff_ttl");
-    if (typeof opts.capability === "string") {
-      const capsule: unknown = parseJson(await readSelectedFile(opts.capability, 4096));
-      const contribution = validateContribution({
-        schema_version: CONTRIBUTION_SCHEMA_VERSION, candidate: validation.data, capability_evidence: capsule,
-      });
-      if (!contribution.valid) {
-        await emit({ state: "blocked", local_draft: "original_selected_files_retained", findings: contribution.errors }, output);
+    const output = await reservePrivateOutput(required(opts, "output"));
+    try {
+      const input: unknown = parseJson(await readSelectedFile(required(opts, "input"), 16384));
+      const validation = validateShareCandidate(input);
+      if (!validation.valid) {
+        await emit({ state: "blocked", local_draft: "original_selected_file_retained", findings: validation.errors }, output);
         process.exitCode = 1; return;
       }
-      const reviewers = typeof opts.reviewers === "string"
-        ? configuredContributionReviewers(parseJson(await readSelectedFile(opts.reviewers, 32768)), timeout) : [];
-      const prepared = await prepareContribution(contribution.data, selectedConsent as unknown as ContributionConsent, reviewers, { timeoutMs: timeout });
-      if (opts.confirm === true && prepared.state === "ready_for_confirmation") {
-        const approval = confirmContribution(prepared, required(opts, "digest"), true);
-        await emit(approval, output);
-        if (opts.handoff === true) {
-          const handoff = await startHandoff(approval, { targetOrigin: required(opts, "target-origin"), ttlMs });
-          const close = () => { void handoff.close(); };
-          process.once("SIGINT", close); process.once("SIGTERM", close);
-          await emit({
-            state: "local_handoff_ready", url: handoff.url, origin: handoff.origin, expires_after_ms: ttlMs,
-            message: "Open the local preview yourself. The website receives only this exact approval after your button click, then requires review, sign-in and explicit publication. No browser was opened or contribution published by the CLI.",
-          });
+      const selectedConsent = parseJson(await readSelectedFile(required(opts, "consent"), 4096));
+      const consent = selectedConsent as unknown as PreviewConsent;
+      const timeout = opts["timeout-ms"] === undefined ? 30000 : Number(opts["timeout-ms"]);
+      if (!Number.isInteger(timeout) || timeout < 1 || timeout > 120000) throw new Error("invalid_review_timeout");
+      if ((opts.confirm === true) !== (typeof opts.digest === "string")) throw new Error("confirmation_requires_flag_and_exact_digest");
+      if (opts.handoff === true && (typeof opts.capability !== "string" || opts.confirm !== true ||
+          !["https://better-loop.com", "http://127.0.0.1:3100"].includes(required(opts, "target-origin")))) throw new Error("handoff_requires_exact_extended_confirmation_and_target");
+      if (opts.handoff !== true && (opts["target-origin"] !== undefined || opts["ttl-ms"] !== undefined)) throw new Error("explicit_handoff_required");
+      const ttlMs = opts["ttl-ms"] === undefined ? 120000 : Number(opts["ttl-ms"]);
+      if (!Number.isInteger(ttlMs) || ttlMs < 1000 || ttlMs > 300000) throw new Error("invalid_handoff_ttl");
+      if (typeof opts.capability === "string") {
+        const capsule: unknown = parseJson(await readSelectedFile(opts.capability, 4096));
+        const contribution = validateContribution({
+          schema_version: CONTRIBUTION_SCHEMA_VERSION, candidate: validation.data, capability_evidence: capsule,
+        });
+        if (!contribution.valid) {
+          await emit({ state: "blocked", local_draft: "original_selected_files_retained", findings: contribution.errors }, output);
+          process.exitCode = 1; return;
         }
+        const reviewers = typeof opts.reviewers === "string"
+          ? configuredContributionReviewers(parseJson(await readSelectedFile(opts.reviewers, 32768)), timeout) : [];
+        const prepared = await prepareContribution(contribution.data, selectedConsent as unknown as ContributionConsent, reviewers, { timeoutMs: timeout });
+        if (opts.confirm === true && prepared.state === "ready_for_confirmation") {
+          const approval = confirmContribution(prepared, required(opts, "digest"), true);
+          await emit(approval, output);
+          if (opts.handoff === true) {
+            const handoff = await startHandoff(approval, { targetOrigin: required(opts, "target-origin"), ttlMs });
+            const close = () => { void handoff.close(); };
+            process.once("SIGINT", close); process.once("SIGTERM", close);
+            await emit({
+              state: "local_handoff_ready", url: handoff.url, origin: handoff.origin, expires_after_ms: ttlMs,
+              message: "Open the local preview yourself. The website receives only this exact approval after your button click, then requires review, sign-in and explicit publication. No browser was opened or contribution published by the CLI.",
+            });
+          }
+          return;
+        }
+        await emit({
+          state: "local_unapproved_contribution", contribution: contribution.data, consent: selectedConsent, preparation: prepared,
+          message: "No upload occurred. Changed contribution fields or purposes require fresh whole-contribution review and exact confirmation. Journey source/state is never a capability capsule.",
+        }, output);
+        if (prepared.state === "blocked") process.exitCode = 1;
         return;
       }
+      const reviewers = typeof opts.reviewers === "string" ? configuredReviewers(parseJson(await readSelectedFile(opts.reviewers, 32768)), timeout) : [];
+      // The shared helper is the sole privacy scanner. It is never replaced by a CLI heuristic.
+      let candidate = validation.data;
+      try { candidate = buildCandidate(validation.data); } catch { /* preserve the valid local draft and expose prepareCandidate's safe findings */ }
+      const prepared = await prepareCandidate(candidate, consent, reviewers, { timeoutMs: timeout });
+      if (opts.confirm === true && prepared.state === "ready_for_confirmation") {
+        const approval = confirmPreview(prepared, required(opts, "digest"), true);
+        // The browser imports exactly LocalApproval. Review receipts stay in the private preview, not this handoff.
+        await emit(approval, output); return;
+      }
       await emit({
-        state: "local_unapproved_contribution", contribution: contribution.data, consent: selectedConsent, preparation: prepared,
-        message: "No upload occurred. Changed contribution fields or purposes require fresh whole-contribution review and exact confirmation. Journey source/state is never a capability capsule.",
+        state: "local_unapproved_draft", candidate, consent, preparation: prepared,
+        message: "No upload occurred. Review the exact preview; confirmation requires both --confirm and its exact digest. Confirmation reruns configured reviewers.",
       }, output);
       if (prepared.state === "blocked") process.exitCode = 1;
       return;
-    }
-    const reviewers = typeof opts.reviewers === "string" ? configuredReviewers(parseJson(await readSelectedFile(opts.reviewers, 32768)), timeout) : [];
-    // The shared helper is the sole privacy scanner. It is never replaced by a CLI heuristic.
-    let candidate = validation.data;
-    try { candidate = buildCandidate(validation.data); } catch { /* preserve the valid local draft and expose prepareCandidate's safe findings */ }
-    const prepared = await prepareCandidate(candidate, consent, reviewers, { timeoutMs: timeout });
-    if (opts.confirm === true && prepared.state === "ready_for_confirmation") {
-      const approval = confirmPreview(prepared, required(opts, "digest"), true);
-      // The browser imports exactly LocalApproval. Review receipts stay in the private preview, not this handoff.
-      await emit(approval, output); return;
-    }
-    await emit({
-      state: "local_unapproved_draft", candidate, consent, preparation: prepared,
-      message: "No upload occurred. Review the exact preview; confirmation requires both --confirm and its exact digest. Confirmation reruns configured reviewers.",
-    }, output);
-    if (prepared.state === "blocked") process.exitCode = 1;
-    return;
+    } finally { await output.release(); }
   }
   throw new Error("unknown_command");
 }
 main().catch((error: unknown) => {
+  if (error instanceof LocalOutputError) {
+    process.stderr.write(error.code === "output_unavailable"
+      ? "Better Loop draft-share could not reserve --output. Choose a new regular file in an existing writable directory; existing files are never overwritten. No reviewer was started. Use better-loop draft-share --help.\n"
+      : `Better Loop draft-share could not finish its output: ${error.code}. Inspect the selected destination and reviewer allowance before retrying; reviews may already have run. A changed replacement is not overwritten or removed.\n`);
+    process.exitCode = 1; return;
+  }
+  if (error instanceof Error && argumentErrors.has(error.message)) {
+    process.stderr.write(`Better Loop received invalid or missing arguments.\n${usage(process.argv[2], process.argv[3])}\n`);
+    process.exitCode = 1; return;
+  }
   if (error instanceof JourneyError) {
     process.stderr.write(`Better Loop journey could not complete: ${error.code}. Selected state was not assessed as an improvement. Inspect the chosen scope/state; no upload occurred.\n`);
     process.exitCode = 1; return;
   }
   // Never echo an untrusted path, input excerpt, reviewer stderr, or provider error.
-  process.stderr.write("Better Loop could not complete the selected local operation. Check the command, input format, scope, byte preconditions, and configured helper availability. No upload was attempted by this CLI.\n");
+  process.stderr.write("Better Loop could not complete the selected local operation. Check the command, input format, scope, byte preconditions, and configured helper availability. Use better-loop help. No upload was attempted by this CLI.\n");
   process.exitCode = 1;
 });

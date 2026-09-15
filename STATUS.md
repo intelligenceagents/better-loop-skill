@@ -2,7 +2,17 @@
 
 Updated: 2026-09-15. The current local product stage is ready for review. Packages remain reviewed local archives, with no registry release. Website publication has separate application authorization and release checks.
 
-## Current product stage: private progress viewer and readable return evidence
+## Current follow-up: everyday reviewer setup and safe preparation
+
+CLI `0.4.0-draft.4` adds exclusive output reservation before any configured sharing reviewer starts, plus scoped journey/view/sharing help before selected reads. Occupied, linked, missing-parent and invalid output destinations start zero reviewer processes. Completed blocked drafts, previews and approvals are retained; handled failures clean up abandoned unchanged reservations while preserving replacements. An abrupt termination may leave an empty reservation, so inspect output and reviewer allowance before retrying.
+
+The [public reviewer guide](skills/better-loop/references/reviewers.md) documents both stdin policies, strict verdicts, explicit absolute command configuration, provider boundaries, failure recovery and review-call budgets. The copied share requests now lead missing configuration to this guide. First-use and upgrade instructions remain scoped to the chosen helper/skill pair. No default provider, private application dependency or production activation is added.
+
+Verification: full `npm run check` passes 588 TypeScript tests (root 309, privacy 67, measurement 99, evidence 24, discovery 77, handoff 12), 79 parity cases, schema/seed checks and local links. All ten archives pass offline consumer installation, ESM/CJS and declaration checks; installed scoped help also passes. The 33 focused CLI/output/help checks use counterfeit reviewer processes and guarded selected I/O, not semantic models. Checks used Node 22.10.0 / npm 10.9.0. No model call, normal journey mutation or publication was performed in this worker milestone.
+
+Journey remains `0.2.0-draft.3`; evidence, privacy, consent policies, all other package versions and private state formats remain unchanged. The earlier verified runtime `60fc087` and its actual native record remain the product baseline below. This follow-up's deterministic checks do not extend native behavior or efficacy claims; the prior 14-call ledger is unchanged.
+
+## Verified product baseline: private progress viewer and readable return evidence
 
 Verified runtime: `60fc08746529f272361be97ac04d88ceebc4c2c4`. CLI is `0.4.0-draft.3`; journey is `0.2.0-draft.3`. Other package versions, public contracts and the private state format remain unchanged. Later documentation-only commits do not change this runtime/package pin.
 

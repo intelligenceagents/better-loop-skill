@@ -1,5 +1,13 @@
 # Repository instruction change record
 
+## Everyday reviewer setup and safe CLI preparation
+
+The authorized daily-use follow-up adds the public `references/reviewers.md` guide, connects the static host share requests to missing reviewer setup, and clarifies helper paths, private-first use, provider processing and scoped upgrades. Reviewers receive content and review policy; selected consent choices are separately validated, previewed and digest-bound. Separate CLI preview/confirmation plus server admission uses six semantic calls; one native/API preparation retained through exact confirmation plus server admission uses four. No default reviewer or private application dependency is introduced.
+
+The coordinator approved CLI `0.4.0-draft.4` for early exclusive share-output reservation and help before selected reads. Only the CLI version/detector pin changes; journey stays `0.2.0-draft.3`, and evidence, privacy, public policies and private state formats are unchanged. Deterministic process-counting fixtures test zero review calls on invalid output, cleanup/preservation and read-only help; they are not semantic model evidence. This worker makes no model call and does not modify the prior 14-call record.
+
+Rollback: restore only this scoped skill/reference/static-prompt/detector diff and a compatible helper package set from `9786d5b`, or revert the daily-use commit. Retain prior real validation, unrelated files and existing private journey state. Installed copies require the same explicit directory-scoped review/backup; global host instructions are not edited.
+
 ## Targeted EOF follow-up
 
 The independent review ofd266162 passed the complete-line repair but found one EOF/coordinate defect: terminal newline tokens became phantom source lines, empty files appeared to add a blank line, and removal of a terminal newline appeared to delete a blank line. The targeted correction separates source-line content from newline termination, preserves real blank lines, and attaches an explicit no-newline marker without counting it as a source line. Marker bytes stay inside excerpt limits. Focused EOF controls and the existing actual-source readability regression exercise this distinction.
