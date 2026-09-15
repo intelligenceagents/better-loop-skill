@@ -22,7 +22,7 @@ test("offline packed package has bundled runtime/types, ESM/CJS consumers, MIT/n
   execFileSync("npm", ["install", "--offline", "--ignore-scripts", "--no-audit", "--no-fund", join(destination, packed.filename)], { cwd: destination, stdio: "pipe" });
   const installed = JSON.parse(readFileSync(join(destination, "node_modules/@better-loop/discovery/package.json"), "utf8")) as { dependencies?: unknown; version: string };
   assert.equal(installed.dependencies, undefined);
-  assert.equal(installed.version, "0.1.0-draft.2");
+  assert.equal(installed.version, "0.2.0-draft.1");
   const unsupported = row(); unsupported.capability_evidence!.human_actions = [];
   const input = JSON.stringify({ criteria: criteria(), current, attested: attestedRow(), unsupported });
   for (const [mode, statement] of [
@@ -35,7 +35,7 @@ const input = ${input};
 console.log(DISCOVERY_VERSION, MINIMUM_COHORT_OWNERS, judgeApprovalBindingOutput(null).result,
   matchRoleEvidence(input.criteria, [input.attested], input.current).state,
   matchRoleEvidence(input.criteria, [input.unsupported], input.current).state);`], { cwd: destination, encoding: "utf8" });
-    assert.equal(output.trim(), "0.1.0-draft.2 20 incomplete available invalid_input");
+    assert.equal(output.trim(), "0.2.0-draft.1 20 incomplete available invalid_input");
   }
   const types = `
 import {

@@ -1,6 +1,6 @@
 # @better-loop/discovery
 
-Version `0.1.0-draft.2`. Bounded pure helpers for role-relevant public evidence, descriptive benchmark cohorts and learning milestones, plus one frozen actual-public-work benchmark judge. No universal person score, automatic hiring decision, ability badge or population percentile.
+Version `0.2.0-draft.1`. Bounded pure helpers for shared practice, related public learning, descriptive progress, role-relevant evidence and learning milestones, plus one frozen actual-public-work benchmark judge. No universal person score, automatic hiring decision, ability badge or population percentile.
 
 See [API.md](API.md) for integration shapes. ESM, CommonJS and declarations are packaged with bundled runtime dependencies and extracted shared type declarations. Source imports the approved `@better-loop/evidence@0.1.0-draft.2` types and validators; the package has no install-time runtime dependency downloads.
 
@@ -15,9 +15,17 @@ const result = matchRoleEvidence(criteria, currentServerRows, {
 
 The caller must authenticate and derive current publication, revision, ownership, consent and trust state. This helper is not admission, authentication or independent verification. It performs no semantic reviews, model calls, uploads, persistence or side effects.
 
+`listSharedChallenges()` returns eight immutable practice briefs, one for each controlled problem category, usable across all seven task families. Each has a human action, reusable prompt starter, acceptance check and next-attempt instruction. These are authored practice prompts, not validated benchmarks or participant results. Copying a prompt, selecting a challenge or applying scoped Markdown preferences is preparation. Actual later evidence is needed to establish what changed.
+
+`findRelatedLessons()` takes a controlled family/problem/objective/difficulty query and returns at most six current `community_learning`-opted-in evidence cards in stable public-ID order. Same-family and cross-family stories show the actual difficulty and conditions, selected-message versus attested human actions, quality evaluator/basis, reported outcomes, coverage and server trust. Negative and unknown findings remain useful. A related story is not evidence of challenge participation, equivalent work or learning transfer.
+
+`aggregateSharedProgress()` describes compatible reported normalized measurements across all task families without registering a benchmark. It requires separate `benchmark_aggregation` consent, exact task/condition/measurement/trust strata and a nonempty set of met quality dimensions with matching evaluator and basis. It averages all eligible current records within each owner, weights owners equally and uses the same fixed 20-owner minimum and rounding as the existing cohort helper. Every unavailable result returns null cohort and statistics, without counts or group hints. Relative token use is an index with baseline 100; lower uses fewer tokens. There are no raw-token bands, individual results, competence badges or causal improvement claims.
+
+Learning, aggregation and candidate-discovery purposes are independent. Existing public-story consent alone enables none of these optional uses. The service must supply current effective consent after revocations and recompute every derived view after withdrawal or deletion. Serve finite controlled progress presets; this library does not implement query access controls. Evidence coverage is not aggregated or inferred from passing the chosen quality floor.
+
 Discovery requires explicit `candidate_discovery` consent on current published work-derived evidence. It lists stories in public-ID order, with separate task/skills, relevant quality checks, reported human actions, missing evidence and server trust reasons. Cross-family matches show their different context. A local claim cannot increase the server trust tier; email verification and agent work are not human judgment.
 
-The draft.2 validator requires matching selected-human-message evidence for every observed candidate indicator. A legitimate user attestation can accompany base `insufficient_evidence` or `not_observed` with a null rating. Discovery retains its attestation-only gap and self-reported trust; it does not manufacture an observed conversation to accept the claim. API/schema/policy shapes, the frozen benchmark, its judge and retained execution results are unchanged.
+The evidence draft.2 validator requires matching selected-human-message evidence for every observed candidate indicator. A legitimate user attestation can accompany base `insufficient_evidence` or `not_observed` with a null rating. Discovery retains its attestation-only gap and self-reported trust; it does not manufacture an observed conversation to accept the claim. Existing APIs, shared schemas, consent policies, the frozen benchmark, its judge and retained execution results are unchanged.
 
 `aggregateBenchmarkCohort` requires explicit benchmark consent, a known registered benchmark, exact benchmark/framework/rubric/task/difficulty/conditions/metric versions and matching trust/provenance strata, comparable measurements, known quality and no critical regression. It accepts only normalized candidate indices, with baseline 100. Suppressed cohorts return no exact count or statistic. The fixed minimum is **20 distinct eligible server owners**; the caller cannot lower it. Owner IDs appear only in operational input and never in any output.
 
@@ -39,4 +47,4 @@ From the installed source workspace, after contracts/privacy/evidence builds:
 npm run check --workspace @better-loop/discovery
 ```
 
-The checks include independent expected aggregation arithmetic, consent/withdrawal and owner deduplication, attribution/missing-evidence behavior, milestone non-inflation, judge coverage/errors, frozen-source integrity and an offline packed ESM/CJS/declaration consumer. No root build or CLI integration is provided by this package's scoped implementation.
+The checks include all-family problem practice and learning, independent expected aggregation arithmetic, purpose separation/withdrawal and owner deduplication, attribution/missing-evidence behavior, milestone non-inflation, judge coverage/errors, frozen-source integrity and an offline packed ESM/CJS/declaration consumer. Website and local coach integration are separate from this pure package.

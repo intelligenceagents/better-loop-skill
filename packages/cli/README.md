@@ -1,8 +1,8 @@
 # Better Loop local CLI
 
-`@better-loop/cli@0.4.0-draft.5` provides durable selected-repository journeys, local assessment, prompt proposals, static skill audits, contained instruction edits, and candidate/contribution preparation through the shared helpers. Default commands need no account or network.
+`@better-loop/cli@0.5.0-draft.1` provides personal prompt coaching and scoped working agreements, durable selected-repository journeys, local assessment, prompt proposals, static skill audits, contained instruction edits, and candidate/contribution preparation through the shared helpers. Default commands need no account or network.
 
-Build the reviewed source workspace, then use `node packages/cli/dist/cli.js` or the installed `better-loop` bin. A project-local npm installation does not automatically add its bin to shell `PATH`; its explicit entrypoint is `node /absolute/path/to/selected-install/node_modules/@better-loop/cli/dist/cli.js`. These draft packages are distributed as reviewed local archives; do not assume a registry release. Root `help`, `journey --help`, `journey view --help` and `draft-share --help` run before selected input/state reads and start no reviewer.
+Build the reviewed source workspace, then use `node packages/cli/dist/cli.js` or the installed `better-loop` bin. A project-local npm installation does not automatically add its bin to shell `PATH`; its explicit entrypoint is `node /absolute/path/to/selected-install/node_modules/@better-loop/cli/dist/cli.js`. These draft packages are distributed as reviewed local archives; do not assume a registry release. Root `help`, `coach --help`, `journey --help`, `journey view --help` and `draft-share --help` run before selected input/state reads and start no reviewer.
 
 ```sh
 better-loop capabilities --json
@@ -82,3 +82,11 @@ Raw source excerpts are omitted by default; filenames, paths and saved report/ou
 `journey view --format json` is accepted for the stdout receipt; the selected output file remains HTML. The HTML export makes no additional model calls. Host analysis that reads selected context uses its configured model provider; do not extend the export-only claim to all processing. Journey `0.2.0-draft.3` retains whole-line excerpt selection, explicit omissions and the corrected EOF coordinates.
 
 `better-loop release-check [--cache-dir <selected-absolute-skill-cache>] [--offline|--disabled] --json` reports a dated observation of fixed public GitHub metadata, never source verification. It has a two-second total network deadline, a 64 KiB streamed response limit, no credentials/redirects/upload and no automatic update. Successful observations cache for 24 hours, failures for five minutes, only in a caller-selected cache. Offline/disabled/help skip cache and network. See the skill's `references/releases.md` for automatic entry guidance and manual update/rollback.
+
+## Personal working agreement
+
+`coach plan --root exact-task-directory --host codex|claude_code --preferences selected-preferences.json [--profile explicit-id] [--prompt selected-prompt.txt] --output new-private-plan.json` prepares the person's working preferences and a separate prompt proposal. It needs no Git repository, network or model request. The current task and exact-output constraints take precedence over contextual preferences.
+
+Review the exact destination, root/input-bound coach digest and complete Markdown diff. `coach apply --root ... --preferences ... [--prompt ...] --plan ... --approve EXACT_COACH_DIGEST` rejects changed preference/prompt/root/target bytes or identities. `coach rollback --root ... --plan ... --approve EXACT_COACH_DIGEST` restores the original approved Markdown and refuses later edits; it needs neither unchanged preferences nor the prompt file. Only the selected root's AGENTS.md (Codex) or CLAUDE.md (Claude Code) is eligible. Start a new host session to load updated project instructions.
+
+See the installed skill's `references/coach.md` and `references/working-preferences.example.json` for the strict schema, neutral both-host starter, injection-safe literals, limits and rollback. The public [implementation guide](../../docs/personal-coach.md) explains API integration. Preparation changes neither model weights nor journey state and establishes no improvement or host execution result.

@@ -2,7 +2,17 @@
 
 Updated: 2026-09-15. The current local product stage is ready for review. Packages remain reviewed local archives, with no registry release. Website publication has separate application authorization and release checks.
 
-## Current follow-up: bounded release awareness — implemented and independently reviewed
+## Current follow-up: personal coaching and shared practice
+
+CLI `0.5.0-draft.1` adds explicit personal preferences, optional host/model profiles and a private prompt/working-agreement plan. Applying or rolling back binds the exact selected project identity, preference/prompt selection and bytes, destination and Markdown diff. Existing filesystem guards now accept an optional expected scope identity to reject a replacement between wrapper validation and helper capture. Managed sections preserve unrelated text; literals cannot create automatic host imports or break out of their data block. Preparation creates no progress credit or journey-state change.
+
+Discovery `0.2.0-draft.1` adds eight shared practice briefs across seven task families, current community-consented related lessons and separately consented descriptive reported progress. Exact problem/difficulty/conditions/quality/provenance/trust strata remain separate. Statistics require20 distinct eligible owners, equal owner weight and rounding. Tokens are normalized relative usage, not raw totals or an ability score. The registered benchmark remains unchanged. The contribution wire schema, consent policy, journey state, MIT license and other package versions are unchanged.
+
+Verification:710 TypeScript tests pass (root350, privacy67, measurement99, evidence24, discovery158, handoff12), along with build/types/artifact checks,79 Python/TypeScript parity cases,155 links and all ten offline installed-package consumers in ESM/CJS and both declaration modes. Focused coach controls cover exact rollback, stale/root/input changes, the root-replacement seam, malformed/injected preferences and zero network/model calls. Independent review reproduced rejection at that seam and passed15 focused shared-signal controls. Initial package-version assertion and default-Python environment failures were retained; the correct version assertion and existing project Python environment passed.
+
+This source acceptance verifies local software behavior, not a human improvement study, native host compliance, launch, challenge participation or public community results. Native host acceptance is a separate bounded coordinator check. No model calls, production writes, real-data publication, global instruction edits, release/tag or registry publication occurred in this source pass. Follow [personal coaching](docs/personal-coach.md) and [shared practice](packages/discovery/README.md); keep exact project plans for rollback and separately retain the previous selected helper/skill package set.
+
+## Previous follow-up: bounded release awareness — implemented and independently reviewed
 
 CLI `0.4.0-draft.5` adds the manual `release-check` command and automatic skill-entry guidance after exact compatible helper detection, within the user's network/tool scope. The caller explicitly selects an installation cache; observations last 24 hours and failure backoff five minutes. Missing cache scope uses one uncached entry check. Offline/disabled/help skip cache and network; detector and capabilities remain network-free. Coaching continues on failure.
 

@@ -1,8 +1,12 @@
 # Better Loop
 
-**Make progress you can prove.** Better Loop helps knowledge workers turn selected AI-assisted work into one useful proposed change, an acceptance check and a history of actual results. Private coaching comes first; sharing is optional. The intended public learning destination is better-loop.com.
+**Get better at working with AI. Make your next attempt count.** Better Loop helps you frame a clearer task, improve your prompt, check the result and keep a history of what happened. Private coaching comes first; sharing is optional. The intended public learning destination is better-loop.com.
 
 Choose one repository or an explicit set in Claude Code or Codex. A [local journey](docs/journey.md) remembers that scope, earlier assessments and your feedback. Return to the same selected state to review changed evidence and choose the next acceptance check. Unchanged work creates no new assessment or progress credit.
+
+For a chosen task directory, including work outside Git, the [personal coach](packages/cli/README.md) proposes a prompt and a project-scoped working agreement from your explicit preferences. Review the exact `AGENTS.md` or `CLAUDE.md` diff before applying it; keep its plan for rollback. Named profiles help you choose different guidance for each host or model. They do not switch models or train weights. Applying instructions is preparation; check the next actual result before claiming improvement.
+
+[Shared practice](packages/discovery/README.md) offers eight problem-based challenges across seven kinds of work. Related consented lessons can cross task families. Descriptive progress groups reported measurements by problem, difficulty, conditions, quality and trust, including relative token use. Numerical results require at least20 eligible contributors and remain uncalibrated; there is no universal person score or reward for spending or publishing more.
 
 The [private local progress viewer](docs/journey.md#see-your-saved-progress) presents that history and next check in a standalone HTML file at your explicit output path. It reads saved state without creating a new assessment, omits raw source by default, and has no scripts, external assets, network or automatic browser open. Keep the HTML private; source edits are not evidence of task improvement. [Copy a host request](docs/host-prompts.md) to start, return or create a viewer. The promise is recorded checks and useful follow-up, not guaranteed human gains.
 

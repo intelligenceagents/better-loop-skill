@@ -16,7 +16,7 @@ const adaptersPackage = packageRequire("@better-loop/adapters/package.json") as 
 const measurementPackage = packageRequire("@better-loop/measurement/package.json") as { version: string };
 const handoffPackage = packageRequire("@better-loop/handoff/package.json") as { version: string };
 
-export const CLI_VERSION = "0.4.0-draft.5" as const;
+export const CLI_VERSION = "0.5.0-draft.1" as const;
 export function capabilities() {
   return {
     protocol: "bl-capabilities-0.2", helper_version: CLI_VERSION,
@@ -40,6 +40,8 @@ export function capabilities() {
       capability_contribution: true, contribution_review_policy: EVIDENCE_REVIEW_POLICY_VERSION,
       browser_handoff: HANDOFF_PROTOCOL, browser_handoff_activation: "explicit_after_exact_contribution_confirmation",
       release_check: "fixed_public_github_metadata_only_no_update",
+      personal_coach: "explicit_preferences_scoped_plan_apply_rollback",
+      shared_practice: "controlled_challenges_related_lessons_descriptive_progress",
     },
     adapters: adapterCapabilities(),
     boundaries: {
@@ -51,9 +53,13 @@ export function capabilities() {
   };
 }
 export { planInstructionChange, applyInstructionChange, readSelectedFile, writePrivateOutput } from "./local-files.js";
+export type { InstructionScopeIdentity } from "./local-files.js";
 export { configuredReviewers } from "./reviewers.js";
 export { learnFromService } from "./learning-service.js";
 export { journeyCommand, journeyProgress, renderJourney } from "./journey-cli.js";
 export { renderJourneyView, writeJourneyView, practiceStates } from "./journey-view.js";
 export { checkRelease, compareReleaseVersions } from "./release-check.js";
 export type { ReleaseCheckOptions, ReleaseCheckResult } from "./release-check.js";
+export { coachCommand, parseWorkingPreferences, planCoaching, applyCoaching, rollbackCoaching, validateCoachPlan,
+  CoachError, WORKING_PREFERENCES_SCHEMA, COACH_PLAN_SCHEMA, COACH_LIMITS } from "./coach.js";
+export type { CoachPlan, WorkingPreferences, WorkingChoices, WorkingProfile } from "./coach.js";

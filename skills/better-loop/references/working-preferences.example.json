@@ -1,0 +1,33 @@
+{
+  "schema_version": "bl-working-preferences-0.1",
+  "audience": "The person using the result.",
+  "output_format": "Follow the current task’s exact requested format.",
+  "collaboration": "Ask about consequential missing information; use already authorized scope.",
+  "feedback": "Give one useful next step and state relevant uncertainty.",
+  "delegation_boundaries": [
+    "Use only the files and tools selected for the current task."
+  ],
+  "verification_habits": [
+    "Check the result against the task’s acceptance criteria."
+  ],
+  "acceptance_check": "The result meets the requested format and every stated acceptance criterion.",
+  "challenge_id": null,
+  "profiles": [
+    {
+      "id": "codex-default",
+      "host": "codex",
+      "model_label": null,
+      "adjustments": {
+        "feedback": "Give one useful next step and state relevant uncertainty."
+      }
+    },
+    {
+      "id": "claude-default",
+      "host": "claude_code",
+      "model_label": null,
+      "adjustments": {
+        "feedback": "Give one useful next step and state relevant uncertainty."
+      }
+    }
+  ]
+}

@@ -97,12 +97,16 @@ function within(root: string, target: string) {
   return rel === "" || (!rel.startsWith(`..${sep}`) && rel !== ".." && !isAbsolute(rel));
 }
 
-async function instructionTarget(selectedRoot: string, relativePath: string) {
+export interface InstructionScopeIdentity { path: string; device: string; inode: string }
+
+async function instructionTarget(selectedRoot: string, relativePath: string, expectedScope?: InstructionScopeIdentity) {
   // A resolved selected project root is a scope, not permission to modify host-global instruction directories.
   const rootInput = resolve(selectedRoot);
-  const inputStat = await lstat(rootInput);
+  const inputStat = await lstat(rootInput, { bigint: true });
   if (!inputStat.isDirectory() || inputStat.isSymbolicLink()) throw new Error("invalid_instruction_root");
   const root = await realpath(rootInput);
+  if (expectedScope && (root !== expectedScope.path || inputStat.dev.toString() !== expectedScope.device ||
+      inputStat.ino.toString() !== expectedScope.inode)) throw new Error("instruction_scope_changed");
   const home = await realpath(homedir());
   const folded = root.toLowerCase();
   if (root === dirname(root) || within(root, home) ||
@@ -112,16 +116,17 @@ async function instructionTarget(selectedRoot: string, relativePath: string) {
   const target = resolve(root, relativePath);
   if (!within(root, target)) throw new Error("instruction_scope_escape");
   let current = root;
-  const identities: { path: string; dev: number; ino: number }[] = [];
+  const identities: { path: string; dev: bigint; ino: bigint }[] = [];
   for (const part of ["", ...relative(root, dirname(target)).split(sep).filter(Boolean)]) {
     if (part) current = join(current, part);
-    const stat = await lstat(current);
+    const stat = await lstat(current, { bigint: true });
     if (!stat.isDirectory() || stat.isSymbolicLink() || !within(root, await realpath(current))) throw new Error("instruction_parent_not_contained");
+    if (current === root && (stat.dev !== inputStat.dev || stat.ino !== inputStat.ino)) throw new Error("instruction_scope_changed");
     identities.push({ path: current, dev: stat.dev, ino: stat.ino });
   }
   const checkParents = async () => {
     for (const item of identities) {
-      const now = await lstat(item.path);
+      const now = await lstat(item.path, { bigint: true });
       if (!now.isDirectory() || now.isSymbolicLink() || now.dev !== item.dev || now.ino !== item.ino) throw new Error("instruction_scope_changed");
     }
     if (await realpath(rootInput) !== root) throw new Error("instruction_scope_changed");
@@ -143,10 +148,10 @@ async function currentInstruction(path: string): Promise<{ text: string | null; 
   }
 }
 
-export async function planInstructionChange(root: string, relativePath: string, after: string): Promise<InstructionPlan> {
+export async function planInstructionChange(root: string, relativePath: string, after: string, expectedScope?: InstructionScopeIdentity): Promise<InstructionPlan> {
   // Validate the allowlist before touching the supplied relative path.
   createInstructionPlan(relativePath, null, after);
-  const scope = await instructionTarget(root, relativePath);
+  const scope = await instructionTarget(root, relativePath, expectedScope);
   const current = await currentInstruction(scope.target);
   await scope.checkParents();
   return createInstructionPlan(relativePath, current.text, after);
@@ -154,10 +159,11 @@ export async function planInstructionChange(root: string, relativePath: string, 
 
 export async function applyInstructionChange(
   root: string, input: unknown, approvedDigest: string, direction: "apply" | "rollback" = "apply",
+  expectedScope?: InstructionScopeIdentity,
 ): Promise<{ state: "applied" | "rolled_back"; relative_path: string; approval_digest: string }> {
   const plan = validateInstructionPlan(input);
   if (approvedDigest !== plan.approval_digest) throw new Error("exact_instruction_approval_required");
-  const scope = await instructionTarget(root, plan.relative_path);
+  const scope = await instructionTarget(root, plan.relative_path, expectedScope);
   const parent = dirname(scope.target);
   const lockPath = join(parent, `.better-loop-${plan.relative_path.split("/").at(-1)}.lock`);
   const lock = await open(lockPath, constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW, 0o600);

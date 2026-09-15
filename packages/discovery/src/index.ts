@@ -7,4 +7,10 @@ export {
   APPROVAL_BINDING_LIMITS, judgeApprovalBindingOutput,
 } from "./benchmark.js";
 export type { ApprovalBindingAnswer, ApprovalBindingJudgment } from "./benchmark.js";
-export const DISCOVERY_VERSION = "0.1.0-draft.2" as const;
+export { listSharedChallenges } from "./challenges.js";
+export type { ChallengeId, SharedChallenge } from "./challenges.js";
+export { findRelatedLessons } from "./learning.js";
+export type { SharedLearningQuery, SharedLearningCard, SharedLearningResult } from "./learning.js";
+export { aggregateSharedProgress } from "./signals.js";
+export type { SharedSignalRecord, SharedProgressTask, KnownProgressCondition, SharedProgressQuery, SharedProgressResult } from "./signals.js";
+export const DISCOVERY_VERSION = "0.2.0-draft.1" as const;

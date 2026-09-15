@@ -1,21 +1,35 @@
 {
   "name": "@better-loop/discovery",
-  "version": "0.1.0-draft.2",
+  "version": "0.2.0-draft.1",
   "description": "Pure consent-aware public evidence discovery, descriptive cohorts, learning milestones and a frozen public-work judge.",
   "license": "MIT",
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
-      "require": { "types": "./dist/index.d.cts", "default": "./dist/index.cjs" }
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
-  "files": ["dist", "README.md", "API.md", "LICENSE", "THIRD_PARTY_NOTICES.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "API.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
   "sideEffects": false,
   "scripts": {
     "build": "node scripts/build.mjs",

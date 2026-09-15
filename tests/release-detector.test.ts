@@ -9,10 +9,13 @@ const detector = resolve("skills/better-loop/scripts/detect-helper.mjs");
 const cli = resolve("packages/cli/dist/cli.js");
 const versions = { contracts: "0.1.0-draft.1", core: "0.2.0-draft.1", adapters: "0.2.0-draft.1",
   privacy: "0.1.0-draft.3", measurement: "0.1.0-draft.1", journey: "0.2.0-draft.3",
-  evidence: "0.1.0-draft.2", discovery: "0.1.0-draft.2", handoff: "0.1.0-draft.2" };
-const capability = () => ({ protocol: "bl-capabilities-0.2", helper_version: "0.4.0-draft.5", packages: { ...versions },
+  evidence: "0.1.0-draft.2", discovery: "0.2.0-draft.1", handoff: "0.1.0-draft.2" };
+const capability = () => ({ protocol: "bl-capabilities-0.2", helper_version: "0.5.0-draft.1", packages: { ...versions },
   capabilities: { explicit_repository_journey: true, persisted_host_assessment: true, selected_assessment: true,
-    descriptive_indicators: 11, release_check: "fixed_public_github_metadata_only_no_update", upload: false, calibrated_ranking: false } });
+    descriptive_indicators: 11, release_check: "fixed_public_github_metadata_only_no_update",
+    personal_coach: "explicit_preferences_scoped_plan_apply_rollback",
+    shared_practice: "controlled_challenges_related_lessons_descriptive_progress",
+    upload: false, calibrated_ranking: false } });
 
 test("detector requires all ten exact package versions and release-check capability", async t => {
   const root = await mkdtemp(join(tmpdir(), "release-detector-")); t.after(() => rm(root, { recursive: true, force: true }));
@@ -41,6 +44,12 @@ cp.execFileSync=(exe,args,opts)=>{
     const changed = capability(); (changed.capabilities as Record<string, unknown>).release_check = value;
     assert.equal(JSON.parse(invoke(changed).stdout).state, "incompatible");
   }
+  for (const key of ["personal_coach", "shared_practice"]) {
+    for (const value of [undefined, false, true, "unsupported_v2"]) {
+      const changed = capability(); (changed.capabilities as Record<string, unknown>)[key] = value;
+      assert.equal(JSON.parse(invoke(changed).stdout).state, "incompatible");
+    }
+  }
   for (const args of [["relative.mjs"], ["/synthetic/helper.mjs", "extra"]]) assert.equal(JSON.parse(invoke(capability(), args).stdout).state, "unavailable");
 });
 
@@ -61,7 +70,7 @@ syncBuiltinESMExports();
     assert.equal(result.status, 0, result.stderr); assert.equal(result.stderr, "");
     if (args[0] === "capabilities") {
       const value = JSON.parse(result.stdout);
-      assert.equal(value.helper_version, "0.4.0-draft.5"); assert.deepEqual(value.packages, versions);
+      assert.equal(value.helper_version, "0.5.0-draft.1"); assert.deepEqual(value.packages, versions);
       assert.equal(value.capabilities.release_check, "fixed_public_github_metadata_only_no_update");
     } else if (args.includes("--json")) assert.equal(JSON.parse(result.stdout).state, "disabled");
     else assert.match(result.stdout, /release-check/);

@@ -16,10 +16,14 @@ import { configuredContributionReviewers } from "./reviewers.js";
 import { LocalOutputError, reservePrivateOutput } from "./local-files.js";
 import type { PrivateOutputReservation } from "./local-files.js";
 import { checkRelease } from "./release-check.js";
+import { coachCommand, CoachError } from "./coach.js";
 
 const HELP = `Better Loop local helper
   better-loop capabilities --json
   better-loop release-check [--cache-dir selected-absolute-skill-cache-directory] [--offline|--disabled] [--json]
+  better-loop coach plan --root selected-task-directory --host codex|claude_code --preferences selected-preferences.json [--profile chosen-profile] [--prompt selected-prompt.txt] --output new-private-plan.json
+  better-loop coach apply --root selected-task-directory --preferences selected-preferences.json [--prompt selected-prompt.txt] --plan selected-plan.json --approve exact-coach-digest
+  better-loop coach rollback --root selected-task-directory --plan selected-plan.json --approve exact-coach-digest
   better-loop journey create --state selected-dedicated-directory --root exact-repository [--root another-repository] --task selected-task.json
   better-loop journey use --state selected-directory --host codex|claude_code [--expected checkpoint-id] [--excerpt-bytes 8192] [--excerpt-files 8] [--excerpt-path relative-file]
   better-loop journey record-assessment --state selected-directory --expected checkpoint-id --host codex|claude_code --input actual-host-report.json
@@ -46,6 +50,7 @@ draft-share reserves its new output before starting reviewers; choose an existin
 Default commands have no network/model calls. draft-share reviewer commands are explicit opt-in and receive only a minimized candidate or whole minimized contribution.
 learn --service makes an explicit public GET with controlled taxonomy only; offline exports produce no automated recommendations.
 release-check reads only fixed public GitHub release metadata, with a two-second network deadline; no credentials, redirects, upload or update.
+coach proposes a private prompt and project-scoped working agreement; applying it is preparation, not measured progress.
 No upload transport. Static cue detection is not a validated assessment or a measured improvement.`;
 
 function usage(command?: string, action?: string): string {
@@ -112,6 +117,10 @@ async function main() {
     process.stdout.write(`${usage(command, args[0])}\n`); return;
   }
   if (command === "--version") { process.stdout.write(`${capabilities().helper_version}\n`); return; }
+  if (command === "coach") {
+    const result = await coachCommand(args);
+    await emit(result.value, result.output, result.markdown); return;
+  }
   if (command === "capabilities") {
     options(args, ["json"], ["json"]); await emit(capabilities()); return;
   }
@@ -288,6 +297,11 @@ async function main() {
   throw new Error("unknown_command");
 }
 main().catch((error: unknown) => {
+  if (error instanceof CoachError) {
+    const code = /^[a-z_]{1,80}$/.test(error.code) ? error.code : "invalid_coach_operation";
+    process.stderr.write(`Better Loop coach could not complete: ${code}. Check the selected scope, preferences, prompt and exact approval. Use better-loop coach --help. No upload occurred.\n`);
+    process.exitCode = 1; return;
+  }
   if (error instanceof LocalOutputError) {
     process.stderr.write(error.code === "output_unavailable"
       ? "Better Loop draft-share could not reserve --output. Choose a new regular file in an existing writable directory; existing files are never overwritten. No reviewer was started. Use better-loop draft-share --help.\n"

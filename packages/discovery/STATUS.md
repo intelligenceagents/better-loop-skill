@@ -1,5 +1,35 @@
 # Discovery package verification
 
+## Shared practice extension: focused verification complete
+
+Updated 2026-09-15. The additive `@better-loop/discovery@0.2.0-draft.1` modules are implemented with focused verification against the integrated package exports. Package consumer/release integration and independent acceptance remain separately owned. No commit or publication is claimed by this report.
+
+- Eight immutable controlled problem briefs provide human actions, prompt starters, acceptance checks and next-attempt guidance across all seven task families. Selecting a brief is preparation, not challenge participation, completion or demonstrated improvement.
+- Related learning requires current public-story/community-learning consent and projects a stable six-card first page. Same/cross-family context, actual difficulty/conditions, selected-message versus attested human attribution, nullable quality evidence, reported outcomes and trust remain separate. Negative and unknown findings are retained.
+- General descriptive progress uses a separately validated server-owner record and strict task/condition/measurement/trust/quality query. A correctness objective requires a correctness check; every required check must be met with the same evaluator/basis. Current compatible values receive equal owner weight, and only 20 eligible distinct owners permit rounded normalized statistics. Every unavailable result has null cohort and statistics.
+- Frozen benchmark registration, judge, retained results and existing benchmark cohort logic are unchanged. Shared contribution schemas, consent policies and evidence validators are unchanged. Tokens remain relative indices; coverage is not inferred or aggregated.
+
+Checks actually run for this extension:
+
+| Check | Result |
+|---|---|
+| Scoped package build, including frozen-source/result drift checks | Passed |
+| Strict discovery TypeScript source/test check | Passed |
+| Built-export behavior checks | 157 passed, 0 failed: 81 new plus 76 existing behavior checks |
+| Seven families/eight problems, separate purposes, attribution, adverse/unknown findings | Passed |
+| 19/20-owner boundary, all required checks, owner conflicts, deduplication, equal weighting, revocation/withdrawal/deletion | Passed |
+| Exact versions/fields, unavailable snapshots, literal untrusted text, uninvoked JSON hooks, zero helper network calls | Passed |
+| Full 1,000-record input, excessive-input rejection, bounded cards, operational-field omission | Passed |
+| New packed-consumer/version checks | Parent integration pending; not included in the 157 behavior checks |
+
+Checks used Node `22.10.0` and the installed locked tooling. New tests execute built package exports and use only isolated fictional records; these are not public participants or human/model efficacy trials. An initial scoped package check exposed source-test import resolution and the old packed-version assertion. The source tests now use the built exports and pass; the parent owns the package-version/consumer update.
+
+Limits: pure helpers cannot authenticate a snapshot, verify human judgment, establish equal task difficulty, guarantee anonymity or enforce server query controls. Services must refresh authoritative effective consent/owner/trust, use finite controlled comparison presets and discard derived results after eligibility changes. The learning query intentionally exposes only a fixed first page. No normal app/data, native/model, reviewer, production or hosted calls were made by this discovery work.
+
+Rollback: remove the three additive modules and their tests/docs with the corresponding parent-owned export/version integration. Preserve the existing frozen benchmark and historical execution evidence.
+
+## Historical draft.2 verification
+
 Updated 2026-09-14. Package `@better-loop/discovery@0.1.0-draft.2` is implemented and tested locally on the existing `codex/m2-m6-skill` branch. This scoped report leaves central coordination and root integration to their owners.
 
 Draft.2 rebundles the corrected `@better-loop/evidence@0.1.0-draft.2` validator from parent commit `01091e5c26378576b3b42d6a7f9735821d9ae2e4`. Observed candidate human indicators require matching selected-human-message support. Legitimate attestations with base `insufficient_evidence` or `not_observed` and null rating remain valid and explicitly attestation-only. API/schema/policy shapes and all frozen benchmark/judge/results bytes are unchanged.
