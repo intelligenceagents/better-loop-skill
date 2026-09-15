@@ -1,0 +1,243 @@
+{
+  "schema_version": "bl-public-software-repair-summary-0.1",
+  "title": "Eight known attribution failures repaired; all 24 frozen regression checks now pass",
+  "comparison_kind": "retrospective_code_version_regression_check",
+  "story_episode": "separate_evidence_attribution_repair",
+  "input_origin": "known_authored_synthetic_test_probes_against_actual_public_software",
+  "cases_per_version": 24,
+  "before": {
+    "passed": 16,
+    "total": 24,
+    "expected_acceptance": {
+      "passed": 6,
+      "total": 9
+    },
+    "expected_rejection": {
+      "passed": 10,
+      "total": 15
+    }
+  },
+  "after": {
+    "passed": 24,
+    "total": 24,
+    "expected_acceptance": {
+      "passed": 9,
+      "total": 9
+    },
+    "expected_rejection": {
+      "passed": 15,
+      "total": 15
+    }
+  },
+  "groups": {
+    "before": {
+      "repair_F1": {
+        "passed": 0,
+        "total": 5,
+        "expected_acceptance": {
+          "passed": 0,
+          "total": 0
+        },
+        "expected_rejection": {
+          "passed": 0,
+          "total": 5
+        }
+      },
+      "repair_F2": {
+        "passed": 0,
+        "total": 3,
+        "expected_acceptance": {
+          "passed": 0,
+          "total": 3
+        },
+        "expected_rejection": {
+          "passed": 0,
+          "total": 0
+        }
+      },
+      "positive_control": {
+        "passed": 6,
+        "total": 6,
+        "expected_acceptance": {
+          "passed": 6,
+          "total": 6
+        },
+        "expected_rejection": {
+          "passed": 0,
+          "total": 0
+        }
+      },
+      "negative_control": {
+        "passed": 10,
+        "total": 10,
+        "expected_acceptance": {
+          "passed": 0,
+          "total": 0
+        },
+        "expected_rejection": {
+          "passed": 10,
+          "total": 10
+        }
+      }
+    },
+    "after": {
+      "repair_F1": {
+        "passed": 5,
+        "total": 5,
+        "expected_acceptance": {
+          "passed": 0,
+          "total": 0
+        },
+        "expected_rejection": {
+          "passed": 5,
+          "total": 5
+        }
+      },
+      "repair_F2": {
+        "passed": 3,
+        "total": 3,
+        "expected_acceptance": {
+          "passed": 3,
+          "total": 3
+        },
+        "expected_rejection": {
+          "passed": 0,
+          "total": 0
+        }
+      },
+      "positive_control": {
+        "passed": 6,
+        "total": 6,
+        "expected_acceptance": {
+          "passed": 6,
+          "total": 6
+        },
+        "expected_rejection": {
+          "passed": 0,
+          "total": 0
+        }
+      },
+      "negative_control": {
+        "passed": 10,
+        "total": 10,
+        "expected_acceptance": {
+          "passed": 0,
+          "total": 0
+        },
+        "expected_rejection": {
+          "passed": 10,
+          "total": 10
+        }
+      }
+    }
+  },
+  "changed_cases": {
+    "repaired": [
+      "F1-unknown-attribution",
+      "F1-absent-attribution",
+      "F1-artifacts-only",
+      "F1-unknown-basis",
+      "F1-attestation-not-observation",
+      "F2-attestation-insufficient",
+      "F2-attestation-not-observed",
+      "F2-attestation-no-base-behavior"
+    ],
+    "regressed": [],
+    "unchanged_pass": [
+      "P1-selected-message",
+      "P2-conversation-basis",
+      "P3-artifacts-unobserved",
+      "P4-unknown-unobserved",
+      "P5-autonomous-unobserved",
+      "P6-two-matched-indicators",
+      "N1-selected-not_observed",
+      "N2-selected-insufficient_evidence",
+      "N3-selected-not_applicable",
+      "N4-selected-no-behavior",
+      "N5-selected-wrong-indicator",
+      "N6-selected-artifacts-basis",
+      "N7-selected-attestation-basis",
+      "N8-selected-autonomous",
+      "N9-duplicate-base-indicator",
+      "N10-duplicate-capsule-action"
+    ],
+    "unchanged_fail": [],
+    "pass_count_delta": 8,
+    "pass_fraction_percentage_point_delta": 33.33
+  },
+  "quality_floor_met": true,
+  "normalization": {
+    "metric": "frozen_check_pass_count",
+    "baseline_count": 16,
+    "after_count": 24,
+    "baseline_index": 100,
+    "after_index": 150,
+    "definition": "100 * after passing check count / before passing check count; identical 24 checks",
+    "interpretation": "Arithmetic index for this known regression set, not a general quality or ability score",
+    "repair_group_relative_percent_change": null,
+    "zero_baseline_caveat": "The eight repair cases had zero before passes; relative percent improvement for that subset is undefined."
+  },
+  "provenance": {
+    "public_repository": "https://github.com/intelligenceagents/better-loop-skill",
+    "source_file": "packages/evidence/src/index.ts",
+    "sources": [
+      {
+        "arm": "before",
+        "source_commit": "d1fce5188002dada01634cd1c328ff903ed0f6b4",
+        "source_sha256": "fbd2ade72b464511ddfba4d3a26a36abbca418ea24da7255d46381d5ce2a8f7c",
+        "package_version": "0.1.0-draft.1",
+        "compiled_bundle_sha256": "f9c823a43f29e038c62da6f173316169d97de6ffefe28c2cc419195bb1251ba2"
+      },
+      {
+        "arm": "after",
+        "source_commit": "01091e5c26378576b3b42d6a7f9735821d9ae2e4",
+        "source_sha256": "21e98732d26de3047bc8570625a21a884eb1e93908e57bcef289767e891d199f",
+        "package_version": "0.1.0-draft.2",
+        "compiled_bundle_sha256": "fa03f1e3e90e1702d13f2d44d814c1c0b4f6e3223aaabb7e26f47b530d798973"
+      }
+    ],
+    "original_freeze_commit": "513a92c33f59326c31e96c1715fff37ad56854a6",
+    "amended_freeze_commit": "e63931af0e49562b60e3f5d023b4384333452773",
+    "evaluator_version": "bl-evidence-attribution-repair-0.2",
+    "runtime": {
+      "node": "v22.10.0",
+      "platform": "darwin",
+      "arch": "arm64"
+    },
+    "compiler": {
+      "name": "esbuild",
+      "version": "0.28.2"
+    },
+    "inputs_sha256": "43d86a431a96c4e64c91e5a99d6ae04b5d1ac98d2662f0c8eb8c30438156c8b0",
+    "attempts": [
+      {
+        "file": "RESULTS.json",
+        "sha256": "a18b5d0a7a6e51c98efac6756b9e6d4c02f60fbf66b6b708726becb58e0b2c12",
+        "status": "infrastructure_failed_before_validator_calls",
+        "evaluated_cases": 0,
+        "worker_failures": 2
+      },
+      {
+        "file": "RESULTS-v0.2.json",
+        "sha256": "edfceb41cc3fdcf94baa1c7070776069b8254408630553e09ce1b56003549de9",
+        "status": "completed",
+        "evaluated_cases": 48,
+        "worker_failures": 0
+      }
+    ]
+  },
+  "model_calls": 0,
+  "approvals_created": 0,
+  "contributions_submitted": 0,
+  "limitations": [
+    "Known repair cases authored after inspecting both source versions and existing tests; not held-out, blinded or independent validation.",
+    "Authored synthetic inputs probe actual public software; they are not customer work, real human observations or publishable achievements.",
+    "One deterministic execution per case per source; shared-template probes are not independent task samples.",
+    "This separate attribution repair cannot be substituted for the existing privacy exact-binding story.",
+    "Zero before passes in any group makes relative percent improvement undefined; report counts and percentage points.",
+    "No model efficacy, human ability, hiring validity, privacy clearance, savings or unseen-defect-absence claim.",
+    "Model resources, cash costs, orchestration and human effort are unmeasured; wall duration checks only the execution bound.",
+    "Both arms share exact cached dependency builds and compiler; this is not a full historical environment reconstruction.",
+    "Existing public model benchmark and its equal-quality, higher-token result remain unchanged."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "version": "bl-public-work-freeze-0.1",
+  "benchmark_id": "bl-public-approval-binding",
+  "benchmark_version": "0.1",
+  "outputs_at_freeze": 0,
+  "files": [
+    {
+      "path": "BASELINE.md",
+      "sha256": "951ad816a48023c5c79383490ef64ab5352653949c9870a028dd3c86ff3935fe"
+    },
+    {
+      "path": "GUIDANCE.md",
+      "sha256": "968af1f2fb31c5d182444c1bbbb93f11d1be16cc4ce264671464eae5c8047043"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "dca44f0f6a2921d29c2a9cbafc38824b7a4b20b91bb0c29f42f864c2384de3a9"
+    },
+    {
+      "path": "PROTOCOL.md",
+      "sha256": "119ce35a1387f92cc68b8d2d7c8a2408bff9b2d5f2cad68faa57a2d741b1156c"
+    },
+    {
+      "path": "README.md",
+      "sha256": "f894affeee36740142d79df5440a0d4f63068c68a1363e761c88a8ed85cdb841"
+    },
+    {
+      "path": "cases.json",
+      "sha256": "6f90b501afe5dfef7d2e0f1c1f4dcc6790a54634377d5c79ec12ed165ca4eb85"
+    },
+    {
+      "path": "registration.json",
+      "sha256": "e66f465013e95e527268104a6659630f749abe56344f52d216c78561319d89ac"
+    },
+    {
+      "path": "rubric.json",
+      "sha256": "55ff6788cd1bb549cd32a0518a0a159eac1c2b4e216940c947070dc55d39c4bc"
+    },
+    {
+      "path": "sources/packages__contracts__src__canonicalize.ts",
+      "sha256": "fafc95384a21122afa21b7bdaeec419ae0e60643725f4f1d24e71020d3d62ae4"
+    },
+    {
+      "path": "sources/packages__contracts__src__digest.ts",
+      "sha256": "397816dfd58e1539d52f0b1cc85cf824926fa6af84e548f1407f487277037db5"
+    },
+    {
+      "path": "sources/packages__privacy__src__index.ts",
+      "sha256": "c92640f6c9d22ad0203344b160262d63d6b79036de00374b88e8bfd71728e7a0"
+    },
+    {
+      "path": "sources/packages__privacy__test__privacy.test.ts",
+      "sha256": "8e149e7541c75bea9b790e01fcccd1185ce1c23324495e8ff0cdd19457e17b7f"
+    },
+    {
+      "path": "verify-freeze.mjs",
+      "sha256": "ad2b111956ed6bd9535b3f5469cd7a104689333d6dfe6d0393270f81ad2df0aa"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "verification_kind": "retained_report_consistency_only_no_validator_rerun",
+  "checks": [
+    "FREEZE.json pinned bytes unchanged",
+    "FREEZE-v0.2.json pinned bytes unchanged",
+    "48 retained outcomes independently recounted from the frozen 24 IDs and expectations",
+    "Summary arithmetic, source references and attempt hashes match retained results",
+    "All authored inputs labeled synthetic with no measured result or KPI",
+    "Retained public records contain no actual user paths or email addresses",
+    "Existing model benchmark, evidence and discovery tracked bytes unchanged",
+    "Scoped Git whitespace check passed"
+  ],
+  "pass": true,
+  "validator_calls_in_this_verification": 0,
+  "model_calls": 0,
+  "successful_record_sha256": "edfceb41cc3fdcf94baa1c7070776069b8254408630553e09ce1b56003549de9",
+  "summary_sha256": "1db555384d945a7e2ea4b1e22394701bf4c9a611a5b1b44360f677c47b3ba7cd"
+}
