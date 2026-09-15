@@ -1,6 +1,6 @@
 # Better Loop local CLI
 
-`@better-loop/cli@0.4.0-draft.1` provides durable selected-repository journeys, local assessment, prompt proposals, static skill audits, contained instruction edits, and candidate/contribution preparation through the shared helpers. Default commands need no account or network.
+`@better-loop/cli@0.4.0-draft.2` provides durable selected-repository journeys, local assessment, prompt proposals, static skill audits, contained instruction edits, and candidate/contribution preparation through the shared helpers. Default commands need no account or network.
 
 Build the reviewed source workspace, then use `node packages/cli/dist/cli.js` or the installed `better-loop` bin. These draft packages are distributed as reviewed local archives; do not assume a registry release.
 
@@ -74,3 +74,5 @@ After reviewing the exact contribution, the explicit confirmed command may addit
 `better-loop journey view --state selected-state --output new-private.html` creates a standalone HTML snapshot with your saved next action/check, current practice states and history. Output is required, exclusive mode0600, and outside dedicated state. It reads saved checkpoints only: no live Git scan, checkpoint write, model call, network, scripts, external assets, analytics or automatic browser open. Open the chosen file yourself.
 
 Raw source excerpts are omitted by default; filenames, paths and saved report/outcome text remain private. Explicit `--include-changes --excerpt-bytes 4000 --excerpt-files 4` includes bounded saved excerpts. Do not upload the HTML or keep it in a public/synced location. Source before/after is distinct from reported task improvement. Practice states reuse the evidence-binding gate, including honest negative findings; views/copies/publication/spending earn nothing.
+
+`journey view --format json` is accepted for the stdout receipt; the selected output file remains HTML. The HTML export makes no additional model calls. Host analysis that reads selected context uses its configured model provider; do not extend the export-only claim to all processing. Draft.2 uses journey0.2.0-draft.2 whole-line excerpt selection and retains explicit omissions.

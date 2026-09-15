@@ -58,7 +58,7 @@ assert.equal(scanCandidate(report).valid,false);
 assert.equal(measurePair(200,150,"lower_is_better").relative_change_percent,25);
 assert.equal(validateContribution(report).valid,false);
 assert.equal(summarizeLocalMilestones([]).later_comparable_outcome,"not_established");
-assert.equal(JOURNEY_VERSION,"0.2.0-draft.1");
+assert.equal(JOURNEY_VERSION,"0.2.0-draft.2");
 assert.equal(typeof createScope,"function");
 assert.equal(typeof startHandoff,"function");
 assert.equal(typeof receiveHandoff,"function");

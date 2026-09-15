@@ -97,7 +97,8 @@ export function renderJourney(value: unknown): string {
 export async function journeyCommand(args: string[]) {
   const [action, ...rest] = args;
   if (action === "view") {
-    const options = parse(rest, ["state", "output", "include-changes", "excerpt-bytes", "excerpt-files"], ["include-changes"]);
+    const options = parse(rest, ["state", "output", "format", "include-changes", "excerpt-bytes", "excerpt-files"], ["include-changes"]);
+    if (options.format !== undefined && options.format !== "json") throw new Error("viewer_receipt_format_must_be_json");
     if (!options["include-changes"] && (options["excerpt-bytes"] || options["excerpt-files"])) throw new Error("include_changes_required_for_excerpts");
     return {
       value: await writeJourneyView({

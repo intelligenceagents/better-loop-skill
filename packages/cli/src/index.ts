@@ -7,7 +7,7 @@ import { EVIDENCE_VERSION, EVIDENCE_REVIEW_POLICY_VERSION } from "@better-loop/e
 import { HANDOFF_PROTOCOL } from "@better-loop/handoff";
 import { DISCOVERY_VERSION } from "@better-loop/discovery";
 
-export const CLI_VERSION = "0.4.0-draft.1" as const;
+export const CLI_VERSION = "0.4.0-draft.2" as const;
 export function capabilities() {
   return {
     protocol: "bl-capabilities-0.2", helper_version: CLI_VERSION,

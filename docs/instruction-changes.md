@@ -1,5 +1,13 @@
 # Repository instruction change record
 
+## Bounded excerpt repair after actual product use
+
+The actual Codex product delta used the updated skill/viewer successfully but could not assess behavior because narrow per-line allocation clipped imports, calls and return fields. A deterministic replay on the frozen actual public SKILL/viewer source reproduced132clipped lines in4,000bytes/two paths. The parent retains that failed quality result. The actual Claude unchanged return retained its checkpoint and created only a viewer; the first `--format json` attempt was rejected, the answer exceeded its180-word test budget, and export-only “nothing given to a model” wording was ambiguous. These prior attempts remain evidence, not rewritten passes.
+
+User-authorized draft.2 changes prioritize whole changed lines/coherent windows with explicit omissions, accept `view --format json` for its JSON receipt, and distinguish no additional export model calls from this host's configured-provider processing. CLI0.4.0-draft.2/journey0.2.0-draft.2 keep all other package/schema/state versions unchanged. The skill/detector diff updates those versions and the two targeted guidance sentences; no global installation/configuration changes. The worker makes zero model calls. The parent's separately budgeted actual repair calls remain separate validation; exact word limits are still not guaranteed.
+
+Rollback: restore only the affected skill/detector paragraphs from9470623 (and the corresponding compatible helper package versions), preserving frozen failed outputs, local history and unrelated work. A code rollback is separate from state deletion. No privacy/evidence/handoff/contracts source or original benchmark results are edited.
+
 ## Daily journey and readonly viewer
 
 Authorized scope: simplify the Better Loop front door and return guidance, provide one next action/check and static copy requests for both hosts, and add an explicit private local viewer. CLI0.4.0-draft.1 and journey0.2.0-draft.1 preserve the existing local state; other package versions stay pinned. The scoped skill/detector/host metadata/reference diff is reviewable in Git. No global instructions or installed skill copies are changed.

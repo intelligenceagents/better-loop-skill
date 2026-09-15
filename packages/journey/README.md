@@ -1,6 +1,6 @@
 # Better Loop private journey
 
-`@better-loop/journey@0.2.0-draft.1` retains a person's explicitly selected repository scope, bounded tracked text, deterministic diagnosis, actual host report and user-reported follow-up on their laptop. It makes no model or service request.
+`@better-loop/journey@0.2.0-draft.2` retains a person's explicitly selected repository scope, bounded tracked text, deterministic diagnosis, actual host report and user-reported follow-up on their laptop. It makes no model or service request.
 
 Choose exact Git worktree roots and a new dedicated state directory. The documented default is `<selected-root>/.better-loop/journey`; multiple roots can share an explicitly selected external directory. The package does not search for repositories, state, session histories or previous host configuration. Reuse the approved state path on later invocations.
 
@@ -48,3 +48,5 @@ Arbitrary symlink chains are rejected. On macOS only the verified system root al
 ## Readonly saved review
 
 `reviewJourney(stateDirectory, {includeChanges?, excerptBytes?, excerptFiles?})` reads a coherent saved history and returns a private `bl-local-journey-view-0.1` projection. It does not reread live repository files, run Git, inspect another scope, or create state/progress. Existing private state stays compatible; no wire or contribution schema changed. Default change summaries omit source text (at most200 filenames); explicitly included excerpts default to4files/4000bytes with the existing bounded multi-hunk renderer. The comparison is the most recent saved assessment, not a claim that current disk contents are unchanged. Paths, history and report text remain private.
+
+Draft.2 changes only excerpt presentation: keep complete hunks first, then a few contiguous windows of whole lines from larger hunks. Removed/added/context omissions and gaps are explicit; over-budget lines can remain entirely unshown. Group boundaries are readability hints, not parsed syntax or semantic review. Unseen callees and omitted additions remain unassessed; excerpts are not apply-ready patches. State/comparability/evidence chronology stay compatible.

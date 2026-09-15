@@ -71,7 +71,7 @@ function diffMarkup(change: JourneyReview["comparison"]["changes"][number]) {
   const sample = change.excerpt_format !== "unified_hunks";
   return `<details class="change-detail"><summary><code>Repository ${change.repository + 1} · ${escape(change.path)}</code><span class="tag">${escape(change.status)}</span></summary>
     <p class="excerpt-note">${sample ? "Bounded samples or unavailable evidence; do not interpret these as added/removed lines." : "Saved line-diff hunks for review; unchanged middle lines are context or omitted."}
-    ${change.excerpt_truncated ? "The excerpt is clipped; omitted text cannot establish a removal." : ""}
+    ${change.excerpt_truncated ? "The excerpt omits lines or hunks; unseen text cannot establish a removal." : ""}
     ${change.omitted_hunks ? `${change.omitted_hunks} hunks omitted.` : ""}</p>
     <pre class="diff">${change.excerpt.split("\n").map(line => `<span class="${sample ? "sample" : line.startsWith("@@") ? "hunk" : line.startsWith("+") ? "add" : line.startsWith("-") ? "remove" : "context"}">${escape(line) || " "}</span>`).join("")}</pre></details>`;
 }
@@ -178,7 +178,7 @@ export function renderJourneyView(review: JourneyReview): string {
       <div class="prompt-grid">${(["codex", "claude_code"] as const).map(host => `<details class="prompt-box"><summary>${host === "codex" ? "Continue in Codex" : "Continue in Claude Code"}</summary>
         <textarea readonly spellcheck="false" aria-label="${host === "codex" ? "Codex" : "Claude Code"} continuation request">${escape(prompt(host))}</textarea><small>Uses the exact selected local state above. Requires your installed Better Loop skill and helper.</small></details>`).join("")}</div></section>
     <div class="privacy"><div><strong>This HTML is a private local snapshot.</strong>It contains saved report text, selected paths and ${review.comparison.excerpts_included ? "explicitly selected source excerpts" : "filenames, with raw source omitted"}. Keep it out of public or synced locations. This viewer has no scripts, external assets, analytics or network requests.</div>
-      <div><strong>Provider processing and sharing are separate.</strong>The viewer makes no model call. Prior or future host analysis may send selected material to its configured provider. Sharing needs a separate minimized story/capsule, exact review and explicit approval. Do not upload this HTML or journey state.</div></div>
+      <div><strong>Provider processing and sharing are separate.</strong>The HTML export makes no additional model calls. Host analysis that reads selected context uses its configured model provider. Sharing needs a separate minimized story/capsule, exact review and explicit approval. Do not upload this HTML or journey state.</div></div>
     <footer class="footer"><span>Better Loop · Improvement first. Sharing optional.</span><span>Read-only snapshot · no new assessment or practice credit</span></footer>
     </main></div></body></html>`;
 }

@@ -14,11 +14,11 @@ test("distant one-line edits form separate hunks and never remove unchanged midd
   assert.ok(Buffer.byteLength(diff.text) <= 800);
   assert.equal(diff.omitted_hunks, 0);
 });
-test("long edited lines share the budget between removed and added sides", () => {
+test("oversize changed lines are omitted whole instead of presenting clipped identifiers", () => {
   const diff = renderDeltaExcerpt("OLD_BEGIN " + "a".repeat(12000), "NEW_BEGIN " + "b".repeat(12000), 300);
-  assert.match(diff.text, /^-OLD_BEGIN/m);
-  assert.match(diff.text, /^\+NEW_BEGIN/m);
-  assert.match(diff.text, /line clipped/);
+  assert.doesNotMatch(diff.text, /OLD_BEGIN|NEW_BEGIN|line clipped|\[clipped\]/);
+  assert.equal(diff.omitted_hunks, 1);
+  assert.match(diff.text, /unassessed, not absent/);
   assert.equal(diff.truncated, true);
   assert.ok(Buffer.byteLength(diff.text) <= 300);
 });
@@ -55,4 +55,45 @@ test("identical lines are empty evidence; additions/deletions preserve the actua
   assert.match(added.text, /^\+actual addition/m); assert.doesNotMatch(added.text, /^-actual addition/m);
   const removed = renderDeltaExcerpt("actual removal", null, 200);
   assert.match(removed.text, /^-actual removal/m); assert.doesNotMatch(removed.text, /^\+actual removal/m);
+});
+
+test("a complete added statement cannot imply an omitted oversize removed statement was absent", () => {
+  const diff = renderDeltaExcerpt("old long statement " + "x".repeat(12000), "return actualNewResult;", 500);
+  assert.match(diff.text, /^\+return actualNewResult;$/m);
+  assert.match(diff.text, /removed 1, added 0/);
+  assert.match(diff.text, /unassessed, not absent/);
+  assert.doesNotMatch(diff.text, /line clipped|\[clipped\]/);
+});
+
+test("bounded actual public SKILL/viewer changes preserve coherent statements under the native 4k/two-path selection", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const { createHash } = await import("node:crypto");
+  const selected = JSON.parse(await readFile("tests/fixtures/journey-real-public-source.json", "utf8")) as {
+    files: { path: string; before: string | null; after: string; before_sha256: string | null; after_sha256: string }[];
+  };
+  let remaining = 4000;
+  const result = selected.files.map((file, index) => {
+    assert.equal(createHash("sha256").update(file.after).digest("hex"), file.after_sha256);
+    if (file.before !== null) assert.equal(createHash("sha256").update(file.before).digest("hex"), file.before_sha256);
+    const rendered = renderDeltaExcerpt(file.before, file.after, Math.floor(remaining / (selected.files.length - index)));
+    remaining -= Buffer.byteLength(rendered.text);
+    assert.doesNotMatch(rendered.text, /line clipped|\[clipped\]|\uFFFD/);
+    assert.match(rendered.text, /hunk lines omitted by budget/);
+    assert.match(rendered.text, /unassessed, not absent/);
+    for (const line of rendered.text.split("\n")) {
+      if (line.startsWith("+")) assert.ok(file.after.split("\n").includes(line.slice(1)), "Every displayed added line must be exact and complete.");
+      if (line.startsWith("-")) assert.ok(file.before?.split("\n").includes(line.slice(1)), "Every displayed removed line must be exact and complete.");
+    }
+    return rendered;
+  });
+  assert.ok(remaining >= 0);
+  assert.match(result[0]!.text, /^\+Make progress you can prove:.*Sharing is optional\.$/m);
+  assert.match(result[0]!.text, /^-Help the person make the next task better\..*private host tools\.$/m);
+  // Actual implementation, from its declaration through its returned no-side-effect receipt.
+  const source = selected.files[1]!.after;
+  const actualFunction = source.slice(source.indexOf("export async function writeJourneyView"));
+  const shown = result[1]!.text.split("\n").filter(line => line.startsWith("+")).map(line => line.slice(1)).join("\n");
+  assert.ok(shown.includes(actualFunction.trimEnd()), "The real writer must remain one coherent complete function, not distributed fragments.");
+  assert.match(shown, /viewer_output_must_be_outside_state/);
+  assert.match(shown, /await writePrivateOutput\(output, renderJourneyView\(review\)\)/);
 });

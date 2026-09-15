@@ -151,13 +151,14 @@ test("separate CLI view process writes HTML and only a receipt; no new checkpoin
   const f = await fixture(t); await useJourney({ ...f, host: "codex" });
   const before = await inspectJourney(f.stateDirectory), output = join(f.base, "cli-view.html");
   const invoke = (args: string[]) => execFileSync(process.execPath, [resolve("packages/cli/dist/cli.js"), "journey", "view", "--state", f.stateDirectory, ...args], { encoding: "utf8", stdio: "pipe" });
-  const receipt = JSON.parse(invoke(["--output", output]));
+  const receipt = JSON.parse(invoke(["--output", output, "--format", "json"]));
   assert.equal(receipt.state, "written_private_html_view");
   assert.equal(receipt.checkpoint_id, before.checkpoint_id);
   assert.match(await readFile(output, "utf8"), /^<!doctype html>/);
   assert.doesNotMatch(await readFile(output, "utf8"), /export const line0/);
   assert.equal((await inspectJourney(f.stateDirectory)).checkpoint_id, before.checkpoint_id);
   assert.throws(() => invoke([]));
+  assert.throws(() => invoke(["--output", join(f.base, "bad-format.html"), "--format", "markdown"]));
   assert.throws(() => invoke(["--output", join(f.base, "bad.html"), "--excerpt-bytes", "1000"]));
 });
 
