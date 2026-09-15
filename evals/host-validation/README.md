@@ -1,5 +1,7 @@
 # Actual host validation
 
+Current extension evidence is in [real returning-host validation](returning-journey.md): six native Codex/Claude sessions on actual selected repository work, with cross-host recall, changed-only assessment, unchanged reuse and retained failures. The [frozen public-work benchmark](../public-work-benchmark/RESULTS.md) is a separate actual one-pair result. Earlier experiments below remain historical and retain their original input classification and limitations.
+
 These records separate actual model executions from the origin of the task data. The earlier pilot and privacy probes used authored synthetic tasks. Later capability checks assessed actual Better Loop repository work after the user requested real evidence. No fictional task is a community contribution.
 
 ## Results retained on 2026-09-14
@@ -32,7 +34,7 @@ Per-model input, output, cache-read and cache-write telemetry is retained, inclu
 
 ## Execution and budgets
 
-The recorded runtime is Claude Code 2.1.269. Native Codex model behavior has not been exercised; Codex adapter tests establish selected-format behavior only. Native Claude sessions used an isolated temporary plugin and only the selected reads, Skill tool and exact helper detector command. Hooks, other MCP tools and session persistence were disabled. No global skill installation, assessment upload or production request was made.
+The runtime of this earlier evaluation was Claude Code2.1.269. It did not exercise native Codex; subsequent actual Codex sessions are in the [returning-host report](returning-journey.md). Native Claude sessions in this earlier evaluation used an isolated temporary plugin and only the selected reads, Skill tool and exact helper detector command. Hooks, other MCP tools and session persistence were disabled. No global skill installation, assessment upload or production request was made.
 
 The initial budget allowed 24 invocations at 120 seconds and a host cost cap of USD0.50 each. It covered one authentication smoke call, four semantic probes, 12 pilot calls, four local application semantic calls, and three capability calls. The initial protocol described synthetic-only data; the user subsequently selected real repository work for the capability phase. That scope change is explicit here, not retroactively edited into the frozen protocol.
 

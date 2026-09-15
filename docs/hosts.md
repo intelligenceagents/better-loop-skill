@@ -40,12 +40,14 @@ For returning repository work, [choose a local journey scope](journey.md) once a
 
 No global configuration is edited by this repository. For an update, compare the installed directory with the reviewed release, retain the previous copy, then replace only that directory. Rollback restores that copy. Uninstall removes only the chosen `.claude/skills/better-loop` or `.agents/skills/better-loop` directory.
 
-| Surface | Local implementation | Separate validation needed |
+| Surface | Implementation and executed evidence | Separate validation needed |
 |---|---|---|
-| Claude Code | Standard skill layout, capability detection, selected portable/JSONL adapter with synthetic equivalence tests | Host reasoning/trigger outcomes and independent domain calibration |
-| Codex | Same skill, OpenAI display metadata, selected portable/exec/rollout adapter with synthetic equivalence tests | Host reasoning/trigger outcomes and independent domain calibration |
-| Node | Local assessment, rewrite, audit, contained instruction apply/rollback, privacy-helper integration | Real provider review evidence and controlled efficacy evaluation |
-| Browser | Bundled validators/canonicalization tested in Chromium with restrictive CSP | Privacy review, publication, all-browser compatibility |
+| Claude Code | Installed skill, selected adapters, real single/multiple-scope sessions, cross-host recall, final changed/unchanged checks | Broad trigger reliability, factual accuracy, brevity and independent domain calibration |
+| Codex | Same skill, OpenAI metadata, selected adapters, actual baseline and returning multiple-scope session | Final repaired-source model interpretation, broad trigger reliability and independent domain calibration |
+| Node | Local assessment, journey, rewrite, audit, scoped edits/rollback, full contribution preparation; two actual final-helper semantic passes | Controlled efficacy evaluation and privacy review of each new contribution |
+| Browser | Chromium validators and local handoff protocol; joint application preview and explicit publication workflows in isolated tests | Production acceptance and all-browser compatibility |
+
+The [returning-host report](../evals/host-validation/returning-journey.md) retains all six sessions and failures. The two actual semantic passes allowed an unapproved work-derived draft; they did not grant human consent or publish it. Synthetic adapter and transport tests remain separate engineering evidence.
 
 Running a skill on your laptop may send selected material to your configured model provider. The deterministic assessment helper itself is offline. Explicit reviewer subprocesses receive only an already-minimized candidate or whole minimized contribution and use their configured provider/authentication boundary. No raw evidence is sent to Better Loop by this package. Optional exact contribution handoff runs a temporary loopback preview and requires the user to transfer it to a chosen website window; no automatic publication follows. Offline model inference is a separate capability requiring a compatible local model. See [current status](../STATUS.md) for executed evidence and limits; documentation/discovery is not a host behavior test.
 
