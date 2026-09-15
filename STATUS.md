@@ -1,8 +1,32 @@
 # Implementation status
 
-Updated: 2026-09-15. Current local implementation is ready for review; packages have not been published to a registry and the production service is inactive.
+Updated: 2026-09-15. The current local product stage is ready for review. Packages remain reviewed local archives, with no registry release. Website publication has separate application authorization and release checks.
 
-## Current release: returning journeys and capability evidence
+## Current product stage: private progress viewer and readable return evidence
+
+Verified runtime: `60fc08746529f272361be97ac04d88ceebc4c2c4`. CLI is `0.4.0-draft.3`; journey is `0.2.0-draft.3`. Other package versions, public contracts and the private state format remain unchanged. Later documentation-only commits do not change this runtime/package pin.
+
+“Make progress you can prove” means one useful proposed change and acceptance check, durable history, and honestly recorded comparable outcomes. It is not a guarantee of savings, human ability or improvement. The [private progress viewer](docs/journey.md#see-your-saved-progress) was exercised on actual selected Better Loop repository state. It shows one next move/check, current and historical reports, saved source changes separately from task outcomes, and evidence-bound reflection/check/finding states, including negative results. Unknown metrics remain unknown; copies, spending and publication earn no competence credit.
+
+`journey view --state ... --output new-private.html [--format json]` creates a new HTML file with mode `0600` outside the selected state directory; the optional format controls its JSON receipt. It reads saved history only, omits raw source by default, and has no scripts, external assets, analytics, network/model calls or automatic browser open. Keep this HTML private. Host analysis of selected context uses its configured provider; the export adds no model call. [Static requests for both hosts](docs/host-prompts.md) cover first use, exact multiple repositories, return, viewer and optional exact sharing.
+
+| Verified runtime check | Result at `60fc087` |
+|---|---|
+| Fresh archive of exact Git source | Offline npm ci, build, typecheck and full npm check PASS; Node 22.10.0 / npm 10.9.0 |
+| TypeScript tests | 578: root 299, privacy 67, measurement 99, evidence 24, discovery 77, handoff 12 |
+| Contract parity and local links | 79 parity cases; 120 links at the runtime commit |
+| Ten-package consumers | All 10 archives PASS offline ESM/CJS, both declaration modes and installed viewer consumers |
+| Private HTML QA | Actual saved repository state; desktop/tablet/mobile, keyboard details/copy/anchors; no scripts/resources/HTTP requests or state mutation |
+| Readability and EOF controls | 13 focused diff/EOF tests, including frozen actual public SKILL/viewer source; 75 focused journey/CLI tests PASS |
+| Independent EOF recheck | All 16 targeted EOF/normal-control probe groups PASS; reported F1 resolved |
+
+The independent EOF recheck used `diff.ts` SHA-256 `928962a5c9ef30d48549dd0c4e891a79ad9478e43a27f66d977492da6bd437a8`, matching `60fc087`. Empty files have zero source lines, real blank lines remain content, and unterminated lines carry an explicit marker without inflating hunk coordinates. The marker counts toward the byte cap. Earlier clipping and EOF findings remain in their original records; the recheck closes the reported bounded defect.
+
+Coordinator-recorded product validation used **six native Codex/Claude sessions plus eight configured semantic-review calls: 14 calls total**, on scoped actual project-operator workflows. The final two native sessions used `d266162`: Codex reviewed coherent changed lines/explicit omissions and saved its report/HTML; Claude returned to the identical checkpoint without a new report and created only HTML. Both stated provider boundaries explicitly. Prior rejected flags, clipped excerpts, overlong replies and ambiguous provider wording are retained. These runs are operational evidence, not a full human study or proof of general skill efficacy. The later `60fc087` patch changes only pure EOF handling and compatible version pins; it made no new model calls. Exact response-length reliability remains a known limit.
+
+The [retrospective attribution-repair proof](evals/public-repair-proof/RESULTS.md) executed actual public validator versions on known authored probes: **16/24 → 24/24, eight repaired, zero regressed**. It is a specific code regression result, separate from the [neutral public model benchmark](evals/public-work-benchmark/RESULTS.md), which retained equal quality and 1.05% more reported tokens in one pair. It establishes no human gain, held-out generalization or savings. It must not be presented as measurement of the different private exact-content/purpose-binding repair story, whose unavailable original source leaves that episode unmeasured.
+
+## Historical release: returning journeys and capability evidence
 
 Runtime source `66ae7d7ba941d5910ff9485b8b91b3cc977cc6d0` adds explicit single/multiple-repository scopes, durable private checkpoints, cross-host report recall, bounded changed-only excerpts, and evidence-bound recommendation follow-up. Local milestones distinguish reflection, later comparable checks and useful negative findings. Copies, repeated reports, disclosure, spending and publishing volume earn no ability credit.
 
@@ -10,7 +34,7 @@ CLI is `0.3.0-draft.1`; journey is `0.1.0-draft.1`; evidence, discovery and hand
 
 The complete minimized contribution and four purposes are reviewed together. Confirmation is bound to the original in-process preparation; edited bytes or purposes invalidate it. Optional browser handoff sends no payload in URLs and imports only after a user action into the website's in-memory preview. The independent server repeats admission checks. The helper is not an identity, employment-decision or background-upload service.
 
-| Current verification | Result |
+| Historical verification | Result |
 |---|---|
 | Fresh archive of exact runtime Git source | Offline npm ci, build, types, full check and installed consumers PASS |
 | TypeScript behavior cases | 557: root278, privacy67, measurement99, evidence24, discovery77, handoff12 |
@@ -20,7 +44,7 @@ The complete minimized contribution and four purposes are reviewed together. Con
 | Native installed skill | Six real sessions across Codex and Claude Code; initial and returning single/multiple scopes exercised |
 | Real public-work benchmark | One frozen pair, both12/12 cases and3/3 limits; guidance used1.05% more tokens |
 
-Current checks used Node22.10.0, npm10.9.0 and Python3.11.6; earlier selected-Node-patch checks below remain historical. Native versions were Codex0.154.0 and Claude Code2.1.270. The final two Claude sessions verified repaired changed excerpts and unchanged reuse on the same committed source. The final unchanged answer was still324 whitespace-delimited words despite concise guidance; model wording and exact length are not guaranteed. Earlier omitted-callee claims, provider-boundary wording, alias recovery and misleading old diff excerpts are retained in the [returning-host report](evals/host-validation/returning-journey.md).
+Historical checks used Node22.10.0, npm10.9.0 and Python3.11.6; earlier selected-Node-patch checks below remain historical. Native versions were Codex0.154.0 and Claude Code2.1.270. The final two Claude sessions verified repaired changed excerpts and unchanged reuse on the same committed source. The final unchanged answer was still324 whitespace-delimited words despite concise guidance; model wording and exact length are not guaranteed. Earlier omitted-callee claims, provider-boundary wording, alias recovery and misleading old diff excerpts are retained in the [returning-host report](evals/host-validation/returning-journey.md).
 
 The [public benchmark report](evals/public-work-benchmark/RESULTS.md) is actual execution evidence, separate from native journey tests and isolated fixtures. No measured quality gain, general efficiency benefit, causal speedup, human ability, learning transfer or hiring validity is established. Missing cohort evidence produces no statistics; the minimum20-owner threshold and rounding are privacy heuristics, not anonymity guarantees.
 
@@ -104,6 +128,6 @@ The [prior pilot analysis](evals/host-validation/results/benchmark-analysis.json
 
 The [actual native Claude evaluation](evals/host-validation/results/capabilities.json) used selected real Better Loop repository changes and checks. The positive review loaded the installed skill, ran only the authorized capability detector and selected reads, and had no permission denials. The ordinary architecture question used no skill or tools. Behavioral boundaries passed, but length limits failed: 953 words against a 700-word request, and 909 against 750. That evaluated snapshot also exposed ambiguous brand-dependent triggering and an invitation rule that did not explicitly respect upfront declines. Two retained real prompt follow-ups invoked the skill without a brand name, used only the detector, honored the no-sharing request and made no edits. They still exceeded the requested limit: 290 and then 258 whitespace-delimited words against 250. The final rewrite preserved scope without inserting new approval or stop-on-failure rules. Exact length compliance remains a known host limitation, not an implemented guarantee; 250 words is a test condition, not a product-wide limit. See the [host evidence report](evals/host-validation/README.md).
 
-Seven-family automated cases remain unit coverage, not field validation. M2 cue rules are conservative English development heuristics, not independently calibrated classifiers; native adapters implement selected format subsets, not arbitrary full histories. Native Codex model behavior was not established by that earlier Claude run; the current returning-host report records subsequent actual Codex sessions. Static audit findings remain behavioral hypotheses. Filesystem safeguards are not an OS sandbox against a malicious same-user process racing syscalls.
+Seven-family automated cases remain unit coverage, not field validation. M2 cue rules are conservative English development heuristics, not independently calibrated classifiers; native adapters implement selected format subsets, not arbitrary full histories. Native Codex model behavior was not established by that earlier Claude run; the returning-host report records subsequent actual Codex sessions. Static audit findings remain behavioral hypotheses. Filesystem safeguards are not an OS sandbox against a malicious same-user process racing syscalls.
 
 MIT remains unchanged. The founder selected [voluntary integration and reuse notification](docs/corporate-integration-and-reuse.md), with a public issue form for non-confidential notices. No mandatory registration, telemetry, corporate tenant, private cloud library, internal uploader, package registry publication, production activation or deployment is introduced. GitHub private vulnerability reporting is enabled and the setting verified; [SECURITY.md](SECURITY.md) explains the route and response-time limitation.

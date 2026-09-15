@@ -1,14 +1,18 @@
 # Better Loop
 
-Better Loop helps knowledge workers review selected AI-assisted work and improve the next attempt. Private coaching comes first; sharing is optional. The intended public learning destination is better-loop.com.
+**Make progress you can prove.** Better Loop helps knowledge workers turn selected AI-assisted work into one useful proposed change, an acceptance check and a history of actual results. Private coaching comes first; sharing is optional. The intended public learning destination is better-loop.com.
 
 Choose one repository or an explicit set in Claude Code or Codex. A [local journey](docs/journey.md) remembers that scope, earlier assessments and your feedback. Return to the same selected state to review changed evidence and choose the next acceptance check. Unchanged work creates no new assessment or progress credit.
+
+The [private local progress viewer](docs/journey.md#see-your-saved-progress) presents that history and next check in a standalone HTML file at your explicit output path. It reads saved state without creating a new assessment, omits raw source by default, and has no scripts, external assets, network or automatic browser open. Keep the HTML private; source edits are not evidence of task improvement. [Copy a host request](docs/host-prompts.md) to start, return or create a viewer. The promise is recorded checks and useful follow-up, not guaranteed human gains.
 
 The workspace also provides selected-export adapters, descriptive assessment, prompt proposals, static skill audits, and scoped instruction edits with exact-byte rollback. Optional sharing prepares a minimized story and [capability evidence](packages/evidence/README.md), with separate benchmark, community-learning and role-discovery choices. Two configured semantic reviews and your exact confirmation are required. An optional [browser handoff](packages/handoff/README.md) opens a local preview; publication remains a separate website action. Passing a contract check does not establish privacy, truth, human judgment, or improvement.
 
 Start with [host installation](docs/hosts.md), [the local CLI](packages/cli/README.md), [the skill](skills/better-loop/SKILL.md), [the behavioral foundation](skills/better-loop/references/foundation.md), and [privacy boundaries](skills/better-loop/references/privacy.md). Both adapters have synthetic semantic-equivalence tests. Deterministic cue tests do not establish model behavior, independent classifier calibration, or domain validity.
 
 The [real returning-host checks](evals/host-validation/returning-journey.md) exercised selected repository work in both native hosts, including cross-host recall, changed-work assessment and unchanged reuse. All failures are retained. The [frozen public-work benchmark](evals/public-work-benchmark/RESULTS.md) measured equal quality and 1.05% more reported tokens with guidance in one pair; it establishes no savings or hiring validity. [Role evidence, descriptive cohorts and milestones](packages/discovery/API.md) keep relevance, observed human actions, reported claims, quality and missing evidence separate.
+
+The [retrospective public repair proof](evals/public-repair-proof/RESULTS.md) shows a specific validator repair: 16/24 → 24/24 known authored checks, eight repaired and none regressed. It is separate from the neutral model benchmark and does not establish human ability, general efficacy or savings. The [current status](STATUS.md) identifies verified runtime `60fc087`, its private viewer, final package versions and retained native limitations.
 
 Use Node 22 (the selected patch is in `.nvmrc`), npm 10.9.0, and Python 3.11 or later:
 
