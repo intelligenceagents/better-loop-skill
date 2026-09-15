@@ -1,7 +1,7 @@
 import type { Host, TaskContext } from "@better-loop/core";
 import type { DeltaArtifact, DeltaReport, RecommendationOutcome } from "./diagnosis.js";
 
-export const JOURNEY_VERSION = "0.1.0-draft.1" as const;
+export const JOURNEY_VERSION = "0.2.0-draft.1" as const;
 export const JOURNEY_SCHEMA = "bl-private-journey-0.1" as const;
 export const COLLECTION_POLICY = "bl-tracked-text-0.1" as const;
 export const LIMITS = Object.freeze({

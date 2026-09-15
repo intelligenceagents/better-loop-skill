@@ -7,7 +7,7 @@ import { EVIDENCE_VERSION, EVIDENCE_REVIEW_POLICY_VERSION } from "@better-loop/e
 import { HANDOFF_PROTOCOL } from "@better-loop/handoff";
 import { DISCOVERY_VERSION } from "@better-loop/discovery";
 
-export const CLI_VERSION = "0.3.0-draft.1" as const;
+export const CLI_VERSION = "0.4.0-draft.1" as const;
 export function capabilities() {
   return {
     protocol: "bl-capabilities-0.2", helper_version: CLI_VERSION,
@@ -27,6 +27,7 @@ export function capabilities() {
       live_learning_endpoint: "explicit_service_only_no_default",
       explicit_repository_journey: true, persisted_host_assessment: true,
       delta_only_followup: true, unchanged_assessment_credit: false,
+      local_progress_viewer: "explicit_private_html_snapshot_no_scripts_or_network",
       capability_contribution: true, contribution_review_policy: EVIDENCE_REVIEW_POLICY_VERSION,
       browser_handoff: HANDOFF_PROTOCOL, browser_handoff_activation: "explicit_after_exact_contribution_confirmation",
     },
@@ -42,3 +43,4 @@ export { planInstructionChange, applyInstructionChange, readSelectedFile, writeP
 export { configuredReviewers } from "./reviewers.js";
 export { learnFromService } from "./learning-service.js";
 export { journeyCommand, journeyProgress, renderJourney } from "./journey-cli.js";
+export { renderJourneyView, writeJourneyView, practiceStates } from "./journey-view.js";

@@ -1,5 +1,13 @@
 # Repository instruction change record
 
+## Daily journey and readonly viewer
+
+Authorized scope: simplify the Better Loop front door and return guidance, provide one next action/check and static copy requests for both hosts, and add an explicit private local viewer. CLI0.4.0-draft.1 and journey0.2.0-draft.1 preserve the existing local state; other package versions stay pinned. The scoped skill/detector/host metadata/reference diff is reviewable in Git. No global instructions or installed skill copies are changed.
+
+Guidance retains changed-only evidence, explicit scope/state selection, actual host-report recall, outcome binding and provider disclosure. The viewer reads saved history only, excludes raw source by default, writes exclusive0600 HTML outside state, and never auto-opens or makes network/model calls. Source edits remain separate from task outcomes. Three practice states use explicit reflection and later comparable bound evidence; none rewards copies, spending, publishing or presumed ability. Known native length failures and unsupported prior claims remain in their original evidence records. Shorter guidance and static prompts do not establish new host-validation success. Parent operates any actual native validation; this implementation worker makes no model calls.
+
+Rollback: restore only this release’s `skills/better-loop/SKILL.md`, `scripts/detect-helper.mjs`, `agents/openai.yaml` and added `references/host-prompts.json` from the prior reviewed source `8479146`, or revert their scoped diff. Preserve actual validation records and unrelated work. A package rollback is separate; do not delete/reset private journey state or restore global configuration as part of instruction rollback.
+
 ## Selected-repository journeys and extended contributions
 
 Authorized scope: add local durable current/multiple-repository assessment, actual host-report recall, delta-only coaching, explicit recommendation follow-up, and root CLI integration of separately owned evidence/discovery/handoff packages. This changes only `skills/better-loop/` guidance, its host metadata/detector, and repository-local documentation. Source-root AGENTS/CLAUDE and global host configuration remain unchanged. The source diff is the complete reviewable instruction change.

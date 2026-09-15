@@ -63,6 +63,51 @@ export async function inspectJourney(stateDirectory: string, options: { includeE
 export async function history(stateDirectory: string) {
   return (await readHistory(selectedPath(stateDirectory))).map(summary);
 }
+/** Read one coherent saved history. Never collects live Git/source or changes progress. */
+export async function reviewJourney(stateDirectory: string, options: {
+  includeChanges?: boolean; excerptBytes?: number; excerptFiles?: number;
+} = {}) {
+  const path = selectedPath(stateDirectory);
+  const bytes = options.excerptBytes ?? 4000, files = options.excerptFiles ?? 4;
+  if (options.includeChanges !== undefined && typeof options.includeChanges !== "boolean") fail("invalid_excerpt_selection");
+  if (!Number.isInteger(bytes) || bytes < 0 || bytes > LIMITS.excerptBytes ||
+      !Number.isInteger(files) || files < 1 || files > 40) fail("invalid_excerpt_selection");
+  const records = await readHistory(path), current = records[0]!;
+  const assessedIndex = records.findIndex(record => record.checkpoint.assessment?.id === current.checkpoint.assessment?.id &&
+    ["baseline", "delta", "invalidated"].includes(record.checkpoint.event));
+  const assessed = assessedIndex < 0 ? null : records[assessedIndex]!.checkpoint;
+  const earlier = assessed?.event === "delta" ? records[assessedIndex + 1]?.checkpoint ?? null : null;
+  const delta = assessed?.snapshots ? changes(earlier?.snapshots ?? null, assessed.snapshots) : [];
+  const selected = delta.slice(0, options.includeChanges ? files : 200);
+  let remaining = bytes;
+  const visible = selected.map(({ before, after, ...change }, index) => {
+    if (!options.includeChanges) return { ...change, excerpt: "", excerpt_truncated: false };
+    const allocation = Math.floor(remaining / (selected.length - index));
+    const rendered = renderDeltaExcerpt(before, after, allocation);
+    const excerpt = change.status === "unavailable"
+      ? "Previously selected evidence is unavailable; no content judgment.".slice(0, allocation) : rendered.text;
+    remaining -= Buffer.byteLength(excerpt);
+    return { ...change, excerpt, excerpt_truncated: rendered.truncated,
+      excerpt_format: change.status === "unavailable" ? "unavailable" as const : rendered.format,
+      omitted_hunks: rendered.omitted_hunks };
+  });
+  return {
+    schema_version: "bl-local-journey-view-0.1" as const,
+    classification: "private_local_view_not_share_candidate" as const,
+    generated_at: new Date().toISOString(), state_directory: path,
+    current: summary(current), history: records.map(summary),
+    comparison: {
+      state: assessed?.event ?? "unassessed",
+      before_saved_at: earlier?.created_at ?? null, after_saved_at: assessed?.created_at ?? null,
+      source_changes_are_task_improvement: false as const,
+      excerpts_included: options.includeChanges === true,
+      changes: visible, omitted_changes: delta.length - visible.length,
+      excluded: assessed?.snapshots?.map(snapshot => snapshot.excluded) ?? [],
+    },
+    state_changed: false as const, model_called: false as const, network_used: false as const,
+  };
+}
+export type JourneyReview = Awaited<ReturnType<typeof reviewJourney>>;
 export async function updateScope(input: { stateDirectory: string; expectedCheckpoint: string; roots: string[]; task: TaskContext }) {
   const path = selectedPath(input.stateDirectory);
   const roots = await selectRoots(input.roots);

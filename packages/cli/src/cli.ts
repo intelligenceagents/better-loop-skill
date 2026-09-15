@@ -21,6 +21,7 @@ const HELP = `Better Loop local helper
   better-loop journey record-assessment --state selected-directory --expected checkpoint-id --host codex|claude_code --input actual-host-report.json
   better-loop journey outcome --state selected-directory --expected checkpoint-id --recommendation report-id --status not_tried|declined|helped|did_not_help|inconclusive [--note-file selected-note.txt] [--acknowledge --origin work_derived|synthetic] [--check selected-followup.json --check-evidence selected-actual-check.txt]
   better-loop journey inspect|history|progress --state selected-directory [--format json]
+  better-loop journey view --state selected-directory --output new-private-report.html [--include-changes --excerpt-bytes 4000 --excerpt-files 4]
   better-loop journey update --state selected-directory --expected checkpoint-id --root exact-repository [--root another-repository] --task selected-task.json
   better-loop journey reset --state selected-directory --scope-id exact-scope-id --expected checkpoint-id
   better-loop journey forget --state selected-directory --scope-id exact-scope-id

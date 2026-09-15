@@ -28,7 +28,8 @@
     "check": "npm run build && npm run typecheck && npm test && npm run test:privacy && npm run test:measurement && npm run test:extensions && npm run check:seed && npm run test:parity && npm run check:artifact",
     "pack:contracts": "npm run build:contracts && npm pack --workspace @better-loop/contracts --pack-destination artifacts",
     "pack:local": "npm run build && node tools/pack-local.mjs",
-    "test:extensions": "npm test --workspace @better-loop/evidence && npm test --workspace @better-loop/discovery && npm test --workspace @better-loop/handoff"
+    "test:extensions": "npm test --workspace @better-loop/evidence && npm test --workspace @better-loop/discovery && npm test --workspace @better-loop/handoff",
+    "test:journey-view": "node tools/check-journey-view.mjs"
   },
   "devDependencies": {
     "@noble/hashes": "2.4.0",

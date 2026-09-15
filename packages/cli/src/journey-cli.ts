@@ -3,13 +3,14 @@ import { literalText } from "@better-loop/core";
 import type { Host } from "@better-loop/core";
 import { parseTaskContext } from "@better-loop/adapters";
 import {
-  activeRecommendation, createScope, forgetJourney, history, inspectJourney, recordAssessment, recordOutcome,
+  createScope, forgetJourney, history, inspectJourney, recordAssessment, recordOutcome,
   recoverJourneyLock, resetJourney, updateScope, useJourney,
 } from "@better-loop/journey";
 import type { FollowupCheck, HostAssessmentInput, RecommendationOutcomeStatus } from "@better-loop/journey";
-import { summarizeLocalMilestones } from "@better-loop/discovery";
-import type { LocalMilestoneEvent } from "@better-loop/discovery";
+import { journeyProgress } from "./journey-progress.js";
+export { journeyProgress } from "./journey-progress.js";
 import { readSelectedFile } from "./local-files.js";
+import { writeJourneyView } from "./journey-view.js";
 
 type Options = Record<string, string | string[] | true>;
 function parse(args: string[], allowed: string[], flags: string[] = []): Options {
@@ -33,65 +34,19 @@ function required(options: Options, key: string): string {
   return options[key];
 }
 type Inspection = Awaited<ReturnType<typeof inspectJourney>>;
-export function journeyProgress(current: Inspection) {
-  const events: LocalMilestoneEvent[] = [];
-  const active = activeRecommendation(current);
-  const relevant = current.outcomes.filter(outcome => outcome.context?.recommendation_key === active?.key);
-  for (const outcome of relevant) {
-    if (outcome.content_origin === "unknown" || !outcome.context) continue;
-    const common = {
-      task_key: outcome.context.recommendation_key, equivalence_key: outcome.context.recommendation_key,
-      content_origin: outcome.content_origin, evidence_available: current.assessment !== null,
-    };
-    if (outcome.reflection_completed && outcome.context.reflection_sequence !== null) events.push({
-      ...common, kind: "reflection", change: "initial", reflection_completed: true,
-      sequence: outcome.context.reflection_sequence,
-      comparison: "unknown", outcome: "not_measured", quality_floor: "unknown", critical_regression: "unknown",
-    });
-    if (outcome.check && outcome.check.check_result !== "unknown") events.push({
-      ...common, kind: "followup", change: outcome.check.change, reflection_completed: false,
-      // A later write is not a later check. Use when distinct evidence was first observed.
-      sequence: outcome.context.first_observed_sequence,
-      comparison: outcome.check.comparison, outcome: outcome.check.outcome,
-      quality_floor: outcome.check.quality_floor, critical_regression: outcome.check.critical_regression,
-    });
-  }
-  const milestones = summarizeLocalMilestones(events);
-  const recommendation = active?.action ?? null;
-  const acceptance = active?.acceptance_check ?? null;
-  const latest = relevant.at(-1);
-  let next = "Collect the first bounded baseline for the approved scope.";
-  if (recommendation) next = latest?.status === "declined"
-    ? "Choose a smaller alternative with the user; do not repeat the declined recommendation automatically."
-    : latest && !["not_tried", "declined"].includes(latest.status)
-      ? milestones.later_comparable_outcome === "recorded"
-        ? "Keep the checked outcome, including negative findings, and choose the next useful question."
-        : "Retain the reported feedback and check a later equivalent task against the same acceptance criteria. Comparability is not inferred from Git changes."
-      : "Ask which recommendation the user wants to try, then retain the result of its acceptance check.";
-  return {
-    stages: [
-      { step: "Assessment saved", state: active?.host ? "host_report_recorded" : current.assessment ? "local_diagnosis_only" : "next" },
-      { step: "Try the chosen change", state: latest && !["not_tried", "declined"].includes(latest.status) ? "user_reported" : "not_recorded" },
-      { step: "Check a later comparable outcome", state: milestones.later_comparable_outcome },
-    ],
-    recommendation, acceptance_check: acceptance, next_step: next, latest_user_outcome: latest ?? null, milestones,
-    host_assessment_status: active?.host ? "current" : current.host_assessment ? "prior_context_only" : "not_recorded",
-    historical_feedback: current.outcomes.filter(outcome => outcome.context?.recommendation_key !== active?.key).slice(-3).map(outcome => ({
-      recommendation_id: outcome.recommendation_id, status: outcome.status, note: outcome.note, association: "historical_not_current_progress",
-    })),
-    ability_score: null, measured_improvement: null,
-    explanation: "These are local workflow steps and explicitly reported learning, not competence badges. A later comparable outcome needs distinct selected evidence first observed after reflection on this recommendation. Writes, note edits, unchanged scans, copies, disclosure, spending and publication earn no ability credit.",
-  };
+function concise(value: string): string {
+  const text = value.replace(/\s+/gu, " ").trim();
+  return literalText(text.length <= 240 ? text : text.slice(0, 240).trimEnd() + "… [full wording in inspect/view]");
 }
 export function renderJourney(value: unknown): string {
   const data = value as Record<string, any>;
   const progress = data.progress;
   if (data.state === "unchanged" && progress) return [
-    `No eligible selected changes were found; no new assessment or progress credit (checkpoint ${literalText(data.checkpoint_id)}).`,
-    progress.recommendation ? `Last recommendation: ${literalText(progress.recommendation)}` : "No host recommendation has been recorded.",
-    progress.acceptance_check ? `Next acceptance check: ${literalText(progress.acceptance_check)}` : "Select the next acceptance check with the user.",
+    "No eligible selected changes; no new assessment or progress credit.",
+    progress.recommendation ? `Last recommendation: ${concise(progress.recommendation)}` : "No host recommendation has been recorded.",
+    progress.acceptance_check ? `Next acceptance check: ${concise(progress.acceptance_check)}` : "Select the next acceptance check with the user.",
     progress.latest_user_outcome
-      ? `Last user-reported outcome: ${literalText(progress.latest_user_outcome.status)}; ${literalText(progress.next_step)}`
+      ? `Last user-reported outcome: ${literalText(progress.latest_user_outcome.status)}; ${concise(progress.next_step)}`
       : "Which previous advice did you try, and what did its acceptance check show?",
     "No Better Loop upload occurred; host analysis may use the configured model provider.",
   ].join("\n\n");
@@ -141,6 +96,19 @@ export function renderJourney(value: unknown): string {
 }
 export async function journeyCommand(args: string[]) {
   const [action, ...rest] = args;
+  if (action === "view") {
+    const options = parse(rest, ["state", "output", "include-changes", "excerpt-bytes", "excerpt-files"], ["include-changes"]);
+    if (!options["include-changes"] && (options["excerpt-bytes"] || options["excerpt-files"])) throw new Error("include_changes_required_for_excerpts");
+    return {
+      value: await writeJourneyView({
+        stateDirectory: required(options, "state"), output: required(options, "output"),
+        includeChanges: options["include-changes"] === true,
+        ...(options["excerpt-bytes"] ? { excerptBytes: Number(required(options, "excerpt-bytes")) } : {}),
+        ...(options["excerpt-files"] ? { excerptFiles: Number(required(options, "excerpt-files")) } : {}),
+      }),
+      markdown: false, output: undefined,
+    };
+  }
   const common = ["state", "format", "output"];
   const extra: Record<string, string[]> = {
     create: ["root", "task"], update: ["root", "task", "expected"],
