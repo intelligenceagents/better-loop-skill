@@ -1,0 +1,2044 @@
+[
+  {
+    "id": "F1-unknown-attribution",
+    "group": "repair_F1",
+    "description": "Observed behavior with only unknown action evidence.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "unknown",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "F1-absent-attribution",
+    "group": "repair_F1",
+    "description": "Observed behavior with no matching action.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "F1-artifacts-only",
+    "group": "repair_F1",
+    "description": "Artifacts-only capsule cannot support an observed human behavior.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "artifacts_only",
+        "human_involvement": "human_directed",
+        "human_actions": [],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "F1-unknown-basis",
+    "group": "repair_F1",
+    "description": "Unknown assessment basis cannot support an observed human behavior.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "unknown",
+        "human_involvement": "human_directed",
+        "human_actions": [],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "F1-attestation-not-observation",
+    "group": "repair_F1",
+    "description": "Attestation alone cannot support an observed human behavior.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "user_attestation",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "user_attestation",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "F2-attestation-insufficient",
+    "group": "repair_F2",
+    "description": "Attestation remains valid with insufficient evidence and a null rating.",
+    "expected_valid": true,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "insufficient_evidence",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "user_attestation",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "user_attestation",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "F2-attestation-not-observed",
+    "group": "repair_F2",
+    "description": "Attestation remains valid with a not-observed state and a null rating.",
+    "expected_valid": true,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "not_observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "user_attestation",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "user_attestation",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "F2-attestation-no-base-behavior",
+    "group": "repair_F2",
+    "description": "A capsule-only reported claim does not require inventing an observed base behavior.",
+    "expected_valid": true,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "user_attestation",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "user_attestation",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "P1-selected-message",
+    "group": "positive_control",
+    "description": "Corresponding observed behavior and selected-human-message attribution.",
+    "expected_valid": true,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "P2-conversation-basis",
+    "group": "positive_control",
+    "description": "Conversation-only basis supports corresponding selected-message attribution.",
+    "expected_valid": true,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "P3-artifacts-unobserved",
+    "group": "positive_control",
+    "description": "Artifacts-only evidence preserves missing human observation.",
+    "expected_valid": true,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "insufficient_evidence",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "artifacts_only",
+        "human_involvement": "human_directed",
+        "human_actions": [],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "P4-unknown-unobserved",
+    "group": "positive_control",
+    "description": "Unknown attribution and basis preserve missing observation.",
+    "expected_valid": true,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "insufficient_evidence",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "unknown",
+        "human_involvement": "unknown",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "unknown",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "P5-autonomous-unobserved",
+    "group": "positive_control",
+    "description": "Autonomous agent work remains representable without human observations.",
+    "expected_valid": true,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "insufficient_evidence",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "agent_autonomous",
+        "human_actions": [],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "P6-two-matched-indicators",
+    "group": "positive_control",
+    "description": "Two different observed indicators each have their own matching selected action.",
+    "expected_valid": true,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          },
+          {
+            "indicator": "factual_verification",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          },
+          {
+            "action": "factual_verification",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N1-selected-not_observed",
+    "group": "negative_control",
+    "description": "Selected-human-message attribution requires an observed matching behavior, not not_observed.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "not_observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N2-selected-insufficient_evidence",
+    "group": "negative_control",
+    "description": "Selected-human-message attribution requires an observed matching behavior, not insufficient_evidence.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "insufficient_evidence",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N3-selected-not_applicable",
+    "group": "negative_control",
+    "description": "Selected-human-message attribution requires an observed matching behavior, not not_applicable.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "not_applicable",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N4-selected-no-behavior",
+    "group": "negative_control",
+    "description": "Selected-human-message attribution requires a matching base behavior.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N5-selected-wrong-indicator",
+    "group": "negative_control",
+    "description": "A different observed indicator does not satisfy selected-message correspondence.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "factual_verification",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N6-selected-artifacts-basis",
+    "group": "negative_control",
+    "description": "Artifacts-only basis cannot claim selected-human-message evidence.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "artifacts_only",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N7-selected-attestation-basis",
+    "group": "negative_control",
+    "description": "Attestation-only basis cannot claim selected-human-message evidence.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "user_attestation",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N8-selected-autonomous",
+    "group": "negative_control",
+    "description": "Autonomous work cannot carry selected-human-message attribution.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "agent_autonomous",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N9-duplicate-base-indicator",
+    "group": "negative_control",
+    "description": "Duplicate base indicators remain invalid.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          },
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  },
+  {
+    "id": "N10-duplicate-capsule-action",
+    "group": "negative_control",
+    "description": "Duplicate attributed actions remain invalid.",
+    "expected_valid": false,
+    "input": {
+      "schema_version": "bl-contribution-0.2",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "correctness",
+          "difficulty": "unknown",
+          "difficulty_basis": "unknown",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          },
+          "candidate": {
+            "platform": "unknown",
+            "model_tier": "unknown"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": null,
+            "evidence_summary": "Authored validation probe: this field represents the observation state under test, not an actual person."
+          }
+        ],
+        "story": {
+          "title": "Authored contribution-validation probe",
+          "problem": "This generic authored input tests consistency between a behavior state and its attribution fields.",
+          "change": "Only the explicitly listed attribution fields vary between test probes.",
+          "result": "No customer result, model interaction or human achievement is asserted by this input.",
+          "lesson": "Reported claims and selected-message observations need distinct representation.",
+          "limits": "Synthetic test input only. Never submit this probe as a public contribution or measured work story."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "capability_evidence": {
+        "schema_version": "bl-capability-evidence-0.1",
+        "rubric_id": "bl-work-evidence-0.1",
+        "assessment_basis": "conversation_and_artifacts",
+        "human_involvement": "human_directed",
+        "human_actions": [
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          },
+          {
+            "action": "goal_definition",
+            "evidence": "selected_human_message",
+            "outcome_check": "unknown"
+          }
+        ],
+        "quality_checks": [],
+        "change": "unknown",
+        "distinct_task_band": "unknown",
+        "benchmark": null
+      }
+    }
+  }
+]
