@@ -58,7 +58,7 @@ On macOS, only the verified system aliases `/tmp` and `/var` normalize to their 
 
 Journey state commits before result output. If a selected output already exists or writing the result fails, inspect state before retrying; the committed checkpoint remains available and output bytes are never overwritten.
 
-Deterministic collection/diagnosis makes no model request. A host reading selected raw excerpts or reports uses its configured provider unless verified local inference is selected. “No Better Loop upload” does not mean all processing stayed local. Public contribution is separate: explicitly prepare a minimized candidate/capsule, select the four purposes, obtain two whole-contribution reviews and confirm the exact preview. Journey objects cannot be serialized as public capsules. See [CLI sharing](../packages/cli/README.md), [privacy](../skills/better-loop/references/privacy.md) and [capability evidence](../packages/evidence/README.md).
+Deterministic collection/diagnosis makes no model request. A host reading selected raw excerpts or reports uses its configured provider unless verified local inference is selected. “No Better Loop upload” does not mean all processing stayed local. Public contribution is separate: explicitly prepare a minimized candidate/capsule, select the four purposes, obtain two whole-contribution reviews and confirm the exact preview. Journey objects cannot be serialized as public capsules. See [CLI sharing](https://github.com/intelligenceagents/better-loop-skill/blob/main/packages/cli/README.md), [privacy](https://github.com/intelligenceagents/better-loop-skill/blob/main/skills/better-loop/references/privacy.md) and [capability evidence](https://github.com/intelligenceagents/better-loop-skill/blob/main/packages/evidence/README.md).
 
 ## See your saved progress
 
@@ -66,7 +66,7 @@ Use `better-loop journey view --state <known-approved-state> --output <new-priva
 
 No external assets, scripts, analytics, server or network are needed. Raw source is omitted unless `--include-changes` is explicitly selected (default4files/4000bytes, adjustable downward). Full paths and saved summaries are still private. Open the selected file yourself, keep it outside public/synced locations, and never use it as a public contribution. A checked negative result is retained honestly. Unverified metrics stay unknown; source edits and story edits are not task improvement.
 
-[Portable host prompts](host-prompts.md) make first use, multi-repository choice, return, viewer and optional exact sharing explicit in both hosts. Exact host length compliance remains a known reliability limit in prior native validation; the concise guidance is not a guarantee.
+[Portable host prompts](https://github.com/intelligenceagents/better-loop-skill/blob/main/docs/host-prompts.md) make first use, multi-repository choice, return, viewer and optional exact sharing explicit in both hosts. Exact host length compliance remains a known reliability limit in prior native validation; the concise guidance is not a guarantee.
 
 For deterministic desktop/mobile/keyboard QA of an explicitly selected generated view, run `npm run test:journey-view -- /path/to/private-view.html`. It needs an installed Playwright Chromium; `BETTER_LOOP_BROWSER_CHANNEL=chrome` selects an existing Chrome installation instead. It installs nothing, opens no user browser window, blocks HTTP requests and reports only check results.
 

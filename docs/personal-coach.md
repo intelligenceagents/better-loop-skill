@@ -1,6 +1,6 @@
 # Personal coach implementation
 
-The [installed coach guide](../skills/better-loop/references/coach.md) contains the
+The [installed coach guide](https://github.com/intelligenceagents/better-loop-skill/blob/main/skills/better-loop/references/coach.md) contains the
 neutral starter, exact preference fields and CLI plan/apply/rollback procedure
 for both hosts. CLI `0.5.0-draft.1` is the coordinated integration version.
 

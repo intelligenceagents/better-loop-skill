@@ -4,7 +4,7 @@ This manual procedure prepares source, skill and ten npm package archives for re
 
 ## Local preparation
 
-Use the repository's declared Node/npm versions and Python development dependencies (see [Contributing](../CONTRIBUTING.md)). Populate the npm cache with `npm ci` first. Activate the Python environment containing `requirements-dev.txt` before running the checks.
+Use the repository's declared Node/npm versions and Python development dependencies (see [Contributing](https://github.com/intelligenceagents/better-loop-skill/blob/main/CONTRIBUTING.md)). Populate the npm cache with `npm ci` first. Activate the Python environment containing `requirements-dev.txt` before running the checks.
 
 Commit the intended source first. The command rejects staged changes, unstaged changes, deleted tracked files and all nonignored untracked files. Clear any assume-unchanged or skip-worktree index flags first; they can conceal changes and are rejected. Ignored generated files are allowed but never used as build input. Choose a **new directory outside the checkout**, with an existing parent:
 
@@ -24,7 +24,7 @@ An existing output directory or symlink is rejected. On failure, partial output 
 
 ## Manual GitHub workflow
 
-[The candidate workflow](../.github/workflows/release-candidate.yml) has only `workflow_dispatch` and read-only repository permissions. Select the intended committed ref and enter a review label. It performs the same isolated preparation and uploads the candidate as a short-lived Actions artifact after all checks pass. Dispatching it authorizes that artifact upload to GitHub; local preparation alone uploads nothing. There is no push trigger or release/tag/publish command. This document does not assert that a hosted run has passed.
+[The candidate workflow](https://github.com/intelligenceagents/better-loop-skill/blob/main/.github/workflows/release-candidate.yml) has only `workflow_dispatch` and read-only repository permissions. Select the intended committed ref and enter a review label. It performs the same isolated preparation and uploads the candidate as a short-lived Actions artifact after all checks pass. Dispatching it authorizes that artifact upload to GitHub; local preparation alone uploads nothing. There is no push trigger or release/tag/publish command. This document does not assert that a hosted run has passed.
 
 Review the exact receipt and candidate before any separately authorized publication. Revert the four candidate-tooling files to roll back this feature; no host configuration or license change is involved.
 
@@ -34,4 +34,4 @@ Release checks become meaningful only after a separately authorized maintainer p
 
 Before any such publication, reconcile the candidate's full source SHA, exact source/skill/archive hashes, completed deterministic checks, known limitations and rollback pair. Publish only those reviewed bytes and retain the candidate receipt alongside them; independently inspect the tag's resolved commit because GitHub `target_commitish` may name a branch. Select the release as GitHub's latest stable release deliberately: the notifier follows GitHub's latest designation, not the numerically highest tag. Draft/prerelease records do not qualify. A release/tag or matching hash string alone does not authenticate an installed source build.
 
-This preparation creates no tag or published release. The [installed release guide](../skills/better-loop/references/releases.md) explains the check's fixed public requests, cache, optional notice and separate manual update/rollback.
+This preparation creates no tag or published release. The [installed release guide](https://github.com/intelligenceagents/better-loop-skill/blob/main/skills/better-loop/references/releases.md) explains the check's fixed public requests, cache, optional notice and separate manual update/rollback.

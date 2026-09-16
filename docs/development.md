@@ -1,6 +1,6 @@
 # Development and verification
 
-Follow the clean setup in [README.md](../README.md). Keep the Python virtual environment active while running npm checks, because parity tests invoke `python3`. Alternatively set `BETTER_LOOP_PYTHON` to the intended interpreter for `npm run test:parity` and invoke the seed checker with that interpreter directly.
+Follow the clean setup in [README.md](https://github.com/intelligenceagents/better-loop-skill/blob/main/README.md). Keep the Python virtual environment active while running npm checks, because parity tests invoke `python3`. Alternatively set `BETTER_LOOP_PYTHON` to the intended interpreter for `npm run test:parity` and invoke the seed checker with that interpreter directly.
 
 The build generates validators and TypeScript structural types from the two root schemas, then emits bundled ESM/CommonJS/CLI code and copies the exact schemas into the contracts package. It also builds core/adapters/local CLI plus privacy, evidence, measurement, discovery, handoff and journey. Local packages keep exact-version workspace dependencies; the packed-consumer check installs the reviewed archives together offline. Generated files, dependencies, local reports, and archives are ignored by Git. The public source is sufficient to rebuild the archives.
 

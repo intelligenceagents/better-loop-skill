@@ -5,9 +5,9 @@ This implements M4's pure calculations and local protocol helpers. The coordinat
 owns actual model runs and their reports. This package makes no model/network
 calls, executes no assessed input, scans no history, and uploads nothing.
 
-The [assessment rules](../skills/better-loop/references/assessment.md) and
-[research foundation](../skills/better-loop/references/foundation.md) govern the
-meaning of results. The unchanged [evaluation schema](../schemas/evaluation-run.schema.json)
+The [assessment rules](https://github.com/intelligenceagents/better-loop-skill/blob/main/skills/better-loop/references/assessment.md) and
+[research foundation](https://github.com/intelligenceagents/better-loop-skill/blob/main/skills/better-loop/references/foundation.md) govern the
+meaning of results. The unchanged [evaluation schema](https://github.com/intelligenceagents/better-loop-skill/blob/main/schemas/evaluation-run.schema.json)
 remains wire `0.1.0`. Registration/options/expanded reports are **local sidecars**,
 not extra fields accepted by evaluation or public sharing schemas.
 
@@ -346,7 +346,7 @@ adverse/ineligible outcomes; 1 means invalid input; 2 means CLI usage error.
 The CLI prints complete **local** records; its output must never be submitted to
 the public service as a share candidate.
 
-Tests use only [invented synthetic fixtures](../evals/measurement/README.md).
+Tests use only [invented synthetic fixtures](https://github.com/intelligenceagents/better-loop-skill/blob/main/evals/measurement/README.md).
 They cover all-outcome arithmetic, null/zero/overflow, quality failures,
 tampering, telemetry/cache overhead, explicit omission, duplicated tasks,
 all seven families, separate tracks, exact uncertainty, malicious input data,
