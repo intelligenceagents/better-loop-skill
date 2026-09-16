@@ -1,4 +1,4 @@
 interface:
   display_name: "Better Loop"
-  short_description: "Review AI work and improve your next attempt"
-  default_prompt: "Use $better-loop to assess this task and recommend the most useful improvement for my next attempt."
+  short_description: "Make progress you can prove, one checked change at a time"
+  default_prompt: "Use $better-loop to review my chosen repository scope or selected task, recall the prior approved local journey when present, assess only new evidence, distinguish human and agent actions, and follow up on the last recommendation and acceptance check."

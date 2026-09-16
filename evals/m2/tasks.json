@@ -1,0 +1,14 @@
+{
+  "version": "bl-m2-fixtures-0.2",
+  "content_origin": "synthetic_example",
+  "calibration": "author_labeled_development_cases_not_held_out",
+  "tasks": [
+    { "family": "software", "goal": "Correct a fictional list filter without changing ordering.", "acceptance_criteria": ["The empty-list case returns an empty list.", "Original ordering is retained."] },
+    { "family": "analysis_finance", "goal": "Reconcile a synthetic ledger and explain a unit mismatch.", "acceptance_criteria": ["The total reconciles.", "Units and assumptions are stated."] },
+    { "family": "research_strategy", "goal": "Compare fictional source summaries for a planning decision.", "acceptance_criteria": ["Evidence and inference are separated.", "A competing explanation is considered."] },
+    { "family": "mathematics_science", "goal": "Check a synthetic derivation at a limiting case.", "acceptance_criteria": ["Each step follows from the stated assumptions.", "The boundary case is valid."] },
+    { "family": "writing_design", "goal": "Make a fictional instruction card understandable to a new reader.", "acceptance_criteria": ["The reader can identify the next action.", "The original facts are retained."] },
+    { "family": "operations_education", "goal": "Draft a synthetic learning exercise with an exception path.", "acceptance_criteria": ["The learning outcome is observable.", "The exception has a next action."] },
+    { "family": "general", "goal": "Review a fictional task with one checkable deliverable.", "acceptance_criteria": ["The requested deliverable is present."] }
+  ]
+}

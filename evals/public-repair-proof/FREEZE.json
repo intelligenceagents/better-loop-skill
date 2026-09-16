@@ -1,0 +1,96 @@
+{
+  "schema_version": "bl-public-repair-freeze-0.1",
+  "evaluator_version": "bl-evidence-attribution-repair-0.1",
+  "status": "frozen_before_execution",
+  "prepared_at_utc": "2026-09-15T17:17:32.168Z",
+  "runtime": {
+    "node": "v22.10.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "compiler": {
+    "name": "esbuild",
+    "version": "0.28.2"
+  },
+  "arms": [
+    {
+      "arm": "before",
+      "commit": "d1fce5188002dada01634cd1c328ff903ed0f6b4",
+      "package_version": "0.1.0-draft.1",
+      "source_path": "packages/evidence/src/index.ts",
+      "source_sha256": "fbd2ade72b464511ddfba4d3a26a36abbca418ea24da7255d46381d5ce2a8f7c",
+      "package_sha256": "7db4555d846304e48628af365a69f9767ef6df8019c83d5cd18b7ef44baecae1"
+    },
+    {
+      "arm": "after",
+      "commit": "01091e5c26378576b3b42d6a7f9735821d9ae2e4",
+      "package_version": "0.1.0-draft.2",
+      "source_path": "packages/evidence/src/index.ts",
+      "source_sha256": "21e98732d26de3047bc8570625a21a884eb1e93908e57bcef289767e891d199f",
+      "package_sha256": "09870cbbe59e234c9871c8e96828b69efd32eda71f146602efa5b258a4aa3c95"
+    }
+  ],
+  "dependency_source_trees": {
+    "packages/contracts": "8186e774757e51f6b4a169fe8d7b59a083ba84c4",
+    "packages/privacy": "26b1b5398ea112de3d4ee6b998e5ffa41a66894f",
+    "schemas": "799fc5f39116889b9fb9c8bbbe717226dbe455bd"
+  },
+  "cached_files": {
+    "node_modules/@esbuild/darwin-arm64/bin/esbuild": "10b6243df618d374bb2d5c9cfbe7052e1405f6aa4e53a6164f11a91b9f2e1384",
+    "node_modules/@noble/hashes/_blake.js": "cabbff61d1f373bac45594ad758df7c42e176464ddbb94b44f5533fa977a4f56",
+    "node_modules/@noble/hashes/_md.js": "60cf3010fda89e3e4d3f0e7ff1ce249e9c467f34b4fd41b6fd6101d9f69be763",
+    "node_modules/@noble/hashes/_u64.js": "b09da8c07fe8187c07649494cdb7cd0bcf13df90b506a9473d19e4d5f8c2e102",
+    "node_modules/@noble/hashes/argon2.js": "f39753324bdf2f484150731d24b1d71236f26bf10bedd594f7d190fcdfdefdc9",
+    "node_modules/@noble/hashes/blake1.js": "da1d08b4d0702ad4f185a796df8fce3fec2855de53b02190eba3bd8555677b5c",
+    "node_modules/@noble/hashes/blake2.js": "03f00237bcc0b4d822a80f7c0ac22e42632c48e246c3b6da584e6452186e32f0",
+    "node_modules/@noble/hashes/blake3.js": "bc25a8f6c50acabf3781c44ec55cb364b00f6f3f4349d841813a1057a8af2f20",
+    "node_modules/@noble/hashes/eskdf.js": "7ded32d320b0d1d71c59a4a3b493722a13c9c6a66de83f19f8a382b29af7a2f6",
+    "node_modules/@noble/hashes/hkdf.js": "ccb942a8008f974018965eeb1e33b8f4739bf767c6f95f2ceb06f5873a302f67",
+    "node_modules/@noble/hashes/hmac.js": "fec9f8f3aeda785ea2de91cc4c059d54ef98196261c026c43f48341007ae52c9",
+    "node_modules/@noble/hashes/index.js": "b0d908a44e09a1b7c27a43d7b9036a6147a7a32db758bb64d9a668ea5c72d1af",
+    "node_modules/@noble/hashes/legacy.js": "690553a41af2fdd1e32ff6b534ba8508e95f1861c09c2d62fe762b6b501e09be",
+    "node_modules/@noble/hashes/package.json": "3e361734f5269de162fa362483d7f45dee7efb533ec217157945338f7591baaf",
+    "node_modules/@noble/hashes/pbkdf2.js": "62b75b5465a89af052a80bdebe7e0383ba01648b12f64877ce285a2e9896c713",
+    "node_modules/@noble/hashes/scrypt.js": "a38a020620776fa5c57c00f151bdc1033c192827c9d841996daaf29122ea82c1",
+    "node_modules/@noble/hashes/sha2.js": "471746bba6ec4c6238ca41358d1d3b40b6ff31cf3363f0b4d550c649c1a8e83b",
+    "node_modules/@noble/hashes/sha3-addons.js": "e979866a213955afba24c105966bc42afa5d1377d77fe1017dea29a958fddcb7",
+    "node_modules/@noble/hashes/sha3.js": "9a81e1edb24eae27b335533220167609cfb58008c5690e140ce478acdc669f32",
+    "node_modules/@noble/hashes/utils.js": "037ad49adb78168b6b699598fd33f85f7877456b1d28b4d032e2a1a16807947c",
+    "node_modules/@noble/hashes/webcrypto.js": "83f476a634233b999ce6e6cd67dc03e64f07b8d5a826e67ad4a50c940d9ce7ee",
+    "node_modules/esbuild/bin/esbuild": "10b6243df618d374bb2d5c9cfbe7052e1405f6aa4e53a6164f11a91b9f2e1384",
+    "node_modules/esbuild/lib/main.js": "61ec0ba144ff93f4bf0e96ad6fab6f430ede0aa13e27ace8063ed63ba416b3cd",
+    "node_modules/esbuild/package.json": "9d0bc453f4e791553c4cc2298ba023b409241fd9801e494741666eb0f6051490",
+    "packages/contracts/dist/index.js": "91d903e121bd1eff1607a50d8595c58c711d973d388b54578902920e741211e6",
+    "packages/privacy/dist/index.js": "adcc3fd53a911e84d11792cdabad0aa2769f3ee5306de05ab7acb31db4492865"
+  },
+  "frozen_files": {
+    "PROTOCOL.md": "0c1733e01ee67b7ce79231f96996c399a383cff09e3bd061faedcad692521688",
+    "cases.json": "43d86a431a96c4e64c91e5a99d6ae04b5d1ac98d2662f0c8eb8c30438156c8b0",
+    "run.mjs": "74ab97a34ea16f275e06fa40f4cad1a466c4606e0b35918ba7c3fae351811114"
+  },
+  "limits": {
+    "whole_run_ms": 120000,
+    "each_arm_ms": 50000,
+    "model_calls": 0
+  },
+  "quality_floor": {
+    "total_cases": 24,
+    "required_after_passes": 24,
+    "required_positive_controls": 6,
+    "required_negative_controls": 10,
+    "allowed_regressions": 0,
+    "input_mutation_allowed": false,
+    "accepted_data_change_allowed": false
+  },
+  "limitations": [
+    "Known repair cases authored after inspecting both source versions and existing tests; not held-out, blinded or independent validation.",
+    "Authored synthetic inputs probe actual public software; they are not customer work, real human observations or publishable achievements.",
+    "One deterministic execution per case per source; shared-template probes are not independent task samples.",
+    "This separate attribution repair cannot be substituted for the existing privacy exact-binding story.",
+    "Zero before passes in any group makes relative percent improvement undefined; report counts and percentage points.",
+    "No model efficacy, human ability, hiring validity, privacy clearance, savings or unseen-defect-absence claim.",
+    "Model resources, cash costs, orchestration and human effort are unmeasured; wall duration checks only the execution bound.",
+    "Both arms share exact cached dependency builds and compiler; this is not a full historical environment reconstruction.",
+    "Existing public model benchmark and its equal-quality, higher-token result remain unchanged."
+  ]
+}

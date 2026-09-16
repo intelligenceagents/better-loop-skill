@@ -1,0 +1,77 @@
+{
+  "version": "bl-approval-binding-judge-0.1",
+  "output_schema": "bl-approval-binding-answer-0.1",
+  "checks": [
+    {
+      "id": "original",
+      "decision": "accept",
+      "reason": "original_reviewed_state"
+    },
+    {
+      "id": "wrong_digest",
+      "decision": "reject",
+      "reason": "exact_digest_required"
+    },
+    {
+      "id": "not_confirmed",
+      "decision": "reject",
+      "reason": "explicit_confirmation_required"
+    },
+    {
+      "id": "edited_candidate",
+      "decision": "reject",
+      "reason": "reviewed_snapshot_changed"
+    },
+    {
+      "id": "edited_purpose",
+      "decision": "reject",
+      "reason": "reviewed_snapshot_changed"
+    },
+    {
+      "id": "edited_preview",
+      "decision": "reject",
+      "reason": "reviewed_snapshot_changed"
+    },
+    {
+      "id": "edited_receipts",
+      "decision": "reject",
+      "reason": "reviewed_snapshot_changed"
+    },
+    {
+      "id": "json_clone",
+      "decision": "reject",
+      "reason": "original_object_identity_required"
+    },
+    {
+      "id": "shallow_clone",
+      "decision": "reject",
+      "reason": "original_object_identity_required"
+    },
+    {
+      "id": "caller_consent_changed",
+      "decision": "accept",
+      "reason": "caller_consent_snapshotted"
+    },
+    {
+      "id": "reviewer_copy_changed",
+      "decision": "accept",
+      "reason": "reviewer_input_detached"
+    },
+    {
+      "id": "key_order_only",
+      "decision": "accept",
+      "reason": "canonical_key_order_ignored"
+    }
+  ],
+  "required_limits": [
+    "local_approval_is_not_server_verification",
+    "no_upload_performed",
+    "no_human_ability_inference"
+  ],
+  "grading": {
+    "case": "Exact controlled decision and reason required per case. An incorrect answer is not missing evidence.",
+    "coverage": "Known supplied cases / 12; missing cases remain missing, never a zero task rating.",
+    "result": "met requires all twelve case checks and all three limits; not_met means complete but one or more checks fail; incomplete means missing or malformed output.",
+    "index": "No universal score or population percentile is computed. All check outcomes are retained."
+  }
+}

@@ -1,0 +1,2513 @@
+{
+  "interpretation": "Genuinely executed synthetic tasks. Typed registration envelopes were converted from pre-run commit a751b58 without modifying the prompts, inputs, rubric, order, metric or limits. Blinded deterministic grading does not need model judge calls. Shared preparation overhead is unknown and no resource-improvement benefit is awarded.",
+  "results": [
+    {
+      "task_id": "ledger-a",
+      "source_registration_commit": "a751b58",
+      "source_registration_sha256": "0d6e8b73a6e32b47b7f50c65f1f816e88d15079c7a6f0a3a43ea25cbe3ef18fa",
+      "derived_at": "2026-09-14T17:44:14.476Z",
+      "registration": {
+        "version": "bl-measurement-registration-0.1",
+        "plan": {
+          "conditions": {
+            "baseline": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "none",
+              "tool_access": []
+            },
+            "candidate": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+              "tool_access": []
+            }
+          },
+          "content_origin": "public_benchmark",
+          "framework_version": "better-loop-fluency-0.1",
+          "protocol": {
+            "compatibility": "comparable",
+            "direction": "lower_is_better",
+            "evaluator_version": "bl-ledger-exact-json-0.1",
+            "frozen_before_execution": true,
+            "intervention": "Use the actual Better Loop rewritePrompt process-check additions, frozen before execution.",
+            "kind": "controlled_paired",
+            "metric_definition_version": "bl-metrics-0.1",
+            "overhead_accounting": "All reported per-model token categories and list-cost estimates retained, including auxiliary host models. Model time, human effort, cash billing and shared preparation overhead unavailable. No task retries, model judges or workers requested.",
+            "planned_pair_ids": [
+              "pair-1",
+              "pair-2",
+              "pair-3"
+            ],
+            "primary_metric": "model_tokens",
+            "quality_floor_definition": "All six prespecified exact-JSON and fixed-ledger checks pass unchanged.",
+            "resource_budget": {
+              "max_duration_seconds": 900,
+              "max_total_tokens": null
+            }
+          },
+          "run_id": "real-host-pilot-ledger-a-v1",
+          "schema_version": "0.1.0",
+          "task": {
+            "benchmark_contract": "synthetic-reconciliation-0.1",
+            "constraints": [
+              "fixed_inputs",
+              "format_required",
+              "quality_threshold",
+              "tool_limited"
+            ],
+            "demonstrated_skills": [],
+            "difficulty": "routine",
+            "difficulty_basis": "self_estimated",
+            "objective": "lower_resource_use",
+            "problem_type": "reconciling_data",
+            "task_contract_version": "bl-task-0.1",
+            "task_family": "analysis_finance"
+          },
+          "task_instance_id": "public-synthetic-ledger-a-v1"
+        },
+        "evidence": {
+          "allowed_condition_changes": [
+            "skill_version"
+          ],
+          "baseline": {
+            "acceptance_criteria_version": "bl-ledger-exact-json-0.1",
+            "conditions": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "none",
+              "tool_access": []
+            },
+            "equivalence_group": "ledger-a-same-fixed-input",
+            "evaluator_version": "bl-ledger-exact-json-0.1",
+            "input_version": "ledger-a-v1",
+            "metric_definition_version": "bl-metrics-0.1",
+            "metric_unit": "count",
+            "resource_conditions": "Same isolated CLI invocation, fixed synthetic input, no tools, host-default effort, identical timeout/cost caps.",
+            "task": {
+              "benchmark_contract": "synthetic-reconciliation-0.1",
+              "constraints": [
+                "fixed_inputs",
+                "format_required",
+                "quality_threshold",
+                "tool_limited"
+              ],
+              "demonstrated_skills": [],
+              "difficulty": "routine",
+              "difficulty_basis": "self_estimated",
+              "objective": "lower_resource_use",
+              "problem_type": "reconciling_data",
+              "task_contract_version": "bl-task-0.1",
+              "task_family": "analysis_finance"
+            }
+          },
+          "candidate": {
+            "acceptance_criteria_version": "bl-ledger-exact-json-0.1",
+            "conditions": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+              "tool_access": []
+            },
+            "equivalence_group": "ledger-a-same-fixed-input",
+            "evaluator_version": "bl-ledger-exact-json-0.1",
+            "input_version": "ledger-a-v1",
+            "metric_definition_version": "bl-metrics-0.1",
+            "metric_unit": "count",
+            "resource_conditions": "Same isolated CLI invocation, fixed synthetic input, no tools, host-default effort, identical timeout/cost caps.",
+            "task": {
+              "benchmark_contract": "synthetic-reconciliation-0.1",
+              "constraints": [
+                "fixed_inputs",
+                "format_required",
+                "quality_threshold",
+                "tool_limited"
+              ],
+              "demonstrated_skills": [],
+              "difficulty": "routine",
+              "difficulty_basis": "self_estimated",
+              "objective": "lower_resource_use",
+              "problem_type": "reconciling_data",
+              "task_contract_version": "bl-task-0.1",
+              "task_family": "analysis_finance"
+            }
+          },
+          "independent_pairs": false,
+          "quality_rule": {
+            "dimensions": [
+              {
+                "floor": 1,
+                "id": "exact_json",
+                "max_regression": 0,
+                "maximum": 1,
+                "minimum": 0
+              }
+            ],
+            "version": "bl-ledger-exact-json-0.1"
+          },
+          "registered_at": "2026-09-14T17:37:07.626Z",
+          "task_fingerprint": "55110a390bc5e0d49048d23d9815703a4b584ac0f3e9b48ab437b859651c9ad7",
+          "trial_plan": [
+            {
+              "blind_assignment": "candidate_as_A",
+              "order": "baseline_first",
+              "pair_id": "pair-1",
+              "seed": null
+            },
+            {
+              "blind_assignment": "baseline_as_A",
+              "order": "candidate_first",
+              "pair_id": "pair-2",
+              "seed": null
+            },
+            {
+              "blind_assignment": "candidate_as_A",
+              "order": "baseline_first",
+              "pair_id": "pair-3",
+              "seed": null
+            }
+          ]
+        },
+        "digest": "6817e434d037a120ce7cdc3b0288edfd47fd235860225591e28ec5f1872a94fb"
+      },
+      "options": {
+        "registration": {
+          "version": "bl-measurement-registration-0.1",
+          "plan": {
+            "conditions": {
+              "baseline": {
+                "effort": "host default, not inferred",
+                "model_version": "claude-opus-5[1m]",
+                "platform": "claude_code",
+                "skill_version": "none",
+                "tool_access": []
+              },
+              "candidate": {
+                "effort": "host default, not inferred",
+                "model_version": "claude-opus-5[1m]",
+                "platform": "claude_code",
+                "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+                "tool_access": []
+              }
+            },
+            "content_origin": "public_benchmark",
+            "framework_version": "better-loop-fluency-0.1",
+            "protocol": {
+              "compatibility": "comparable",
+              "direction": "lower_is_better",
+              "evaluator_version": "bl-ledger-exact-json-0.1",
+              "frozen_before_execution": true,
+              "intervention": "Use the actual Better Loop rewritePrompt process-check additions, frozen before execution.",
+              "kind": "controlled_paired",
+              "metric_definition_version": "bl-metrics-0.1",
+              "overhead_accounting": "All reported per-model token categories and list-cost estimates retained, including auxiliary host models. Model time, human effort, cash billing and shared preparation overhead unavailable. No task retries, model judges or workers requested.",
+              "planned_pair_ids": [
+                "pair-1",
+                "pair-2",
+                "pair-3"
+              ],
+              "primary_metric": "model_tokens",
+              "quality_floor_definition": "All six prespecified exact-JSON and fixed-ledger checks pass unchanged.",
+              "resource_budget": {
+                "max_duration_seconds": 900,
+                "max_total_tokens": null
+              }
+            },
+            "run_id": "real-host-pilot-ledger-a-v1",
+            "schema_version": "0.1.0",
+            "task": {
+              "benchmark_contract": "synthetic-reconciliation-0.1",
+              "constraints": [
+                "fixed_inputs",
+                "format_required",
+                "quality_threshold",
+                "tool_limited"
+              ],
+              "demonstrated_skills": [],
+              "difficulty": "routine",
+              "difficulty_basis": "self_estimated",
+              "objective": "lower_resource_use",
+              "problem_type": "reconciling_data",
+              "task_contract_version": "bl-task-0.1",
+              "task_family": "analysis_finance"
+            },
+            "task_instance_id": "public-synthetic-ledger-a-v1"
+          },
+          "evidence": {
+            "allowed_condition_changes": [
+              "skill_version"
+            ],
+            "baseline": {
+              "acceptance_criteria_version": "bl-ledger-exact-json-0.1",
+              "conditions": {
+                "effort": "host default, not inferred",
+                "model_version": "claude-opus-5[1m]",
+                "platform": "claude_code",
+                "skill_version": "none",
+                "tool_access": []
+              },
+              "equivalence_group": "ledger-a-same-fixed-input",
+              "evaluator_version": "bl-ledger-exact-json-0.1",
+              "input_version": "ledger-a-v1",
+              "metric_definition_version": "bl-metrics-0.1",
+              "metric_unit": "count",
+              "resource_conditions": "Same isolated CLI invocation, fixed synthetic input, no tools, host-default effort, identical timeout/cost caps.",
+              "task": {
+                "benchmark_contract": "synthetic-reconciliation-0.1",
+                "constraints": [
+                  "fixed_inputs",
+                  "format_required",
+                  "quality_threshold",
+                  "tool_limited"
+                ],
+                "demonstrated_skills": [],
+                "difficulty": "routine",
+                "difficulty_basis": "self_estimated",
+                "objective": "lower_resource_use",
+                "problem_type": "reconciling_data",
+                "task_contract_version": "bl-task-0.1",
+                "task_family": "analysis_finance"
+              }
+            },
+            "candidate": {
+              "acceptance_criteria_version": "bl-ledger-exact-json-0.1",
+              "conditions": {
+                "effort": "host default, not inferred",
+                "model_version": "claude-opus-5[1m]",
+                "platform": "claude_code",
+                "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+                "tool_access": []
+              },
+              "equivalence_group": "ledger-a-same-fixed-input",
+              "evaluator_version": "bl-ledger-exact-json-0.1",
+              "input_version": "ledger-a-v1",
+              "metric_definition_version": "bl-metrics-0.1",
+              "metric_unit": "count",
+              "resource_conditions": "Same isolated CLI invocation, fixed synthetic input, no tools, host-default effort, identical timeout/cost caps.",
+              "task": {
+                "benchmark_contract": "synthetic-reconciliation-0.1",
+                "constraints": [
+                  "fixed_inputs",
+                  "format_required",
+                  "quality_threshold",
+                  "tool_limited"
+                ],
+                "demonstrated_skills": [],
+                "difficulty": "routine",
+                "difficulty_basis": "self_estimated",
+                "objective": "lower_resource_use",
+                "problem_type": "reconciling_data",
+                "task_contract_version": "bl-task-0.1",
+                "task_family": "analysis_finance"
+              }
+            },
+            "independent_pairs": false,
+            "quality_rule": {
+              "dimensions": [
+                {
+                  "floor": 1,
+                  "id": "exact_json",
+                  "max_regression": 0,
+                  "maximum": 1,
+                  "minimum": 0
+                }
+              ],
+              "version": "bl-ledger-exact-json-0.1"
+            },
+            "registered_at": "2026-09-14T17:37:07.626Z",
+            "task_fingerprint": "55110a390bc5e0d49048d23d9815703a4b584ac0f3e9b48ab437b859651c9ad7",
+            "trial_plan": [
+              {
+                "blind_assignment": "candidate_as_A",
+                "order": "baseline_first",
+                "pair_id": "pair-1",
+                "seed": null
+              },
+              {
+                "blind_assignment": "baseline_as_A",
+                "order": "candidate_first",
+                "pair_id": "pair-2",
+                "seed": null
+              },
+              {
+                "blind_assignment": "candidate_as_A",
+                "order": "baseline_first",
+                "pair_id": "pair-3",
+                "seed": null
+              }
+            ]
+          },
+          "digest": "6817e434d037a120ce7cdc3b0288edfd47fd235860225591e28ec5f1872a94fb"
+        },
+        "quality": {
+          "pair-1": {
+            "baseline": {
+              "exact_json": 1
+            },
+            "candidate": {
+              "exact_json": 1
+            }
+          },
+          "pair-2": {
+            "baseline": {
+              "exact_json": 1
+            },
+            "candidate": {
+              "exact_json": 1
+            }
+          },
+          "pair-3": {
+            "baseline": {
+              "exact_json": 1
+            },
+            "candidate": {
+              "exact_json": 1
+            }
+          }
+        },
+        "telemetry": {
+          "pair-1": {
+            "baseline": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-a-pair-1-baseline-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1081,
+                  "output_tokens": 14,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001151
+                },
+                {
+                  "id": "ledger-a-pair-1-baseline-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 102,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 762,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.01018
+                }
+              ]
+            },
+            "candidate": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-a-pair-1-candidate-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1221,
+                  "output_tokens": 13,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001286
+                },
+                {
+                  "id": "ledger-a-pair-1-candidate-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 136,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 963,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.01304
+                }
+              ]
+            }
+          },
+          "pair-2": {
+            "baseline": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-a-pair-2-baseline-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1081,
+                  "output_tokens": 13,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.0011459999999999999
+                },
+                {
+                  "id": "ledger-a-pair-2-baseline-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 123,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 762,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.010705
+                }
+              ]
+            },
+            "candidate": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-a-pair-2-candidate-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1221,
+                  "output_tokens": 14,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001291
+                },
+                {
+                  "id": "ledger-a-pair-2-candidate-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 132,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 964,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.01295
+                }
+              ]
+            }
+          },
+          "pair-3": {
+            "baseline": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-a-pair-3-baseline-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1081,
+                  "output_tokens": 14,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001151
+                },
+                {
+                  "id": "ledger-a-pair-3-baseline-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 108,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 761,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.01032
+                }
+              ]
+            },
+            "candidate": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-a-pair-3-candidate-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1221,
+                  "output_tokens": 13,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001286
+                },
+                {
+                  "id": "ledger-a-pair-3-candidate-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 46,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 965,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.01081
+                }
+              ]
+            }
+          }
+        },
+        "shared_telemetry": {
+          "coverage": {
+            "parent": "missing",
+            "worker": "not_applicable",
+            "judge": "not_applicable",
+            "retry": "not_applicable",
+            "orchestration": "missing"
+          },
+          "entries": []
+        }
+      },
+      "result": {
+        "valid": true,
+        "record": {
+          "conditions": {
+            "baseline": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "none",
+              "tool_access": []
+            },
+            "candidate": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+              "tool_access": []
+            }
+          },
+          "content_origin": "public_benchmark",
+          "framework_version": "better-loop-fluency-0.1",
+          "observations": [],
+          "protocol": {
+            "compatibility": "comparable",
+            "direction": "lower_is_better",
+            "evaluator_version": "bl-ledger-exact-json-0.1",
+            "frozen_before_execution": true,
+            "intervention": "Use the actual Better Loop rewritePrompt process-check additions, frozen before execution.",
+            "kind": "controlled_paired",
+            "metric_definition_version": "bl-metrics-0.1",
+            "overhead_accounting": "All reported per-model token categories and list-cost estimates retained, including auxiliary host models. Model time, human effort, cash billing and shared preparation overhead unavailable. No task retries, model judges or workers requested.",
+            "planned_pair_ids": [
+              "pair-1",
+              "pair-2",
+              "pair-3"
+            ],
+            "primary_metric": "model_tokens",
+            "quality_floor_definition": "All six prespecified exact-JSON and fixed-ledger checks pass unchanged.",
+            "resource_budget": {
+              "max_duration_seconds": 900,
+              "max_total_tokens": null
+            }
+          },
+          "run_id": "real-host-pilot-ledger-a-v1",
+          "schema_version": "0.1.0",
+          "summary": {
+            "limitations": [
+              "Local supplied measurements and registration are not independently verified; no person ranking or calibrated causal claim.",
+              "Five paired trials and three distinct tasks are product gates, not established statistical sufficiency.",
+              "All planned outcomes are retained. Numerical means describe observed pairs only; missing/failed pairs are not zero.",
+              "Token use, model duration, human effort, estimated API cost, and actual billing are separate; token reduction is not cash savings.",
+              "Rounded public indices lose detail and any percent claim derived from them is approximate.",
+              "Median confidence interval unavailable: independent_pairs_not_established.",
+              "Protocol-wide overhead is reported separately, without invented per-arm allocation; pair deltas exclude that shared work."
+            ],
+            "outcome": "regressed",
+            "paired_relative_changes_percent": [
+              -19.071902090770017,
+              -17.768803634528016,
+              -14.292980671414037
+            ],
+            "uncertainty": "No finite justified 95% median interval: independent_pairs_not_established. Observed pairs 3/3; range is descriptive only."
+          },
+          "task": {
+            "benchmark_contract": "synthetic-reconciliation-0.1",
+            "constraints": [
+              "fixed_inputs",
+              "format_required",
+              "quality_threshold",
+              "tool_limited"
+            ],
+            "demonstrated_skills": [],
+            "difficulty": "routine",
+            "difficulty_basis": "self_estimated",
+            "objective": "lower_resource_use",
+            "problem_type": "reconciling_data",
+            "task_contract_version": "bl-task-0.1",
+            "task_family": "analysis_finance"
+          },
+          "task_instance_id": "public-synthetic-ledger-a-v1",
+          "trials": [
+            {
+              "baseline": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:19.125Z",
+                "metrics": {
+                  "estimated_api_cost": 0.011330999999999999,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 1961,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:15.050Z",
+                "status": "completed"
+              },
+              "candidate": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:23.134Z",
+                "metrics": {
+                  "estimated_api_cost": 0.014326,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 2335,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:19.128Z",
+                "status": "completed"
+              },
+              "order": "baseline_first",
+              "pair_id": "pair-1",
+              "seed": null
+            },
+            {
+              "baseline": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:30.907Z",
+                "metrics": {
+                  "estimated_api_cost": 0.011850999999999999,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 1981,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:27.070Z",
+                "status": "completed"
+              },
+              "candidate": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:27.069Z",
+                "metrics": {
+                  "estimated_api_cost": 0.014241,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 2333,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:23.135Z",
+                "status": "completed"
+              },
+              "order": "candidate_first",
+              "pair_id": "pair-2",
+              "seed": null
+            },
+            {
+              "baseline": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:34.567Z",
+                "metrics": {
+                  "estimated_api_cost": 0.011470999999999999,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 1966,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:30.908Z",
+                "status": "completed"
+              },
+              "candidate": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:37.603Z",
+                "metrics": {
+                  "estimated_api_cost": 0.012096,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 2247,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:34.569Z",
+                "status": "completed"
+              },
+              "order": "baseline_first",
+              "pair_id": "pair-3",
+              "seed": null
+            }
+          ]
+        },
+        "report": {
+          "version": "bl-measurement-0.1",
+          "run_id": "real-host-pilot-ledger-a-v1",
+          "task_instance_id": "public-synthetic-ledger-a-v1",
+          "evidence_track": "controlled_paired",
+          "content_origin": "public_benchmark",
+          "outcome": "regressed",
+          "pairs": [
+            {
+              "pair_id": "pair-1",
+              "baseline_status": "completed",
+              "candidate_status": "completed",
+              "delta": {
+                "baseline": 1961,
+                "candidate": 2335,
+                "absolute_change": 374,
+                "favorable_absolute_change": -374,
+                "relative_change_percent": -19.071902090770017,
+                "percentage_point_change": null,
+                "baseline_index": 100,
+                "candidate_index": 120,
+                "index_rounding": "nearest_5_points",
+                "reason": null
+              },
+              "outcome": "regressed",
+              "reasons": []
+            },
+            {
+              "pair_id": "pair-2",
+              "baseline_status": "completed",
+              "candidate_status": "completed",
+              "delta": {
+                "baseline": 1981,
+                "candidate": 2333,
+                "absolute_change": 352,
+                "favorable_absolute_change": -352,
+                "relative_change_percent": -17.768803634528016,
+                "percentage_point_change": null,
+                "baseline_index": 100,
+                "candidate_index": 120,
+                "index_rounding": "nearest_5_points",
+                "reason": null
+              },
+              "outcome": "regressed",
+              "reasons": []
+            },
+            {
+              "pair_id": "pair-3",
+              "baseline_status": "completed",
+              "candidate_status": "completed",
+              "delta": {
+                "baseline": 1966,
+                "candidate": 2247,
+                "absolute_change": 281,
+                "favorable_absolute_change": -281,
+                "relative_change_percent": -14.292980671414037,
+                "percentage_point_change": null,
+                "baseline_index": 100,
+                "candidate_index": 115,
+                "index_rounding": "nearest_5_points",
+                "reason": null
+              },
+              "outcome": "regressed",
+              "reasons": []
+            }
+          ],
+          "counts": {
+            "improved": 0,
+            "no_change": 0,
+            "regressed": 3,
+            "mixed": 0,
+            "insufficient_evidence": 0
+          },
+          "execution_claim": "reported_host_execution",
+          "mean_relative_change_percent": -17.044562132237356,
+          "mean_absolute_change": 335.6666666666667,
+          "uncertainty": {
+            "method": "exact_sign_median_interval",
+            "confidence_level": 0.95,
+            "observed_pair_count": 3,
+            "median_relative_change_percent": -17.768803634528016,
+            "observed_range_percent": [
+              -19.071902090770017,
+              -14.292980671414037
+            ],
+            "interval_percent": null,
+            "interval_coverage": null,
+            "unavailable_reason": "independent_pairs_not_established",
+            "assumptions": [
+              "Independent pairs sampled from one stable task/condition distribution; caller assertion is not statistical verification.",
+              "Interval concerns the population median paired relative change, not a mean, a person, or causal efficacy.",
+              "Observed range is descriptive. Missing/failed pairs remain excluded from numerical intervals and block eligibility.",
+              "Discrete/tied outcomes can make coverage conservative; repeated task/model dependence can invalidate the interval."
+            ]
+          },
+          "eligibility": {
+            "preliminary_measured_improvement": false,
+            "actual_benchmark_evidence": false,
+            "human_achievement_evidence": false,
+            "population_cohort_evidence": false,
+            "reasons": [
+              "shared_token_overhead_incomplete",
+              "budget_usage_unknown",
+              "shared_resource_overhead_not_pair_attributable",
+              "fewer_than_five_pairs",
+              "outcome_not_improved"
+            ]
+          },
+          "telemetry": {
+            "pairs": [
+              {
+                "pair_id": "pair-1",
+                "baseline": {
+                  "model_tokens": {
+                    "total": 1961,
+                    "known_subtotal": 1961,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 762,
+                    "known_subtotal": 762,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.011330999999999999,
+                    "known_subtotal": 0.011330999999999999,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                },
+                "candidate": {
+                  "model_tokens": {
+                    "total": 2335,
+                    "known_subtotal": 2335,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 963,
+                    "known_subtotal": 963,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.014326,
+                    "known_subtotal": 0.014326,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                }
+              },
+              {
+                "pair_id": "pair-2",
+                "baseline": {
+                  "model_tokens": {
+                    "total": 1981,
+                    "known_subtotal": 1981,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 762,
+                    "known_subtotal": 762,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.011850999999999999,
+                    "known_subtotal": 0.011850999999999999,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                },
+                "candidate": {
+                  "model_tokens": {
+                    "total": 2333,
+                    "known_subtotal": 2333,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 964,
+                    "known_subtotal": 964,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.014241,
+                    "known_subtotal": 0.014241,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                }
+              },
+              {
+                "pair_id": "pair-3",
+                "baseline": {
+                  "model_tokens": {
+                    "total": 1966,
+                    "known_subtotal": 1966,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 761,
+                    "known_subtotal": 761,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.011470999999999999,
+                    "known_subtotal": 0.011470999999999999,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                },
+                "candidate": {
+                  "model_tokens": {
+                    "total": 2247,
+                    "known_subtotal": 2247,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 965,
+                    "known_subtotal": 965,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.012096,
+                    "known_subtotal": 0.012096,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                }
+              }
+            ],
+            "shared_overhead": {
+              "model_tokens": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "cache_read_tokens": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "cache_write_tokens": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "model_duration_seconds": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "human_effort_seconds": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "actual_billing_usd": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "estimated_api_cost_usd": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "reasons": [
+                "missing_parent_coverage",
+                "missing_orchestration_coverage",
+                "model_tokens_incomplete",
+                "cache_read_tokens_incomplete",
+                "cache_write_tokens_incomplete",
+                "model_duration_seconds_incomplete",
+                "human_effort_seconds_incomplete",
+                "actual_billing_usd_incomplete",
+                "estimated_api_cost_usd_incomplete"
+              ]
+            }
+          },
+          "registration_verified": true,
+          "compatibility": {
+            "similarity": "same_taxonomy",
+            "status": "comparable",
+            "reasons": []
+          },
+          "limitations": [
+            "Local supplied measurements and registration are not independently verified; no person ranking or calibrated causal claim.",
+            "Five paired trials and three distinct tasks are product gates, not established statistical sufficiency.",
+            "All planned outcomes are retained. Numerical means describe observed pairs only; missing/failed pairs are not zero.",
+            "Token use, model duration, human effort, estimated API cost, and actual billing are separate; token reduction is not cash savings.",
+            "Rounded public indices lose detail and any percent claim derived from them is approximate.",
+            "Median confidence interval unavailable: independent_pairs_not_established.",
+            "Protocol-wide overhead is reported separately, without invented per-arm allocation; pair deltas exclude that shared work."
+          ]
+        }
+      }
+    },
+    {
+      "task_id": "ledger-b",
+      "source_registration_commit": "a751b58",
+      "source_registration_sha256": "0d6e8b73a6e32b47b7f50c65f1f816e88d15079c7a6f0a3a43ea25cbe3ef18fa",
+      "derived_at": "2026-09-14T17:44:14.482Z",
+      "registration": {
+        "version": "bl-measurement-registration-0.1",
+        "plan": {
+          "conditions": {
+            "baseline": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "none",
+              "tool_access": []
+            },
+            "candidate": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+              "tool_access": []
+            }
+          },
+          "content_origin": "public_benchmark",
+          "framework_version": "better-loop-fluency-0.1",
+          "protocol": {
+            "compatibility": "comparable",
+            "direction": "lower_is_better",
+            "evaluator_version": "bl-ledger-exact-json-0.1",
+            "frozen_before_execution": true,
+            "intervention": "Use the actual Better Loop rewritePrompt process-check additions, frozen before execution.",
+            "kind": "controlled_paired",
+            "metric_definition_version": "bl-metrics-0.1",
+            "overhead_accounting": "All reported per-model token categories and list-cost estimates retained, including auxiliary host models. Model time, human effort, cash billing and shared preparation overhead unavailable. No task retries, model judges or workers requested.",
+            "planned_pair_ids": [
+              "pair-1",
+              "pair-2",
+              "pair-3"
+            ],
+            "primary_metric": "model_tokens",
+            "quality_floor_definition": "All six prespecified exact-JSON and fixed-ledger checks pass unchanged.",
+            "resource_budget": {
+              "max_duration_seconds": 900,
+              "max_total_tokens": null
+            }
+          },
+          "run_id": "real-host-pilot-ledger-b-v1",
+          "schema_version": "0.1.0",
+          "task": {
+            "benchmark_contract": "synthetic-reconciliation-0.1",
+            "constraints": [
+              "fixed_inputs",
+              "format_required",
+              "quality_threshold",
+              "tool_limited"
+            ],
+            "demonstrated_skills": [],
+            "difficulty": "routine",
+            "difficulty_basis": "self_estimated",
+            "objective": "lower_resource_use",
+            "problem_type": "reconciling_data",
+            "task_contract_version": "bl-task-0.1",
+            "task_family": "analysis_finance"
+          },
+          "task_instance_id": "public-synthetic-ledger-b-v1"
+        },
+        "evidence": {
+          "allowed_condition_changes": [
+            "skill_version"
+          ],
+          "baseline": {
+            "acceptance_criteria_version": "bl-ledger-exact-json-0.1",
+            "conditions": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "none",
+              "tool_access": []
+            },
+            "equivalence_group": "ledger-b-same-fixed-input",
+            "evaluator_version": "bl-ledger-exact-json-0.1",
+            "input_version": "ledger-b-v1",
+            "metric_definition_version": "bl-metrics-0.1",
+            "metric_unit": "count",
+            "resource_conditions": "Same isolated CLI invocation, fixed synthetic input, no tools, host-default effort, identical timeout/cost caps.",
+            "task": {
+              "benchmark_contract": "synthetic-reconciliation-0.1",
+              "constraints": [
+                "fixed_inputs",
+                "format_required",
+                "quality_threshold",
+                "tool_limited"
+              ],
+              "demonstrated_skills": [],
+              "difficulty": "routine",
+              "difficulty_basis": "self_estimated",
+              "objective": "lower_resource_use",
+              "problem_type": "reconciling_data",
+              "task_contract_version": "bl-task-0.1",
+              "task_family": "analysis_finance"
+            }
+          },
+          "candidate": {
+            "acceptance_criteria_version": "bl-ledger-exact-json-0.1",
+            "conditions": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+              "tool_access": []
+            },
+            "equivalence_group": "ledger-b-same-fixed-input",
+            "evaluator_version": "bl-ledger-exact-json-0.1",
+            "input_version": "ledger-b-v1",
+            "metric_definition_version": "bl-metrics-0.1",
+            "metric_unit": "count",
+            "resource_conditions": "Same isolated CLI invocation, fixed synthetic input, no tools, host-default effort, identical timeout/cost caps.",
+            "task": {
+              "benchmark_contract": "synthetic-reconciliation-0.1",
+              "constraints": [
+                "fixed_inputs",
+                "format_required",
+                "quality_threshold",
+                "tool_limited"
+              ],
+              "demonstrated_skills": [],
+              "difficulty": "routine",
+              "difficulty_basis": "self_estimated",
+              "objective": "lower_resource_use",
+              "problem_type": "reconciling_data",
+              "task_contract_version": "bl-task-0.1",
+              "task_family": "analysis_finance"
+            }
+          },
+          "independent_pairs": false,
+          "quality_rule": {
+            "dimensions": [
+              {
+                "floor": 1,
+                "id": "exact_json",
+                "max_regression": 0,
+                "maximum": 1,
+                "minimum": 0
+              }
+            ],
+            "version": "bl-ledger-exact-json-0.1"
+          },
+          "registered_at": "2026-09-14T17:37:07.626Z",
+          "task_fingerprint": "0993a4e361f23607d34bcc5fc205225799d7eec19acd08f71d2ef8f9315aea9b",
+          "trial_plan": [
+            {
+              "blind_assignment": "candidate_as_A",
+              "order": "baseline_first",
+              "pair_id": "pair-1",
+              "seed": null
+            },
+            {
+              "blind_assignment": "baseline_as_A",
+              "order": "candidate_first",
+              "pair_id": "pair-2",
+              "seed": null
+            },
+            {
+              "blind_assignment": "candidate_as_A",
+              "order": "baseline_first",
+              "pair_id": "pair-3",
+              "seed": null
+            }
+          ]
+        },
+        "digest": "757ee03177ba4b2d3916693fd2d4ea6feb2552257620b9f545fd416cd8c7ea44"
+      },
+      "options": {
+        "registration": {
+          "version": "bl-measurement-registration-0.1",
+          "plan": {
+            "conditions": {
+              "baseline": {
+                "effort": "host default, not inferred",
+                "model_version": "claude-opus-5[1m]",
+                "platform": "claude_code",
+                "skill_version": "none",
+                "tool_access": []
+              },
+              "candidate": {
+                "effort": "host default, not inferred",
+                "model_version": "claude-opus-5[1m]",
+                "platform": "claude_code",
+                "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+                "tool_access": []
+              }
+            },
+            "content_origin": "public_benchmark",
+            "framework_version": "better-loop-fluency-0.1",
+            "protocol": {
+              "compatibility": "comparable",
+              "direction": "lower_is_better",
+              "evaluator_version": "bl-ledger-exact-json-0.1",
+              "frozen_before_execution": true,
+              "intervention": "Use the actual Better Loop rewritePrompt process-check additions, frozen before execution.",
+              "kind": "controlled_paired",
+              "metric_definition_version": "bl-metrics-0.1",
+              "overhead_accounting": "All reported per-model token categories and list-cost estimates retained, including auxiliary host models. Model time, human effort, cash billing and shared preparation overhead unavailable. No task retries, model judges or workers requested.",
+              "planned_pair_ids": [
+                "pair-1",
+                "pair-2",
+                "pair-3"
+              ],
+              "primary_metric": "model_tokens",
+              "quality_floor_definition": "All six prespecified exact-JSON and fixed-ledger checks pass unchanged.",
+              "resource_budget": {
+                "max_duration_seconds": 900,
+                "max_total_tokens": null
+              }
+            },
+            "run_id": "real-host-pilot-ledger-b-v1",
+            "schema_version": "0.1.0",
+            "task": {
+              "benchmark_contract": "synthetic-reconciliation-0.1",
+              "constraints": [
+                "fixed_inputs",
+                "format_required",
+                "quality_threshold",
+                "tool_limited"
+              ],
+              "demonstrated_skills": [],
+              "difficulty": "routine",
+              "difficulty_basis": "self_estimated",
+              "objective": "lower_resource_use",
+              "problem_type": "reconciling_data",
+              "task_contract_version": "bl-task-0.1",
+              "task_family": "analysis_finance"
+            },
+            "task_instance_id": "public-synthetic-ledger-b-v1"
+          },
+          "evidence": {
+            "allowed_condition_changes": [
+              "skill_version"
+            ],
+            "baseline": {
+              "acceptance_criteria_version": "bl-ledger-exact-json-0.1",
+              "conditions": {
+                "effort": "host default, not inferred",
+                "model_version": "claude-opus-5[1m]",
+                "platform": "claude_code",
+                "skill_version": "none",
+                "tool_access": []
+              },
+              "equivalence_group": "ledger-b-same-fixed-input",
+              "evaluator_version": "bl-ledger-exact-json-0.1",
+              "input_version": "ledger-b-v1",
+              "metric_definition_version": "bl-metrics-0.1",
+              "metric_unit": "count",
+              "resource_conditions": "Same isolated CLI invocation, fixed synthetic input, no tools, host-default effort, identical timeout/cost caps.",
+              "task": {
+                "benchmark_contract": "synthetic-reconciliation-0.1",
+                "constraints": [
+                  "fixed_inputs",
+                  "format_required",
+                  "quality_threshold",
+                  "tool_limited"
+                ],
+                "demonstrated_skills": [],
+                "difficulty": "routine",
+                "difficulty_basis": "self_estimated",
+                "objective": "lower_resource_use",
+                "problem_type": "reconciling_data",
+                "task_contract_version": "bl-task-0.1",
+                "task_family": "analysis_finance"
+              }
+            },
+            "candidate": {
+              "acceptance_criteria_version": "bl-ledger-exact-json-0.1",
+              "conditions": {
+                "effort": "host default, not inferred",
+                "model_version": "claude-opus-5[1m]",
+                "platform": "claude_code",
+                "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+                "tool_access": []
+              },
+              "equivalence_group": "ledger-b-same-fixed-input",
+              "evaluator_version": "bl-ledger-exact-json-0.1",
+              "input_version": "ledger-b-v1",
+              "metric_definition_version": "bl-metrics-0.1",
+              "metric_unit": "count",
+              "resource_conditions": "Same isolated CLI invocation, fixed synthetic input, no tools, host-default effort, identical timeout/cost caps.",
+              "task": {
+                "benchmark_contract": "synthetic-reconciliation-0.1",
+                "constraints": [
+                  "fixed_inputs",
+                  "format_required",
+                  "quality_threshold",
+                  "tool_limited"
+                ],
+                "demonstrated_skills": [],
+                "difficulty": "routine",
+                "difficulty_basis": "self_estimated",
+                "objective": "lower_resource_use",
+                "problem_type": "reconciling_data",
+                "task_contract_version": "bl-task-0.1",
+                "task_family": "analysis_finance"
+              }
+            },
+            "independent_pairs": false,
+            "quality_rule": {
+              "dimensions": [
+                {
+                  "floor": 1,
+                  "id": "exact_json",
+                  "max_regression": 0,
+                  "maximum": 1,
+                  "minimum": 0
+                }
+              ],
+              "version": "bl-ledger-exact-json-0.1"
+            },
+            "registered_at": "2026-09-14T17:37:07.626Z",
+            "task_fingerprint": "0993a4e361f23607d34bcc5fc205225799d7eec19acd08f71d2ef8f9315aea9b",
+            "trial_plan": [
+              {
+                "blind_assignment": "candidate_as_A",
+                "order": "baseline_first",
+                "pair_id": "pair-1",
+                "seed": null
+              },
+              {
+                "blind_assignment": "baseline_as_A",
+                "order": "candidate_first",
+                "pair_id": "pair-2",
+                "seed": null
+              },
+              {
+                "blind_assignment": "candidate_as_A",
+                "order": "baseline_first",
+                "pair_id": "pair-3",
+                "seed": null
+              }
+            ]
+          },
+          "digest": "757ee03177ba4b2d3916693fd2d4ea6feb2552257620b9f545fd416cd8c7ea44"
+        },
+        "quality": {
+          "pair-1": {
+            "baseline": {
+              "exact_json": 1
+            },
+            "candidate": {
+              "exact_json": 1
+            }
+          },
+          "pair-2": {
+            "baseline": {
+              "exact_json": 1
+            },
+            "candidate": {
+              "exact_json": 1
+            }
+          },
+          "pair-3": {
+            "baseline": {
+              "exact_json": 1
+            },
+            "candidate": {
+              "exact_json": 1
+            }
+          }
+        },
+        "telemetry": {
+          "pair-1": {
+            "baseline": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-b-pair-1-baseline-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1095,
+                  "output_tokens": 14,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001165
+                },
+                {
+                  "id": "ledger-b-pair-1-baseline-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 125,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 780,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.010935
+                }
+              ]
+            },
+            "candidate": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-b-pair-1-candidate-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1235,
+                  "output_tokens": 14,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001305
+                },
+                {
+                  "id": "ledger-b-pair-1-candidate-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 129,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 981,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.013045000000000001
+                }
+              ]
+            }
+          },
+          "pair-2": {
+            "baseline": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-b-pair-2-baseline-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1095,
+                  "output_tokens": 14,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001165
+                },
+                {
+                  "id": "ledger-b-pair-2-baseline-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 46,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 781,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.00897
+                }
+              ]
+            },
+            "candidate": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-b-pair-2-candidate-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1235,
+                  "output_tokens": 14,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001305
+                },
+                {
+                  "id": "ledger-b-pair-2-candidate-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 129,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 981,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.013045000000000001
+                }
+              ]
+            }
+          },
+          "pair-3": {
+            "baseline": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-b-pair-3-baseline-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1095,
+                  "output_tokens": 13,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.00116
+                },
+                {
+                  "id": "ledger-b-pair-3-baseline-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 46,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 781,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.00897
+                }
+              ]
+            },
+            "candidate": {
+              "coverage": {
+                "parent": "complete",
+                "worker": "not_applicable",
+                "judge": "not_applicable",
+                "retry": "not_applicable",
+                "orchestration": "complete"
+              },
+              "entries": [
+                {
+                  "id": "ledger-b-pair-3-candidate-model-0",
+                  "role": "orchestration",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 1235,
+                  "output_tokens": 14,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.001305
+                },
+                {
+                  "id": "ledger-b-pair-3-candidate-model-1",
+                  "role": "parent",
+                  "input_token_semantics": "excludes_cache",
+                  "input_tokens": 2,
+                  "output_tokens": 119,
+                  "cache_read_tokens": 0,
+                  "cache_write_tokens": 982,
+                  "model_duration_seconds": null,
+                  "human_effort_seconds": null,
+                  "actual_billing_usd": null,
+                  "estimated_api_cost_usd": 0.012805
+                }
+              ]
+            }
+          }
+        },
+        "shared_telemetry": {
+          "coverage": {
+            "parent": "missing",
+            "worker": "not_applicable",
+            "judge": "not_applicable",
+            "retry": "not_applicable",
+            "orchestration": "missing"
+          },
+          "entries": []
+        }
+      },
+      "result": {
+        "valid": true,
+        "record": {
+          "conditions": {
+            "baseline": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "none",
+              "tool_access": []
+            },
+            "candidate": {
+              "effort": "host default, not inferred",
+              "model_version": "claude-opus-5[1m]",
+              "platform": "claude_code",
+              "skill_version": "bl-prompt-rewrite-0.2-ae407170cd39",
+              "tool_access": []
+            }
+          },
+          "content_origin": "public_benchmark",
+          "framework_version": "better-loop-fluency-0.1",
+          "observations": [],
+          "protocol": {
+            "compatibility": "comparable",
+            "direction": "lower_is_better",
+            "evaluator_version": "bl-ledger-exact-json-0.1",
+            "frozen_before_execution": true,
+            "intervention": "Use the actual Better Loop rewritePrompt process-check additions, frozen before execution.",
+            "kind": "controlled_paired",
+            "metric_definition_version": "bl-metrics-0.1",
+            "overhead_accounting": "All reported per-model token categories and list-cost estimates retained, including auxiliary host models. Model time, human effort, cash billing and shared preparation overhead unavailable. No task retries, model judges or workers requested.",
+            "planned_pair_ids": [
+              "pair-1",
+              "pair-2",
+              "pair-3"
+            ],
+            "primary_metric": "model_tokens",
+            "quality_floor_definition": "All six prespecified exact-JSON and fixed-ledger checks pass unchanged.",
+            "resource_budget": {
+              "max_duration_seconds": 900,
+              "max_total_tokens": null
+            }
+          },
+          "run_id": "real-host-pilot-ledger-b-v1",
+          "schema_version": "0.1.0",
+          "summary": {
+            "limitations": [
+              "Local supplied measurements and registration are not independently verified; no person ranking or calibrated causal claim.",
+              "Five paired trials and three distinct tasks are product gates, not established statistical sufficiency.",
+              "All planned outcomes are retained. Numerical means describe observed pairs only; missing/failed pairs are not zero.",
+              "Token use, model duration, human effort, estimated API cost, and actual billing are separate; token reduction is not cash savings.",
+              "Rounded public indices lose detail and any percent claim derived from them is approximate.",
+              "Median confidence interval unavailable: independent_pairs_not_established.",
+              "Protocol-wide overhead is reported separately, without invented per-arm allocation; pair deltas exclude that shared work."
+            ],
+            "outcome": "regressed",
+            "paired_relative_changes_percent": [
+              -17.113095238095237,
+              -21.826625386996902,
+              -21.424883840991225
+            ],
+            "uncertainty": "No finite justified 95% median interval: independent_pairs_not_established. Observed pairs 3/3; range is descriptive only."
+          },
+          "task": {
+            "benchmark_contract": "synthetic-reconciliation-0.1",
+            "constraints": [
+              "fixed_inputs",
+              "format_required",
+              "quality_threshold",
+              "tool_limited"
+            ],
+            "demonstrated_skills": [],
+            "difficulty": "routine",
+            "difficulty_basis": "self_estimated",
+            "objective": "lower_resource_use",
+            "problem_type": "reconciling_data",
+            "task_contract_version": "bl-task-0.1",
+            "task_family": "analysis_finance"
+          },
+          "task_instance_id": "public-synthetic-ledger-b-v1",
+          "trials": [
+            {
+              "baseline": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:41.470Z",
+                "metrics": {
+                  "estimated_api_cost": 0.0121,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 2016,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:37.604Z",
+                "status": "completed"
+              },
+              "candidate": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:45.231Z",
+                "metrics": {
+                  "estimated_api_cost": 0.014350000000000002,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 2361,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:41.471Z",
+                "status": "completed"
+              },
+              "order": "baseline_first",
+              "pair_id": "pair-1",
+              "seed": null
+            },
+            {
+              "baseline": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:52.047Z",
+                "metrics": {
+                  "estimated_api_cost": 0.010135,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 1938,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:48.856Z",
+                "status": "completed"
+              },
+              "candidate": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:48.854Z",
+                "metrics": {
+                  "estimated_api_cost": 0.014350000000000002,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 2361,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:45.232Z",
+                "status": "completed"
+              },
+              "order": "candidate_first",
+              "pair_id": "pair-2",
+              "seed": null
+            },
+            {
+              "baseline": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:55.191Z",
+                "metrics": {
+                  "estimated_api_cost": 0.01013,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 1937,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:52.050Z",
+                "status": "completed"
+              },
+              "candidate": {
+                "critical_regression": false,
+                "failure_or_omission_reason": null,
+                "finished_at": "2026-09-14T17:37:58.892Z",
+                "metrics": {
+                  "estimated_api_cost": 0.014110000000000001,
+                  "human_effort": null,
+                  "model_duration": null,
+                  "model_tokens": 2352,
+                  "quality_rubric": 1,
+                  "rework_cycles": null
+                },
+                "quality_floor_passed": true,
+                "started_at": "2026-09-14T17:37:55.195Z",
+                "status": "completed"
+              },
+              "order": "baseline_first",
+              "pair_id": "pair-3",
+              "seed": null
+            }
+          ]
+        },
+        "report": {
+          "version": "bl-measurement-0.1",
+          "run_id": "real-host-pilot-ledger-b-v1",
+          "task_instance_id": "public-synthetic-ledger-b-v1",
+          "evidence_track": "controlled_paired",
+          "content_origin": "public_benchmark",
+          "outcome": "regressed",
+          "pairs": [
+            {
+              "pair_id": "pair-1",
+              "baseline_status": "completed",
+              "candidate_status": "completed",
+              "delta": {
+                "baseline": 2016,
+                "candidate": 2361,
+                "absolute_change": 345,
+                "favorable_absolute_change": -345,
+                "relative_change_percent": -17.113095238095237,
+                "percentage_point_change": null,
+                "baseline_index": 100,
+                "candidate_index": 115,
+                "index_rounding": "nearest_5_points",
+                "reason": null
+              },
+              "outcome": "regressed",
+              "reasons": []
+            },
+            {
+              "pair_id": "pair-2",
+              "baseline_status": "completed",
+              "candidate_status": "completed",
+              "delta": {
+                "baseline": 1938,
+                "candidate": 2361,
+                "absolute_change": 423,
+                "favorable_absolute_change": -423,
+                "relative_change_percent": -21.826625386996902,
+                "percentage_point_change": null,
+                "baseline_index": 100,
+                "candidate_index": 120,
+                "index_rounding": "nearest_5_points",
+                "reason": null
+              },
+              "outcome": "regressed",
+              "reasons": []
+            },
+            {
+              "pair_id": "pair-3",
+              "baseline_status": "completed",
+              "candidate_status": "completed",
+              "delta": {
+                "baseline": 1937,
+                "candidate": 2352,
+                "absolute_change": 415,
+                "favorable_absolute_change": -415,
+                "relative_change_percent": -21.424883840991225,
+                "percentage_point_change": null,
+                "baseline_index": 100,
+                "candidate_index": 120,
+                "index_rounding": "nearest_5_points",
+                "reason": null
+              },
+              "outcome": "regressed",
+              "reasons": []
+            }
+          ],
+          "counts": {
+            "improved": 0,
+            "no_change": 0,
+            "regressed": 3,
+            "mixed": 0,
+            "insufficient_evidence": 0
+          },
+          "execution_claim": "reported_host_execution",
+          "mean_relative_change_percent": -20.12153482202779,
+          "mean_absolute_change": 394.33333333333337,
+          "uncertainty": {
+            "method": "exact_sign_median_interval",
+            "confidence_level": 0.95,
+            "observed_pair_count": 3,
+            "median_relative_change_percent": -21.424883840991225,
+            "observed_range_percent": [
+              -21.826625386996902,
+              -17.113095238095237
+            ],
+            "interval_percent": null,
+            "interval_coverage": null,
+            "unavailable_reason": "independent_pairs_not_established",
+            "assumptions": [
+              "Independent pairs sampled from one stable task/condition distribution; caller assertion is not statistical verification.",
+              "Interval concerns the population median paired relative change, not a mean, a person, or causal efficacy.",
+              "Observed range is descriptive. Missing/failed pairs remain excluded from numerical intervals and block eligibility.",
+              "Discrete/tied outcomes can make coverage conservative; repeated task/model dependence can invalidate the interval."
+            ]
+          },
+          "eligibility": {
+            "preliminary_measured_improvement": false,
+            "actual_benchmark_evidence": false,
+            "human_achievement_evidence": false,
+            "population_cohort_evidence": false,
+            "reasons": [
+              "shared_token_overhead_incomplete",
+              "budget_usage_unknown",
+              "shared_resource_overhead_not_pair_attributable",
+              "fewer_than_five_pairs",
+              "outcome_not_improved"
+            ]
+          },
+          "telemetry": {
+            "pairs": [
+              {
+                "pair_id": "pair-1",
+                "baseline": {
+                  "model_tokens": {
+                    "total": 2016,
+                    "known_subtotal": 2016,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 780,
+                    "known_subtotal": 780,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.0121,
+                    "known_subtotal": 0.0121,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                },
+                "candidate": {
+                  "model_tokens": {
+                    "total": 2361,
+                    "known_subtotal": 2361,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 981,
+                    "known_subtotal": 981,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.014350000000000002,
+                    "known_subtotal": 0.014350000000000002,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                }
+              },
+              {
+                "pair_id": "pair-2",
+                "baseline": {
+                  "model_tokens": {
+                    "total": 1938,
+                    "known_subtotal": 1938,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 781,
+                    "known_subtotal": 781,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.010135,
+                    "known_subtotal": 0.010135,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                },
+                "candidate": {
+                  "model_tokens": {
+                    "total": 2361,
+                    "known_subtotal": 2361,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 981,
+                    "known_subtotal": 981,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.014350000000000002,
+                    "known_subtotal": 0.014350000000000002,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                }
+              },
+              {
+                "pair_id": "pair-3",
+                "baseline": {
+                  "model_tokens": {
+                    "total": 1937,
+                    "known_subtotal": 1937,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 781,
+                    "known_subtotal": 781,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.01013,
+                    "known_subtotal": 0.01013,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                },
+                "candidate": {
+                  "model_tokens": {
+                    "total": 2352,
+                    "known_subtotal": 2352,
+                    "complete": true
+                  },
+                  "cache_read_tokens": {
+                    "total": 0,
+                    "known_subtotal": 0,
+                    "complete": true
+                  },
+                  "cache_write_tokens": {
+                    "total": 982,
+                    "known_subtotal": 982,
+                    "complete": true
+                  },
+                  "model_duration_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "human_effort_seconds": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "actual_billing_usd": {
+                    "total": null,
+                    "known_subtotal": 0,
+                    "complete": false
+                  },
+                  "estimated_api_cost_usd": {
+                    "total": 0.014110000000000001,
+                    "known_subtotal": 0.014110000000000001,
+                    "complete": true
+                  },
+                  "reasons": [
+                    "model_duration_seconds_incomplete",
+                    "human_effort_seconds_incomplete",
+                    "actual_billing_usd_incomplete"
+                  ]
+                }
+              }
+            ],
+            "shared_overhead": {
+              "model_tokens": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "cache_read_tokens": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "cache_write_tokens": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "model_duration_seconds": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "human_effort_seconds": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "actual_billing_usd": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "estimated_api_cost_usd": {
+                "total": null,
+                "known_subtotal": 0,
+                "complete": false
+              },
+              "reasons": [
+                "missing_parent_coverage",
+                "missing_orchestration_coverage",
+                "model_tokens_incomplete",
+                "cache_read_tokens_incomplete",
+                "cache_write_tokens_incomplete",
+                "model_duration_seconds_incomplete",
+                "human_effort_seconds_incomplete",
+                "actual_billing_usd_incomplete",
+                "estimated_api_cost_usd_incomplete"
+              ]
+            }
+          },
+          "registration_verified": true,
+          "compatibility": {
+            "similarity": "same_taxonomy",
+            "status": "comparable",
+            "reasons": []
+          },
+          "limitations": [
+            "Local supplied measurements and registration are not independently verified; no person ranking or calibrated causal claim.",
+            "Five paired trials and three distinct tasks are product gates, not established statistical sufficiency.",
+            "All planned outcomes are retained. Numerical means describe observed pairs only; missing/failed pairs are not zero.",
+            "Token use, model duration, human effort, estimated API cost, and actual billing are separate; token reduction is not cash savings.",
+            "Rounded public indices lose detail and any percent claim derived from them is approximate.",
+            "Median confidence interval unavailable: independent_pairs_not_established.",
+            "Protocol-wide overhead is reported separately, without invented per-arm allocation; pair deltas exclude that shared work."
+          ]
+        }
+      }
+    }
+  ],
+  "repeated_milestone": {
+    "eligible": false,
+    "minimum_distinct_tasks": 3,
+    "minimum_pairs_per_task": 5,
+    "qualifying_task_ids": [],
+    "excluded": [
+      {
+        "run_id": "real-host-pilot-ledger-a-v1",
+        "reasons": [
+          "task_has_ineligible_or_non_improved_run"
+        ]
+      },
+      {
+        "run_id": "real-host-pilot-ledger-b-v1",
+        "reasons": [
+          "task_has_ineligible_or_non_improved_run"
+        ]
+      }
+    ],
+    "reasons": [
+      "fewer_than_three_distinct_comparable_tasks"
+    ],
+    "claim": null
+  }
+}

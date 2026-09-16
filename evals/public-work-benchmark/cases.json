@@ -1,0 +1,59 @@
+{
+  "version": "bl-approval-binding-cases-0.1",
+  "assumptions": [
+    "All preparations refer to the original same-process object unless the case explicitly says clone.",
+    "The initial candidate and consent pass existing validators and scanner; both reviewers return the valid allowing verdict unless specified.",
+    "Treat false-confirmation as a JavaScript runtime call; TypeScript static rejection is not the requested judgment.",
+    "Classify the call to confirmPreview; acceptance never means an upload occurred or a server verified work."
+  ],
+  "cases": [
+    {
+      "id": "original",
+      "scenario": "The original ready preparation, returned by two allowing configured reviewers, is unchanged; confirmPreview receives its exact digest and literal true."
+    },
+    {
+      "id": "wrong_digest",
+      "scenario": "The original ready preparation is unchanged but confirmPreview receives a different digest."
+    },
+    {
+      "id": "not_confirmed",
+      "scenario": "The original ready preparation is unchanged with the exact digest, but JavaScript calls confirmPreview with false."
+    },
+    {
+      "id": "edited_candidate",
+      "scenario": "After preparation, edit candidate.story.lesson to another schema-valid generic lesson, recompute and replace preview_digest, and confirm with the new digest and true."
+    },
+    {
+      "id": "edited_purpose",
+      "scenario": "After preparation, toggle consent.community_learning, recompute and replace preview_digest, and confirm with the new digest and true."
+    },
+    {
+      "id": "edited_preview",
+      "scenario": "After preparation, replace only prepared.preview with different text. Confirm with the unchanged digest and true."
+    },
+    {
+      "id": "edited_receipts",
+      "scenario": "After preparation, replace prepared.reviews with an empty array. Confirm with the unchanged digest and true."
+    },
+    {
+      "id": "json_clone",
+      "scenario": "JSON-serialize and parse an unchanged ready preparation, then confirm that clone with its digest and true."
+    },
+    {
+      "id": "shallow_clone",
+      "scenario": "Spread an unchanged ready preparation into a new outer object, keeping the exact nested references; confirm that clone."
+    },
+    {
+      "id": "caller_consent_changed",
+      "scenario": "Call prepareCandidate with a valid consent object. While asynchronous reviews wait, toggle the caller-owned consent.community_learning. Both reviews then allow; confirm the unchanged returned preparation with its own digest and true."
+    },
+    {
+      "id": "reviewer_copy_changed",
+      "scenario": "One reviewer changes the candidate copy it receives to another generic lesson and returns allow; the other returns allow. Confirm the unchanged returned preparation with its own digest and true."
+    },
+    {
+      "id": "key_order_only",
+      "scenario": "On the original returned preparation, replace candidate.story with a new object containing exactly the same JSON keys and values inserted in reverse order. Confirm with the original digest and true."
+    }
+  ]
+}

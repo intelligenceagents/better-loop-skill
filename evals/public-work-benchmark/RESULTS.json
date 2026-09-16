@@ -1,0 +1,311 @@
+{
+  "version": "bl-public-work-execution-report-0.1",
+  "summary": {
+    "version": "bl-public-work-results-0.1",
+    "benchmark_id": "bl-public-approval-binding",
+    "benchmark_version": "0.1",
+    "status": "real_executions_retained",
+    "source_commit": "990428dadb3061453b54d3b078b1c8434d4e5d47",
+    "freeze_commit": "0aab3f442e48e9a705575bfa5b2283349781b2cb",
+    "judge_version": "bl-approval-binding-judge-0.1",
+    "host": "claude_code",
+    "host_version": "2.1.270",
+    "pairs": 1,
+    "order": "baseline_then_with_guidance",
+    "observed_outcome": "no_quality_gain_more_reported_tokens",
+    "arms": [
+      {
+        "arm": "baseline",
+        "result": "met",
+        "cases_passed": 12,
+        "expected_cases": 12,
+        "limits_passed": 3,
+        "expected_limits": 3,
+        "total_reported_model_tokens": 34617,
+        "estimated_api_cost_usd": 0.22328,
+        "host_wall_duration_ms": 11799
+      },
+      {
+        "arm": "with_guidance",
+        "result": "met",
+        "cases_passed": 12,
+        "expected_cases": 12,
+        "limits_passed": 3,
+        "expected_limits": 3,
+        "total_reported_model_tokens": 34981,
+        "estimated_api_cost_usd": 0.223716,
+        "host_wall_duration_ms": 10039
+      }
+    ],
+    "guided_minus_baseline_tokens": 364,
+    "reported_token_increase_percent": 1.051506485253,
+    "cost_basis": "host_reported_list_estimate_not_cash_billing",
+    "cash_billing_usd": null,
+    "human_effort_seconds": null,
+    "shared_orchestration_resources": null,
+    "results_path": "evals/public-work-benchmark/RESULTS.json",
+    "limitations": [
+      "One actual public code-reasoning task and one baseline-then-guided pair; no measured quality gain.",
+      "Guidance used slightly more reported tokens. No savings, causal speed improvement or efficiency benefit is established.",
+      "Host classifier and main-model entries are included once; duplicate top-level usage/iterations and thinking-token subsets are not added again.",
+      "Provider-list cost estimates are not cash billing. Shared coding-agent orchestration, other parent/worker/judge/retry resources and human effort are unknown.",
+      "Full installed skill, host workflow, unaided human judgment, learning transfer and candidate/hiring validity were not evaluated.",
+      "Public source/rubric contamination is possible. Host configuration compliance cannot be independently established from prompt hashes alone.",
+      "No counterbalanced replication or preliminary five-pair improvement gate; no uncertainty or population percentile is claimed."
+    ]
+  },
+  "provenance": {
+    "record_kind": "actual_coordinator_host_executions",
+    "coordinator_record_sha256": "9af6591d522f2680aa992beb324cd9dce191dab4ff6dc3e8dd2ead8f0c887610",
+    "input_scope": "frozen_public_better_loop_source_and_prompts_only",
+    "freeze_verified_before_execution": "coordinator_reported",
+    "accounting": "sum_every_model_usage_entry_once_exclude_duplicate_usage_iterations_and_thinking_subsets",
+    "model_calls_by_discovery_package": 0,
+    "coordinator_native_host_invocations": 2,
+    "standalone_external_model_judge_calls": 0
+  },
+  "executions": [
+    {
+      "arm": "baseline",
+      "assembled_prompt_sha256": "dac3cd2a785231dfb5a78775a30d7f1647f9be54cf41ceb7aa8963e2fb48079c",
+      "exit_code": 0,
+      "timed_out": false,
+      "output_limited": false,
+      "host_success_reported": true,
+      "host_wall_duration_ms": 11799,
+      "output": "{\"schema_version\":\"bl-approval-binding-answer-0.1\",\"benchmark_id\":\"bl-public-approval-binding\",\"benchmark_version\":\"0.1\",\"cases\":[{\"id\":\"original\",\"decision\":\"accept\",\"reason\":\"original_reviewed_state\"},{\"id\":\"wrong_digest\",\"decision\":\"reject\",\"reason\":\"exact_digest_required\"},{\"id\":\"not_confirmed\",\"decision\":\"reject\",\"reason\":\"explicit_confirmation_required\"},{\"id\":\"edited_candidate\",\"decision\":\"reject\",\"reason\":\"reviewed_snapshot_changed\"},{\"id\":\"edited_purpose\",\"decision\":\"reject\",\"reason\":\"reviewed_snapshot_changed\"},{\"id\":\"edited_preview\",\"decision\":\"reject\",\"reason\":\"reviewed_snapshot_changed\"},{\"id\":\"edited_receipts\",\"decision\":\"reject\",\"reason\":\"reviewed_snapshot_changed\"},{\"id\":\"json_clone\",\"decision\":\"reject\",\"reason\":\"original_object_identity_required\"},{\"id\":\"shallow_clone\",\"decision\":\"reject\",\"reason\":\"original_object_identity_required\"},{\"id\":\"caller_consent_changed\",\"decision\":\"accept\",\"reason\":\"caller_consent_snapshotted\"},{\"id\":\"reviewer_copy_changed\",\"decision\":\"accept\",\"reason\":\"reviewer_input_detached\"},{\"id\":\"key_order_only\",\"decision\":\"accept\",\"reason\":\"canonical_key_order_ignored\"}],\"limits\":[\"local_approval_is_not_server_verification\",\"no_upload_performed\",\"no_human_ability_inference\"]}",
+      "judgment": {
+        "benchmark_id": "bl-public-approval-binding",
+        "benchmark_version": "0.1",
+        "judge_version": "bl-approval-binding-judge-0.1",
+        "format_valid": true,
+        "result": "met",
+        "coverage": {
+          "expected_cases": 12,
+          "supplied_cases": 12,
+          "missing_cases": []
+        },
+        "checks": [
+          {
+            "id": "original",
+            "status": "passed"
+          },
+          {
+            "id": "wrong_digest",
+            "status": "passed"
+          },
+          {
+            "id": "not_confirmed",
+            "status": "passed"
+          },
+          {
+            "id": "edited_candidate",
+            "status": "passed"
+          },
+          {
+            "id": "edited_purpose",
+            "status": "passed"
+          },
+          {
+            "id": "edited_preview",
+            "status": "passed"
+          },
+          {
+            "id": "edited_receipts",
+            "status": "passed"
+          },
+          {
+            "id": "json_clone",
+            "status": "passed"
+          },
+          {
+            "id": "shallow_clone",
+            "status": "passed"
+          },
+          {
+            "id": "caller_consent_changed",
+            "status": "passed"
+          },
+          {
+            "id": "reviewer_copy_changed",
+            "status": "passed"
+          },
+          {
+            "id": "key_order_only",
+            "status": "passed"
+          }
+        ],
+        "limit_checks": [
+          {
+            "id": "local_approval_is_not_server_verification",
+            "status": "passed"
+          },
+          {
+            "id": "no_upload_performed",
+            "status": "passed"
+          },
+          {
+            "id": "no_human_ability_inference",
+            "status": "passed"
+          }
+        ],
+        "limitations": [
+          "Only frozen structured decisions on twelve public-source cases are checked; missing coverage is not a zero ability score.",
+          "No code, model, service, publication or side-effecting task was executed by this judge.",
+          "Task reasoning prose, other domains, unaided human judgment and hiring validity are not evaluated.",
+          "Public source/rubric contamination is possible. Test fixture success is not model benchmark evidence or improvement."
+        ]
+      },
+      "model_usage": [
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "input_tokens_excluding_cache": 13840,
+          "output_tokens_including_thinking": 14,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "thinking_tokens_subset": 0,
+          "reported_web_search_requests": 0,
+          "estimated_api_cost_usd": 0.01391,
+          "cost_basis": "list"
+        },
+        {
+          "model": "claude-opus-5[1m]",
+          "input_tokens_excluding_cache": 2,
+          "output_tokens_including_thinking": 978,
+          "cache_read_input_tokens": 1360,
+          "cache_creation_input_tokens": 18423,
+          "thinking_tokens_subset": 460,
+          "reported_web_search_requests": 0,
+          "estimated_api_cost_usd": 0.20937,
+          "cost_basis": "list"
+        }
+      ],
+      "reported_total_model_tokens": 34617,
+      "estimated_api_cost_usd": 0.22328,
+      "cash_billing_usd": null,
+      "human_effort_seconds": null,
+      "total_orchestration_resources": null
+    },
+    {
+      "arm": "with_guidance",
+      "assembled_prompt_sha256": "c33cd5609cc2056410f3207f195c79b89eb4bc85849a9e460b99bce3cf3a56c1",
+      "exit_code": 0,
+      "timed_out": false,
+      "output_limited": false,
+      "host_success_reported": true,
+      "host_wall_duration_ms": 10039,
+      "output": "{\"schema_version\":\"bl-approval-binding-answer-0.1\",\"benchmark_id\":\"bl-public-approval-binding\",\"benchmark_version\":\"0.1\",\"cases\":[{\"id\":\"original\",\"decision\":\"accept\",\"reason\":\"original_reviewed_state\"},{\"id\":\"wrong_digest\",\"decision\":\"reject\",\"reason\":\"exact_digest_required\"},{\"id\":\"not_confirmed\",\"decision\":\"reject\",\"reason\":\"explicit_confirmation_required\"},{\"id\":\"edited_candidate\",\"decision\":\"reject\",\"reason\":\"reviewed_snapshot_changed\"},{\"id\":\"edited_purpose\",\"decision\":\"reject\",\"reason\":\"reviewed_snapshot_changed\"},{\"id\":\"edited_preview\",\"decision\":\"reject\",\"reason\":\"reviewed_snapshot_changed\"},{\"id\":\"edited_receipts\",\"decision\":\"reject\",\"reason\":\"reviewed_snapshot_changed\"},{\"id\":\"json_clone\",\"decision\":\"reject\",\"reason\":\"original_object_identity_required\"},{\"id\":\"shallow_clone\",\"decision\":\"reject\",\"reason\":\"original_object_identity_required\"},{\"id\":\"caller_consent_changed\",\"decision\":\"accept\",\"reason\":\"caller_consent_snapshotted\"},{\"id\":\"reviewer_copy_changed\",\"decision\":\"accept\",\"reason\":\"reviewer_input_detached\"},{\"id\":\"key_order_only\",\"decision\":\"accept\",\"reason\":\"canonical_key_order_ignored\"}],\"limits\":[\"local_approval_is_not_server_verification\",\"no_upload_performed\",\"no_human_ability_inference\"]}",
+      "judgment": {
+        "benchmark_id": "bl-public-approval-binding",
+        "benchmark_version": "0.1",
+        "judge_version": "bl-approval-binding-judge-0.1",
+        "format_valid": true,
+        "result": "met",
+        "coverage": {
+          "expected_cases": 12,
+          "supplied_cases": 12,
+          "missing_cases": []
+        },
+        "checks": [
+          {
+            "id": "original",
+            "status": "passed"
+          },
+          {
+            "id": "wrong_digest",
+            "status": "passed"
+          },
+          {
+            "id": "not_confirmed",
+            "status": "passed"
+          },
+          {
+            "id": "edited_candidate",
+            "status": "passed"
+          },
+          {
+            "id": "edited_purpose",
+            "status": "passed"
+          },
+          {
+            "id": "edited_preview",
+            "status": "passed"
+          },
+          {
+            "id": "edited_receipts",
+            "status": "passed"
+          },
+          {
+            "id": "json_clone",
+            "status": "passed"
+          },
+          {
+            "id": "shallow_clone",
+            "status": "passed"
+          },
+          {
+            "id": "caller_consent_changed",
+            "status": "passed"
+          },
+          {
+            "id": "reviewer_copy_changed",
+            "status": "passed"
+          },
+          {
+            "id": "key_order_only",
+            "status": "passed"
+          }
+        ],
+        "limit_checks": [
+          {
+            "id": "local_approval_is_not_server_verification",
+            "status": "passed"
+          },
+          {
+            "id": "no_upload_performed",
+            "status": "passed"
+          },
+          {
+            "id": "no_human_ability_inference",
+            "status": "passed"
+          }
+        ],
+        "limitations": [
+          "Only frozen structured decisions on twelve public-source cases are checked; missing coverage is not a zero ability score.",
+          "No code, model, service, publication or side-effecting task was executed by this judge.",
+          "Task reasoning prose, other domains, unaided human judgment and hiring validity are not evaluated.",
+          "Public source/rubric contamination is possible. Test fixture success is not model benchmark evidence or improvement."
+        ]
+      },
+      "model_usage": [
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "input_tokens_excluding_cache": 14021,
+          "output_tokens_including_thinking": 14,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "thinking_tokens_subset": 0,
+          "reported_web_search_requests": 0,
+          "estimated_api_cost_usd": 0.014091,
+          "cost_basis": "list"
+        },
+        {
+          "model": "claude-opus-5[1m]",
+          "input_tokens_excluding_cache": 2,
+          "output_tokens_including_thinking": 873,
+          "cache_read_input_tokens": 1360,
+          "cache_creation_input_tokens": 18711,
+          "thinking_tokens_subset": 355,
+          "reported_web_search_requests": 0,
+          "estimated_api_cost_usd": 0.209625,
+          "cost_basis": "list"
+        }
+      ],
+      "reported_total_model_tokens": 34981,
+      "estimated_api_cost_usd": 0.223716,
+      "cash_billing_usd": null,
+      "human_effort_seconds": null,
+      "total_orchestration_resources": null
+    }
+  ]
+}

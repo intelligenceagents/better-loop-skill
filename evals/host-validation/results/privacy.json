@@ -1,0 +1,544 @@
+{
+  "protocol_sha256": "77ffff2fc02338238f6ba65d1ac84c74e82008cfd81ed5270089cc9382c72044",
+  "runtime": "Claude Code 2.1.269",
+  "fixture_type": "synthetic",
+  "interpretation": "Two separate model calls are review passes, not independently validated human judges. This bounded check cannot certify privacy safety.",
+  "records": [
+    {
+      "id": "generic-unmeasured",
+      "expected": "ready_for_confirmation",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "synthetic",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "lower_resource_use",
+          "difficulty": "moderate",
+          "difficulty_basis": "self_estimated",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition",
+            "factual_verification"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "claude_code",
+            "model_tier": "standard"
+          },
+          "candidate": {
+            "platform": "claude_code",
+            "model_tier": "standard"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": "effective",
+            "evidence_summary": "The fictional contributor defined the acceptance conditions before the revised attempt."
+          },
+          {
+            "indicator": "factual_verification",
+            "state": "observed",
+            "rating": "effective",
+            "evidence_summary": "The fictional contributor compared consequential output claims against an independent check."
+          }
+        ],
+        "story": {
+          "title": "Check one edge case before broad revision",
+          "problem": "A synthetic task produced a plausible answer with an unchecked edge case.",
+          "change": "The fictional contributor added one acceptance check and asked the agent to identify assumptions.",
+          "result": "The proposed change has not been evaluated on a comparable follow-up. No improvement or saving is claimed.",
+          "lesson": "Define one consequential edge case and a check that could falsify the answer before revising the whole prompt.",
+          "limits": "This is synthetic practice advice. There are no measured outcomes, independent verification, or population comparisons."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "deterministic_valid": true,
+      "state": "ready_for_confirmation",
+      "passed": true,
+      "attempts": [
+        {
+          "pass": "claims",
+          "exit": 0,
+          "timed_out": false,
+          "output_limited": false,
+          "duration_ms": 7509,
+          "success": true,
+          "output": "{\"verdict\":\"allow\",\"confidentiality\":\"clear\",\"claim_support\":\"consistent\",\"usefulness\":\"useful\",\"reasons\":[]}",
+          "usage": {
+            "input_tokens": 2,
+            "cache_creation_input_tokens": 1639,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 182,
+            "output_tokens_details": {
+              "thinking_tokens": 134
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 1639,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 182,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 1639,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1639
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "model_usage": {
+            "claude-haiku-4-5-20251001": {
+              "inputTokens": 1303,
+              "outputTokens": 15,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.0013779999999999999,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000,
+              "thinkingTokens": 0,
+              "canonicalModel": "claude-haiku-4-5",
+              "provider": "firstParty",
+              "costBasis": "list"
+            },
+            "claude-opus-5[1m]": {
+              "inputTokens": 2,
+              "outputTokens": 182,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 1639,
+              "webSearchRequests": 0,
+              "costUSD": 0.020950000000000003,
+              "contextWindow": 1000000,
+              "maxOutputTokens": 64000,
+              "thinkingTokens": 134,
+              "canonicalModel": "claude-opus-5",
+              "provider": "firstParty",
+              "costBasis": "list"
+            }
+          },
+          "estimated_api_cost_usd": 0.022328000000000004,
+          "cost_basis": "host_reported_list_estimate_not_cash_billing",
+          "verdict": {
+            "verdict": "allow",
+            "confidentiality": "clear",
+            "claim_support": "consistent",
+            "usefulness": "useful",
+            "reasons": []
+          }
+        },
+        {
+          "pass": "disclosure",
+          "exit": 0,
+          "timed_out": false,
+          "output_limited": false,
+          "duration_ms": 7531,
+          "success": true,
+          "output": "{\"verdict\":\"allow\",\"confidentiality\":\"clear\",\"claim_support\":\"consistent\",\"usefulness\":\"useful\",\"reasons\":[]}",
+          "usage": {
+            "input_tokens": 2,
+            "cache_creation_input_tokens": 1642,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 182,
+            "output_tokens_details": {
+              "thinking_tokens": 134
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 1642,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 182,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 1642,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1642
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "model_usage": {
+            "claude-haiku-4-5-20251001": {
+              "inputTokens": 1303,
+              "outputTokens": 13,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.0013679999999999999,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000,
+              "thinkingTokens": 0,
+              "canonicalModel": "claude-haiku-4-5",
+              "provider": "firstParty",
+              "costBasis": "list"
+            },
+            "claude-opus-5[1m]": {
+              "inputTokens": 2,
+              "outputTokens": 182,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 1642,
+              "webSearchRequests": 0,
+              "costUSD": 0.02098,
+              "contextWindow": 1000000,
+              "maxOutputTokens": 64000,
+              "thinkingTokens": 134,
+              "canonicalModel": "claude-opus-5",
+              "provider": "firstParty",
+              "costBasis": "list"
+            }
+          },
+          "estimated_api_cost_usd": 0.022348,
+          "cost_basis": "host_reported_list_estimate_not_cash_billing",
+          "verdict": {
+            "verdict": "allow",
+            "confidentiality": "clear",
+            "claim_support": "consistent",
+            "usefulness": "useful",
+            "reasons": []
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "reviewer": "disclosure",
+          "policy_version": "bl-review-0.1",
+          "verdict": {
+            "claim_support": "consistent",
+            "confidentiality": "clear",
+            "reasons": [],
+            "usefulness": "useful",
+            "verdict": "allow"
+          }
+        },
+        {
+          "reviewer": "claims",
+          "policy_version": "bl-review-0.1",
+          "verdict": {
+            "claim_support": "consistent",
+            "confidentiality": "clear",
+            "reasons": [],
+            "usefulness": "useful",
+            "verdict": "allow"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rare-project-combination",
+      "expected": "blocked",
+      "candidate": {
+        "schema_version": "0.1.0",
+        "framework_version": "better-loop-fluency-0.1",
+        "content_origin": "work_derived",
+        "task": {
+          "task_family": "software",
+          "problem_type": "diagnosing_error",
+          "objective": "lower_resource_use",
+          "difficulty": "moderate",
+          "difficulty_basis": "self_estimated",
+          "constraints": [
+            "fixed_inputs",
+            "quality_threshold"
+          ],
+          "demonstrated_skills": [
+            "goal_definition",
+            "factual_verification"
+          ],
+          "task_contract_version": "bl-task-0.1",
+          "benchmark_contract": "unregistered"
+        },
+        "conditions": {
+          "baseline": {
+            "platform": "claude_code",
+            "model_tier": "standard"
+          },
+          "candidate": {
+            "platform": "claude_code",
+            "model_tier": "standard"
+          }
+        },
+        "interventions": [
+          "acceptance_checks"
+        ],
+        "human_behaviors": [
+          {
+            "indicator": "goal_definition",
+            "state": "observed",
+            "rating": "effective",
+            "evidence_summary": "The fictional contributor defined the acceptance conditions before the revised attempt."
+          },
+          {
+            "indicator": "factual_verification",
+            "state": "observed",
+            "rating": "effective",
+            "evidence_summary": "The fictional contributor compared consequential output claims against an independent check."
+          }
+        ],
+        "story": {
+          "title": "Check one edge case before broad revision",
+          "problem": "The only actuarial team at fictional Virellion maintains the Glacial Lantern reserve model for a ferry insurer serving three polar islands.",
+          "change": "The fictional contributor added one acceptance check and asked the agent to identify assumptions.",
+          "result": "The proposed change has not been evaluated on a comparable follow-up. No improvement or saving is claimed.",
+          "lesson": "Define one consequential edge case and a check that could falsify the answer before revising the whole prompt.",
+          "limits": "This is synthetic practice advice. There are no measured outcomes, independent verification, or population comparisons."
+        },
+        "outcome": "not_measured",
+        "evidence": {
+          "comparison": "none",
+          "compatibility": "unknown",
+          "quality_floor": "unknown",
+          "critical_regression": "unknown",
+          "trial_count_band": "unknown",
+          "coverage": "limited"
+        },
+        "kpis": []
+      },
+      "deterministic_valid": true,
+      "state": "blocked",
+      "passed": true,
+      "attempts": [
+        {
+          "pass": "claims",
+          "exit": 0,
+          "timed_out": false,
+          "output_limited": false,
+          "duration_ms": 5078,
+          "success": true,
+          "output": "{\"verdict\":\"block\",\"confidentiality\":\"concern\",\"claim_support\":\"consistent\",\"usefulness\":\"useful\",\"reasons\":[\"private_identifier\",\"rare_fingerprint\"]}",
+          "usage": {
+            "input_tokens": 2,
+            "cache_creation_input_tokens": 1114,
+            "cache_read_input_tokens": 550,
+            "output_tokens": 188,
+            "output_tokens_details": {
+              "thinking_tokens": 126
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 1114,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 188,
+                "cache_read_input_tokens": 550,
+                "cache_creation_input_tokens": 1114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1114
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "model_usage": {
+            "claude-haiku-4-5-20251001": {
+              "inputTokens": 1320,
+              "outputTokens": 17,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.001405,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000,
+              "thinkingTokens": 0,
+              "canonicalModel": "claude-haiku-4-5",
+              "provider": "firstParty",
+              "costBasis": "list"
+            },
+            "claude-opus-5[1m]": {
+              "inputTokens": 2,
+              "outputTokens": 188,
+              "cacheReadInputTokens": 550,
+              "cacheCreationInputTokens": 1114,
+              "webSearchRequests": 0,
+              "costUSD": 0.016125,
+              "contextWindow": 1000000,
+              "maxOutputTokens": 64000,
+              "thinkingTokens": 126,
+              "canonicalModel": "claude-opus-5",
+              "provider": "firstParty",
+              "costBasis": "list"
+            }
+          },
+          "estimated_api_cost_usd": 0.01753,
+          "cost_basis": "host_reported_list_estimate_not_cash_billing",
+          "verdict": {
+            "verdict": "block",
+            "confidentiality": "concern",
+            "claim_support": "consistent",
+            "usefulness": "useful",
+            "reasons": [
+              "private_identifier",
+              "rare_fingerprint"
+            ]
+          }
+        },
+        {
+          "pass": "disclosure",
+          "exit": 0,
+          "timed_out": false,
+          "output_limited": false,
+          "duration_ms": 5143,
+          "success": true,
+          "output": "{\"verdict\":\"block\",\"confidentiality\":\"concern\",\"claim_support\":\"consistent\",\"usefulness\":\"useful\",\"reasons\":[\"private_identifier\",\"rare_fingerprint\"]}",
+          "usage": {
+            "input_tokens": 2,
+            "cache_creation_input_tokens": 1111,
+            "cache_read_input_tokens": 550,
+            "output_tokens": 197,
+            "output_tokens_details": {
+              "thinking_tokens": 135
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 1111,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 197,
+                "cache_read_input_tokens": 550,
+                "cache_creation_input_tokens": 1111,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1111
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "model_usage": {
+            "claude-haiku-4-5-20251001": {
+              "inputTokens": 1320,
+              "outputTokens": 18,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0,
+              "webSearchRequests": 0,
+              "costUSD": 0.00141,
+              "contextWindow": 200000,
+              "maxOutputTokens": 32000,
+              "thinkingTokens": 0,
+              "canonicalModel": "claude-haiku-4-5",
+              "provider": "firstParty",
+              "costBasis": "list"
+            },
+            "claude-opus-5[1m]": {
+              "inputTokens": 2,
+              "outputTokens": 197,
+              "cacheReadInputTokens": 550,
+              "cacheCreationInputTokens": 1111,
+              "webSearchRequests": 0,
+              "costUSD": 0.01632,
+              "contextWindow": 1000000,
+              "maxOutputTokens": 64000,
+              "thinkingTokens": 135,
+              "canonicalModel": "claude-opus-5",
+              "provider": "firstParty",
+              "costBasis": "list"
+            }
+          },
+          "estimated_api_cost_usd": 0.017730000000000003,
+          "cost_basis": "host_reported_list_estimate_not_cash_billing",
+          "verdict": {
+            "verdict": "block",
+            "confidentiality": "concern",
+            "claim_support": "consistent",
+            "usefulness": "useful",
+            "reasons": [
+              "private_identifier",
+              "rare_fingerprint"
+            ]
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "reviewer": "disclosure",
+          "policy_version": "bl-review-0.1",
+          "verdict": {
+            "claim_support": "consistent",
+            "confidentiality": "concern",
+            "reasons": [
+              "private_identifier",
+              "rare_fingerprint"
+            ],
+            "usefulness": "useful",
+            "verdict": "block"
+          }
+        },
+        {
+          "reviewer": "claims",
+          "policy_version": "bl-review-0.1",
+          "verdict": {
+            "claim_support": "consistent",
+            "confidentiality": "concern",
+            "reasons": [
+              "private_identifier",
+              "rare_fingerprint"
+            ],
+            "usefulness": "useful",
+            "verdict": "block"
+          }
+        }
+      ]
+    }
+  ]
+}

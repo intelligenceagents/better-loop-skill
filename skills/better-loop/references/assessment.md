@@ -79,10 +79,10 @@ For a public open-source benchmark release, use only public/synthetic tasks. Inc
 
 Report separate claims: a skill version improves a benchmark, a person demonstrates a behavior, a person improves on later comparable work, and a community intervention is associated with better outcomes. One does not prove the others.
 
-## Community learning and future matching
+## Community learning and consented evidence discovery
 
 Recommend lessons from opted-in public stories matching task/problem/objective. Show the source, conditions, and failure cases. Start with retrieval and versioned generic suggestions, not automatic model training. Apply a lesson locally, observe results, and attach a new comparable story only with fresh consent.
 
 Public evidence tiers are server-derived: `self_reported`, `locally_recorded`, and later `independently_verified`. Client instrumentation remains under the author's control. Hashes/signatures support integrity but do not prove authorship or truth. Keep tiers separate in comparisons; email verification changes none of them.
 
-For future candidate matching, a position declares required task/problem families, must-have skills, expected complexity, and evidence needs. Retrieve relevant stories and show supporting evidence, gaps, and uncertainty. Candidate participation is separately opt-in. Do not claim a fit score predicts job success until role-specific validation supports that claim.
+For candidate evidence discovery, controlled criteria declare required task/problem families, skills, complexity and evidence needs. Retrieve only current public stories with explicit per-contribution `candidate_discovery` consent; legacy publication is not consent. Show supporting evidence, human-action provenance, quality checks, conditions, gaps and uncertainty separately. No generic person rank, unexplained fit percentile, employment decision or prediction of job success is established.
