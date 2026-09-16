@@ -20,6 +20,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
+          cache-dependency-path: requirements-dev.txt
       - run: npm install --global npm@10.9.0
       - run: python -m pip install -r requirements-dev.txt
       - run: npm ci
