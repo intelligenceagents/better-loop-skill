@@ -1,6 +1,20 @@
 # Implementation status
 
-Updated: 2026-09-15. The current local product stage is ready for review. Packages remain reviewed local archives, with no registry release. Website publication has separate application authorization and release checks.
+Updated: 2026-09-16. Packages remain source-built early versions, with no npm registry release. The [hosted review](https://better-loop-web-o4bzaktxra-uk.a.run.app) offers practice and preview; sign-in, public contribution data and publishing remain disabled.
+
+## Source entry and CI repair
+
+The README now leads with the personal practice loop, runnable installation from
+`main`, example task choices and one private first-use request. The host guide
+keeps an explicit commit-install option and preserves scoped update/rollback.
+MIT, package versions, evidence, contracts and skill behavior are unchanged.
+
+GitHub CI had failed before tests because setup-python's pip cache searched for
+default dependency filenames. Both check and release-candidate workflows now
+name the existing `requirements-dev.txt`; no check was removed or weakened.
+Local validation passes710 TypeScript tests,79 parity cases, browser validation
+and all ten offline consumers. The revised documents pass143 local-link checks.
+Hosted check outcomes and merge identity are recorded by GitHub.
 
 ## Current follow-up: personal coaching and shared practice
 

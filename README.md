@@ -1,55 +1,103 @@
 # Better Loop
 
-**Get better at working with AI. Make your next attempt count.** Better Loop helps you frame a clearer task, improve your prompt, check the result and keep a history of what happened. Private coaching comes first; sharing is optional. The intended public learning destination is better-loop.com.
+### Get better at working with AI. One real task at a time.
 
-Choose one repository or an explicit set in Claude Code or Codex. A [local journey](docs/journey.md) remembers that scope, earlier assessments and your feedback. Return to the same selected state to review changed evidence and choose the next acceptance check. Unchanged work creates no new assessment or progress credit.
+You finish a task with AI. Something worked. Something took three attempts. What should you do differently next time?
 
-For a chosen task directory, including work outside Git, the [personal coach](packages/cli/README.md) proposes a prompt and a project-scoped working agreement from your explicit preferences. Review the exact `AGENTS.md` or `CLAUDE.md` diff before applying it; keep its plan for rollback. Named profiles help you choose different guidance for each host or model. They do not switch models or train weights. Applying instructions is preparation; check the next actual result before claiming improvement.
+**Better Loop helps you turn that experience into a clearer prompt, a useful check, and a lesson you can return to.** Run it in Claude Code or Codex, choose the work it may see, and keep your progress on your laptop.
 
-[Shared practice](packages/discovery/README.md) offers eight problem-based challenges across seven kinds of work. Related consented lessons can cross task families. Descriptive progress groups reported measurements by problem, difficulty, conditions, quality and trust, including relative token use. Numerical results require at least20 eligible contributors and remain uncalibrated; there is no universal person score or reward for spending or publishing more.
+**Private first · Your choice of scope · Saved history · Open source · MIT**
 
-The [private local progress viewer](docs/journey.md#see-your-saved-progress) presents that history and next check in a standalone HTML file at your explicit output path. It reads saved state without creating a new assessment, omits raw source by default, and has no scripts, external assets, network or automatic browser open. Keep the HTML private; source edits are not evidence of task improvement. [Copy a host request](docs/host-prompts.md) to start, return or create a viewer. The promise is recorded checks and useful follow-up, not guaranteed human gains.
+[Get started](#start-your-first-loop) · [Explore the website](https://better-loop-web-o4bzaktxra-uk.a.run.app) · [How it works](docs/journey.md) · [Read the skill](skills/better-loop/SKILL.md)
 
-The workspace also provides selected-export adapters, descriptive assessment, prompt proposals, static skill audits, and scoped instruction edits with exact-byte rollback. Optional sharing prepares a minimized story and [capability evidence](packages/evidence/README.md), with separate benchmark, community-learning and role-discovery choices. Two configured semantic reviews and your exact confirmation are required. An optional [browser handoff](packages/handoff/README.md) opens a local preview; publication remains a separate website action. Passing a contract check does not establish privacy, truth, human judgment, or improvement.
+## A better next attempt
 
-For everyday use, follow [first private setup and upgrades](docs/hosts.md#first-private-use). Optional sharing uses the [public reviewer integration guide](skills/better-loop/references/reviewers.md): choose a compliant reviewer separately, understand the exact input/verdict and call allowance, and keep private coaching available when review is unavailable.
+1. **Choose real work.** Use your current repository, an explicit set of repositories, or selected exports. No background history scan.
+2. **Find one useful change.** Sharpen the goal, prompt, delegation or acceptance check. Make the next attempt deliberate.
+3. **Shape how AI works with you.** Review a scoped `AGENTS.md` or `CLAUDE.md` proposal based on your preferences. Apply the exact diff when you choose; retain its rollback.
+4. **Return and compare.** Reuse your saved local checkpoint. Review changed evidence, revisit the earlier check, and keep the result—even when the change did not help.
 
-Start with [host installation](docs/hosts.md), [the local CLI](packages/cli/README.md), [the skill](skills/better-loop/SKILL.md), [the behavioral foundation](skills/better-loop/references/foundation.md), and [privacy boundaries](skills/better-loop/references/privacy.md). Both adapters have synthetic semantic-equivalence tests. Deterministic cue tests do not establish model behavior, independent classifier calibration, or domain validity.
+Your history survives a new chat because it lives in an explicitly selected local checkpoint. Unchanged work does not create a fresh assessment or progress credit. [See your saved progress](docs/journey.md#see-your-saved-progress) in a private HTML viewer.
 
-The [real returning-host checks](evals/host-validation/returning-journey.md) exercised selected repository work in both native hosts, including cross-host recall, changed-work assessment and unchanged reuse. All failures are retained. The [frozen public-work benchmark](evals/public-work-benchmark/RESULTS.md) measured equal quality and 1.05% more reported tokens with guidance in one pair; it establishes no savings or hiring validity. [Role evidence, descriptive cohorts and milestones](packages/discovery/API.md) keep relevance, observed human actions, reported claims, quality and missing evidence separate.
+## Start your first loop
 
-The [retrospective public repair proof](evals/public-repair-proof/RESULTS.md) shows a specific validator repair: 16/24 → 24/24 known authored checks, eight repaired and none regressed. It is separate from the neutral model benchmark and does not establish human ability, general efficacy or savings. The [current status](STATUS.md) separates the CLI draft.4 maintenance checks from verified product baseline `60fc087` and its retained native limitations.
+You need Git, Node 22 with npm 10.9.0, and a configured **Claude Code or Codex** installation. Build from `main` in a new directory:
 
-Use Node 22 (the selected patch is in `.nvmrc`), npm 10.9.0, and Python 3.11 or later:
+```sh
+git clone --branch main --single-branch https://github.com/intelligenceagents/better-loop-skill.git
+cd better-loop-skill
+npm ci
+npm run build:local
+node skills/better-loop/scripts/detect-helper.mjs
+```
+
+Then follow the [host install guide](docs/hosts.md#install-only-the-chosen-host-skill) to copy the skill into your chosen project and point it at this built helper. The guide preserves an existing installation and explains updates and rollback. Keep the checkout's commit if you need to reproduce your installed version.
+
+In your selected project, invoke **`/better-loop` in Claude Code** or **`$better-loop` in Codex**, then ask:
+
+> Review my current repository only. Help me identify one change in how I work with AI and a concrete check for my next attempt. Use a dedicated local checkpoint so I can return to this result. Ask for any missing task or state-directory choice. Keep this private.
+
+Use [ready-to-copy requests](docs/host-prompts.md) for several repositories, returning to saved state, viewing progress or preparing an optional story.
+
+The source packages are early versions and are **not published on npm**. Building needs public dependencies; private coaching needs no Better Loop account. Host reasoning uses your configured model provider.
+
+## Bring the work you actually do
+
+Better Loop covers coding, analysis and finance, research and strategy, mathematics and science, writing and design, operations and education, and general tasks.
+
+| Your next task | A useful thing to practice |
+| --- | --- |
+| Diagnose a software error | Define the failure and the check before changing code |
+| Reconcile an analysis | Make assumptions, source coverage and discrepancies explicit |
+| Synthesize research | Separate supported conclusions from uncertainty |
+| Draft for a reader | Specify audience, examples and a review rubric |
+| Coordinate a plan | Clarify dependencies, decisions and acceptance criteria |
+
+These are starting points for your own work. Choose among [eight shared practice briefs](packages/discovery/README.md), adapt the prompt, and use the same check on a later attempt.
+
+## Make your working preferences explicit
+
+Ask for the feedback, level of detail, delegation and verification you want. The [personal coach](docs/personal-coach.md) prepares a prompt and a project-scoped working agreement. Named host/model profiles let you choose different guidance for different tools.
+
+You review the proposal before it changes a file. It does not train a model or guarantee instruction following. Applying a preference is preparation; the next checked result is the evidence.
+
+## Progress worth keeping
+
+Keep a useful reflection, a deliberate test and a checked follow-up. Preserve weak and negative results too. Copies, token spending and posting volume earn no competence credit.
+
+The comparison tools group consented reports by problem, difficulty, conditions, quality and measurement version. Quality and relative token usage stay separate. Numerical community views require at least **20 eligible contributors** and remain uncalibrated; there is no universal person score or validated hiring prediction.
+
+The [hosted website](https://better-loop-web-o4bzaktxra-uk.a.run.app) currently offers practice and story preview. **Sign-in, public contribution data and publishing are disabled while production integration is completed.**
+
+## Your work stays yours
+
+Raw workflows, code, documents and transcripts are not Better Loop uploads. Your configured model provider may process the local evidence you select; that is a separate boundary from Better Loop.
+
+Optional sharing prepares a minimized lesson. It requires privacy review and your approval of the exact content and purposes. Changing either invalidates approval. Sharing is never required for private coaching. Read the [privacy boundaries](skills/better-loop/references/privacy.md) and [reviewer setup](skills/better-loop/references/reviewers.md).
+
+## Inspect the evidence
+
+We keep outcomes that do not support the promise:
+
+- [Real returning-host checks](evals/host-validation/returning-journey.md) exercise selected scope, saved recall and changed/unchanged work in both hosts, with failures retained.
+- [One frozen public-work comparison](evals/public-work-benchmark/RESULTS.md) found equal quality and **1.05% more reported tokens** with guidance.
+- [One retrospective validator repair](evals/public-repair-proof/RESULTS.md) passed **16/24 → 24/24** known checks, with eight repaired and none regressed.
+
+These are bounded engineering observations, not proof of human learning or guaranteed savings. Behavioral observations draw on [Anthropic's 4D framework and 11 observable indicators](skills/better-loop/references/foundation.md); outcomes, missing evidence and verification remain separate. [Current status](STATUS.md) records the implementation and its limits.
+
+## Build with us
+
+MIT welcomes personal, commercial and corporate reuse. [Tell us about your integration](docs/corporate-integration-and-reuse.md) if you would like to; notification is voluntary and should contain no confidential information.
+
+For contributor checks, add Python 3.11 or later to the setup above:
 
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
-npm ci
 npm run check
 ```
 
-The initial install downloads public dependencies. Default checks use synthetic local data and require no service credentials, model calls, or Better Loop connection. `npm run check` builds the workspaces, type-checks, runs behavior/privacy/measurement tests, validates the seed, compares Python/TypeScript behavior, and checks the contract package allowlist. See [development](docs/development.md) for browser and packed-consumer checks.
+These automated checks use local fixtures and make no model calls. See [development](docs/development.md) for browser and offline package checks, [contributing](CONTRIBUTING.md) for patches, and [security](SECURITY.md) for private vulnerability reports.
 
-Use your explicitly selected task after building:
-
-```sh
-node packages/cli/dist/cli.js capabilities --json
-node skills/better-loop/scripts/detect-helper.mjs
-node packages/cli/dist/cli.js assess --host codex --input selected-task-export.json
-```
-
-The report gives domain-specific checks and 11 source-mapped descriptive cues with actor and evidence limits. Outcome/resource metrics remain unknown. The helper makes no model call; richer host reasoning uses the user's configured model provider, a separate processing boundary. Private reports contain selected evidence and are never public candidates.
-
-For real repository work with a selected diff/document and existing check output, use `capture --task selected-task-context.json --artifact selected-change.diff --checks selected-check-output.txt --output selected-task-export.json`. It reads only those explicit files, retains their actual text locally, and marks the selection partial. It never runs a command from a diff, fabricates check results, infers a human decision from agent code, or scans repository/history directories. The task-context format and native host export formats are in [adapters](packages/adapters/README.md).
-
-Prior validation: the [first real-host pilot](evals/host-validation/results/benchmark-analysis.json) ran 12 model calls across two synthetic reconciliation tasks with frozen prompts and strict JSON checks. The rewrite increased mean per-pair reported token use by about 17% and 20%, with no measured quality gain. All baseline and candidate checks passed. This was performed before the workflow switched to actual selected repository evidence; it is not real-work evidence or a savings claim. Shared preparation overhead and several effort/cost measures remain unknown. See the [frozen registration](evals/host-validation/benchmark-registration.json) and [retained raw run results](evals/host-validation/results/benchmark-raw.json).
-
-Explicit public-learning retrieval and private measurement milestones are described in [local learning](docs/local-learning.md). Learning sends only controlled taxonomy on an explicitly requested public GET; offline/expired lesson exports cannot generate automated recommendations. No default production service, automatic experiment, evidence upload, or universal score is supplied.
-
-The unpublished draft package is `@better-loop/contracts@0.1.0-draft.1`, implementing the unchanged wire schema `0.1.0`. Its [API and CLI](packages/contracts/README.md) validate both contracts, canonicalize JSON, and calculate exact-preview digests locally. Build a reviewable archive with `npm run pack:contracts`; do not assume it is available on the npm registry.
-
-The [example fixtures](examples/README.md) are fictional and excluded from efficacy claims. Real host and public-work results are labeled separately. See [status](STATUS.md), [contributing](CONTRIBUTING.md), [security](SECURITY.md), and [MIT license](LICENSE).
-
-Corporate and other reuse is welcome. [Corporate integration and reuse](docs/corporate-integration-and-reuse.md) describes the optional, non-confidential notification process. MIT is unchanged; notification and registration are voluntary, and no results are collected automatically.
+**Bring one real task. Leave with one useful next check.**

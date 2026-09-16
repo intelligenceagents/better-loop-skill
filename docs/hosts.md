@@ -4,7 +4,17 @@ The same `skills/better-loop/` directory serves both hosts. Its guidance is pair
 
 ## First private use
 
-Start with Git, Node 22 (selected patch in `.nvmrc`), npm 10.9.0, and your installed/configured Claude Code or Codex host. Choose a reviewed source commit and a new helper checkout location. The following are **non-runnable placeholders** until you replace the path and commit:
+Start with Git, Node 22 (selected patch in `.nvmrc`), npm 10.9.0, and your installed/configured Claude Code or Codex host. The current source is on [main](https://github.com/intelligenceagents/better-loop-skill/tree/main). For a new checkout:
+
+```sh
+git clone --branch main --single-branch https://github.com/intelligenceagents/better-loop-skill.git
+cd better-loop-skill
+npm ci
+npm run build:local
+git rev-parse HEAD
+```
+
+Keep the printed commit with your selected installation details so you can reproduce or review that version. Do not overwrite an existing checkout or skill installation. For an explicitly reviewed commit instead, choose a new helper checkout location. The following are **non-runnable placeholders** until you replace the path and commit:
 
 ```text
 git clone --no-checkout https://github.com/intelligenceagents/better-loop-skill.git /path/to/new-helper-checkout
