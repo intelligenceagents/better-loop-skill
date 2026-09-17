@@ -1,6 +1,24 @@
 # Implementation status
 
-Updated: 2026-09-17. Packages remain source-built early versions, with no npm registry release. The [hosted review](https://better-loop.com) offers practice and preview; sign-in, public contribution data and publishing remain disabled.
+Updated: 2026-09-17. Packages remain source-built early versions, with no npm
+registry release. The [public beta](https://better-loop.com) supports email
+sign-in, reviewed publication, owner version history, withdrawal and deletion.
+Local sharing preparation still requires two explicitly configured passing
+semantic reviewers and exact user approval. Hosted availability is separate
+from local helper capability.
+
+## Current documentation: the complete user journey
+
+The [end-to-end walkthrough](docs/first-loop-to-public-story.md) explains the
+private outputs, optional sharing invitation, exact preview approval, browser
+handoff and explicit website publication. It links a real published software
+repair without presenting it as human improvement. The README no longer carries
+the superseded pre-activation notice. This is a documentation-only update:
+package versions, contracts, skill behavior and MIT are unchanged.
+
+The sections below retain earlier implementation checkpoints and their original
+verification scope; their historical no-deployment statements describe those
+source passes.
 
 The README and current status now use the canonical website address. The previous
 direct hosting URL is no longer the public entry. This documentation-only update

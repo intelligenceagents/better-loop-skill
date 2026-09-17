@@ -68,11 +68,15 @@ Try one of [eight shared practice briefs](https://github.com/intelligenceagents/
 
 ## Share a lesson only if you choose
 
-The [hosted review website](https://better-loop.com) offers practice and preview. **Hosted authentication is unavailable; sign-in, public contribution data and publishing are disabled while production integration is completed.**
+The [public beta website](https://better-loop.com) supports email sign-in,
+reviewed publishing and owner version history. You can unpublish or delete
+what you shared. Private coaching still needs no account.
 
 Optional sharing prepares a minimized improvement story. Raw code, documents, workflows and transcripts are not Better Loop uploads. Export requires privacy review and your approval of the exact content and purposes; changing either invalidates approval. See [privacy and reviewer setup](https://github.com/intelligenceagents/better-loop-skill/blob/main/skills/better-loop/references/reviewers.md).
 
 Private coaching and history remain useful without sharing.
+
+[Walk through a complete loop, from the skill to a public story](https://github.com/intelligenceagents/better-loop-skill/blob/main/docs/first-loop-to-public-story.md).
 
 ## Inspect the evidence
 
