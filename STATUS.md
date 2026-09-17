@@ -1,6 +1,13 @@
 # Implementation status
 
-Updated: 2026-09-16. Packages remain source-built early versions, with no npm registry release. The [hosted review](https://better-loop-web-o4bzaktxra-uk.a.run.app) offers practice and preview; sign-in, public contribution data and publishing remain disabled.
+Updated: 2026-09-17. Packages remain source-built early versions, with no npm registry release. The [hosted review](https://better-loop.com) offers practice and preview; sign-in, public contribution data and publishing remain disabled.
+
+The README and current status now use the canonical website address. The previous
+direct hosting URL is no longer the public entry. This documentation-only update
+does not change packages, MIT licensing, contribution consent or release gates.
+Validation: the context validator passes, including101 local links; the canonical
+website returns HTTPS200 with Better Loop content. No new model or benchmark
+evaluation was run for this link change.
 
 ## Source entry and CI repair
 

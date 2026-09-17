@@ -68,7 +68,7 @@ Try one of [eight shared practice briefs](https://github.com/intelligenceagents/
 
 ## Share a lesson only if you choose
 
-The [hosted review website](https://better-loop-web-o4bzaktxra-uk.a.run.app) offers practice and preview. **Hosted authentication is unavailable; sign-in, public contribution data and publishing are disabled while production integration is completed.**
+The [hosted review website](https://better-loop.com) offers practice and preview. **Hosted authentication is unavailable; sign-in, public contribution data and publishing are disabled while production integration is completed.**
 
 Optional sharing prepares a minimized improvement story. Raw code, documents, workflows and transcripts are not Better Loop uploads. Export requires privacy review and your approval of the exact content and purposes; changing either invalidates approval. See [privacy and reviewer setup](https://github.com/intelligenceagents/better-loop-skill/blob/main/skills/better-loop/references/reviewers.md).
 
